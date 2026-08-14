@@ -37,6 +37,8 @@ description: "Live video AI, a Files surface, manageable prompt queue, new data 
 
 **Buy usage credits from Settings.** Purchase additional usage credits from Settings without leaving the app, and see your usage breakdown as percentages instead of raw numbers.
 
+**Billing dashboard is production-ready.** Manage subscription and payment method directly from Billing, with clearer plan-card states and a more reliable Manage billing hand-off to Stripe.
+
 **AI training controls reworked.** Model training settings are clearer and now include guidance on opting out.
 
 **No email-invite limits on paid workspaces.** Paid workspaces can invite as many teammates by email as they need; the previous per-plan cap is gone.
@@ -72,3 +74,5 @@ description: "Live video AI, a Files surface, manageable prompt queue, new data 
 **Attached images stay within the model's size limit.** Chat attachments are now clamped to the 8000-pixel provider limit before upload.
 
 **Conversational prompts stay out of the workbench.** A quick question no longer opens the build surface unless you actually want to build.
+
+**Chat deletion works on legacy schemas.** Deleting a chat no longer errors on older projects where the underlying record uses a different id field.
