@@ -50,6 +50,43 @@
         ]
       },
       {
+        "group": "Build & code generation",
+        "icon": "hammer",
+        "pages": [
+          "features/build/overview"
+        ]
+      },
+      {
+        "group": "Agent capabilities",
+        "icon": "robot",
+        "pages": []
+      },
+      {
+        "group": "Editor & preview",
+        "icon": "pen-to-square",
+        "pages": []
+      },
+      {
+        "group": "Data & integrations",
+        "icon": "database",
+        "pages": []
+      },
+      {
+        "group": "Security & trust",
+        "icon": "shield-halved",
+        "pages": []
+      },
+      {
+        "group": "Workspace & collaboration",
+        "icon": "users",
+        "pages": []
+      },
+      {
+        "group": "Voice, media & presentation",
+        "icon": "microphone",
+        "pages": []
+      },
+      {
         "group": "Changelog",
         "pages": [
           "changelog/2026-08-14-weekly",

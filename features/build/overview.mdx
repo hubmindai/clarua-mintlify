@@ -1,0 +1,52 @@
+---
+title: "Build overview"
+description: "How Clarua turns prompts, specs, files, and designs into production-shaped apps end to end."
+icon: "compass"
+---
+
+Clarua's build surface takes a spec (chat, form, spreadsheet, design, screenshot, API contract) and produces a working project with real source code. Generation is deterministic where it can be, scaffolded around the shape of what you gave it, and held to a production quality bar by default.
+
+## What you can start from
+
+<CardGroup cols={2}>
+  <Card title="A prompt or chat" icon="comment" href="/features/build/spec-interview">
+    Describe what you want. The spec interview asks the questions it needs, then locks the spec before building.
+  </Card>
+
+  <Card title="A spreadsheet" icon="table" href="/features/build/from-spreadsheet">
+    Paste CSV or tab-separated data and get an app scaffolded around your real rows, columns, and types.
+  </Card>
+
+  <Card title="A design file" icon="pen-ruler" href="/features/build/design-to-code">
+    Import a design and get design tokens plus components written back to source.
+  </Card>
+
+  <Card title="A screenshot" icon="image" href="/features/build/screenshot-to-ui">
+    Drop in a screenshot and get clean, production-shaped front-end code back.
+  </Card>
+
+  <Card title="An API spec" icon="plug" href="/features/build/api-import">
+    Paste an OpenAPI spec, a request collection, or a cURL command and get a typed client wired in.
+  </Card>
+
+  <Card title="A URL" icon="globe" href="/features/build/url-to-codebase">
+    Point Build at any URL and get a codebase that matches its structure.
+  </Card>
+</CardGroup>
+
+## Quality floor
+
+Every generated app meets a production floor by default:
+
+- Real page title, description, and meta.
+- Alt text on images and labels on icon-only buttons.
+- A single top-level heading and readable color contrast.
+- Animations respect reduced-motion preferences.
+- Form errors move focus to the first field to fix.
+- Loading states for anything fetched lazily.
+
+The bar is baked into how apps are generated, so it can't quietly regress between builds.
+
+## Deterministic pipelines
+
+Where the input has enough structure (a spreadsheet, a screenshot, an API spec, a design token file), the compile step runs deterministically. The same paste, image, or spec produces the same output every time, and you can hand-edit and recompile without surprises.
