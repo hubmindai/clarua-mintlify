@@ -1,0 +1,74 @@
+---
+title: "Week of August 14, 2026"
+description: "Live video AI, a Files surface, manageable prompt queue, new data connectors, guest-landing redesign, and dozens of build and auth fixes."
+---
+
+## New features
+
+**Livey: live video AI in the workbench.** Turn a webcam or screen into a live video AI feed powered by Decart. Usage is metered on your workspace credits, so nothing runs unaccounted.
+
+**Health and Finances connection pages.** Two new dedicated pages where you can wire a project up to health or finance sources, with a blank-slate design tuned for the real thing you're about to connect.
+
+**A Files surface for everything a conversation generated.** Every image, document, and asset a chat produced now lives in one place you can browse, download, and re-attach. No more digging back through messages.
+
+**A prompt queue you can actually manage.** Hold, reorder, edit, copy, and repeat items in the queue before they run. Long build sessions stop being a one-shot commitment.
+
+**Activity side panel for the chat.** A ChatGPT-style turn activity view shows what the agent did on the current turn, in a side panel you can open or dismiss. See the work as it happens instead of scrolling the transcript.
+
+**Test and live project environments.** Every project now has separate test and live environments, so you can iterate against one and publish from the other without conflict. Environments never collide on add.
+
+**More data connectors.** Amazon Redshift, Microsoft Fabric, Google Analytics, and Xero join the connector catalog, so more of your real data lands directly in the projects you build.
+
+**Veo 3.1 in Montage.** The Montage video pipeline now supports Google's Veo 3.1 video models for scene generation.
+
+**Trust centers for published apps.** Any app you publish can now generate a Trust Center, a public page that surfaces its security posture, from what's already known about it. No extra setup.
+
+**Managed registry.** The npm registry that we host for your workspace is now called Managed registry, to distinguish it from an external registry you'd run yourself and connect through a build secret. Nothing about how it works changed. Available on Enterprise plans.
+
+**Live app builder on the guest landing.** The homepage hero is now a working builder. Start a project without signing in first, then carry it into your workspace.
+
+**Selectable conversation styles in /talk.** Pick a conversation style and tap a starter ask, matching the voice UX you get elsewhere in the product.
+
+## Updates
+
+**Onboarding shows a live workspace preview.** As you answer the onboarding questions, a real workspace preview assembles beside them, so you see what you're setting up as you set it up.
+
+**Referral rewards raised to 100 credits.** The referrer grant is now 100 credits, and the reward pays out when the friend subscribes to Pro or above. Every surface, including the sidebar footer, share modal, and user menu, follows the same number and links to the same affiliate flow.
+
+**Buy usage credits from Settings.** Purchase additional usage credits from Settings without leaving the app, and see your usage breakdown as percentages instead of raw numbers.
+
+**AI training controls reworked.** Model training settings are clearer and now include guidance on opting out.
+
+**No email-invite limits on paid workspaces.** Paid workspaces can invite as many teammates by email as they need; the previous per-plan cap is gone.
+
+**All new signups route through onboarding.** New accounts land in onboarding before the workbench, so first-run setup is consistent across signup paths.
+
+**Guest landing redesign.** New hero (one-line headline, rotating openings, cleaner composer), Supa Agents section, redrawn plan icons across pricing flows, FAQ moved above the footer, and a rebuilt scale section with a rotating dot globe. Plans now live below the hero, and every plan surface uses the same brand-gradient plan marks. MAX replaces the old top-tier name.
+
+**Split-layout sign-in and sign-up.** Auth pages restyled with the Clarua wordmark, a visible OAuth hand-off, and a split layout. Google auth redirects are now immediate, and the callback lands you in chat with no interstitial.
+
+**Chat attachments match ChatGPT styling.** File attachment cards in the chatbox use a compact, layered card treatment. Attached images are now delivered to the model, the project, and the file library on the same turn.
+
+**Line-range code references in `/code`.** Cite exactly the lines you mean when referencing code in chat.
+
+**Follow-ups can see the whole project.** A new setting lets the model see the project on follow-up turns, not just the current message, so revisions land in the right places.
+
+**Live preview toggle per project.** Turn the live preview on or off per project from the project settings.
+
+**Sidebar refresh.** A new More destinations menu, a redesigned user menu, pinning that works on touch, and the affiliate program surfaced in the header.
+
+## Bug fixes
+
+**Follow-up prompts now update the code.** Multiple paths where a follow-up message failed to update files or the preview are fixed; sealed messages self-heal, and streaming state stays live mid-turn.
+
+**Auto-publish reliability.** Closed the four remaining ways auto-publish could silently never fire after a build finished.
+
+**Rewardful tracking and conversions.** Affiliate tracker now installs on every page, and conversions attribute correctly.
+
+**Pinning works everywhere.** Fixed 400 errors when pinning a chat, and made the pin control reachable on touch devices.
+
+**Billing and usage no longer read a placeholder address as an account.** A stale Stytch placeholder email could be mistaken for an account owner in billing and usage; that's fixed.
+
+**Attached images stay within the model's size limit.** Chat attachments are now clamped to the 8000-pixel provider limit before upload.
+
+**Conversational prompts stay out of the workbench.** A quick question no longer opens the build surface unless you actually want to build.
