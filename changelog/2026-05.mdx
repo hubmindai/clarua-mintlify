@@ -1,0 +1,91 @@
+---
+title: "May 2026"
+description: "Changelog entries for May 2026."
+sidebarTitle: "May 2026"
+---
+
+## May 27
+
+**Build · Point at a URL, get a clean codebase.** Give the agent the address of a site and get back a tidy, structured codebase that recreates it — not a tangle of scraped markup. It's a starting point you can actually build on, organized the way you'd write it yourself.
+
+**Workspace · Social login for the apps you ship.** Add sign-in to a generated app without wiring up auth by hand — let your users log in with accounts they already have. It's configured from the dashboard and carried into the app you publish, so real authentication is a setting, not a project.
+
+**Maker · Describe a part, get a printable 3D model.** Describe what you want in plain language and get back a real, watertight 3D model tuned to your printer — no CAD. The model is parametric, so you can change a dimension and regenerate, a confidence ledger flags anything it's unsure about, and you can export a ready-to-print file. Reach it with /maker or the 3D Maker studio.
+
+## May 24
+
+**Workspace · Self-serve restore from a daily backup.** Your projects are backed up daily, and rolling one back is something you can do yourself — pick a day and restore, no support ticket. It's there for the moment a change went wrong and you just want yesterday's version back.
+
+## May 21
+
+**Security · Security Scan — catch vulnerabilities before you publish.** One click scans your app for exposed secrets, injection sinks, missing row-level security, insecure requests, and risky configuration — with a weighted security score and a publish gate that can hard-block on criticals. It runs entirely on-device: your code never leaves the edge, and any secret it finds is masked before it's ever shown or stored. Each finding comes with a concrete fix and an ignore-with-reason audit trail.
+
+**Analytics · App Analytics — usage insights for the apps you ship.** See how people actually use the apps you build: page views, custom events, conversions, and funnels in one dashboard. Privacy-first — no cookies, no third-party trackers; visitor identity is hashed at the edge and IPs are redacted. Drop in two lines and events start flowing.
+
+**Skills · Skills — reusable instructions the agent remembers.** Teach the agent how you like things done once, then let it apply that playbook whenever a task matches — or trigger it yourself with a /command. Write a skill in the dashboard, import one as markdown, or save one straight from a chat. Only names and descriptions load up front, so a big library never slows the agent down.
+
+**Workspace · Cross-project referencing — reuse work across projects.** Mention another project in your workspace and the agent can reuse its components, assets, and decisions instead of starting from scratch. It pulls a ranked, size-budgeted summary rather than dumping whole files, and every reference is logged so you can see what each project borrowed and from where. Read-only — referenced projects are never changed.
+
+**Projects · Remix into any workspace \+ folder.** When you remix a project, choose exactly where the copy lands — which workspace and which folder — and it carries the original's name and details with a clear link back to the source.
+
+## May 19
+
+**Editor · Framework Lock \+ per-file lock.** Pin the framework choice for a project so regenerations can't drift it, and lock individual files so their contents survive every iteration. Both surface as toggles in the editor and workbench, on by default for new projects.
+
+**Preview · Preview component refactor.** Device frame, resize, skeleton state, and web-component support all extracted into focused hooks. Keyboard-driven resize is accessible, reduced-motion is respected, and the cross-origin font noise from screenshot capture is silenced.
+
+**Workbench · Header v11.3 — chip-style segmented control.** New animated chip control for device \+ view switching, keyboard shortcuts, a device dropdown, and a status text region so the workbench surface tells you what it's doing without you having to guess.
+
+**Chat · Prompt queue: full audit \+ refactor.** Four-phase pass across the prompt queue — paste UI now reachable from an empty queue, double border in the chatbox fixed, and the surface as a whole moves from "works" to "feels deliberate."
+
+**Templates · 14 starter templates repointed \+ SUP-SSR default.** Every starter template now flows through our own mirrors for supply-chain control. SUP-SSR (the TanStack Start scaffold with discoverability built in) is the recommended default; SolidJS is back in the catalogue.
+
+**Brand · Editorial lineage as default brand.** New default brand voice draws on the longform editorial tradition — quiet typography, hairline rules, coral as the only signal color. Less SaaS-template, more masthead.
+
+## May 18
+
+**SUP-SSR · Discoverability — SSR \+ SEO \+ AEO, shipped.** Three open-source toolkits (Vite scaffold, SEO \+ AEO helpers, supply-chain freshness check), a TanStack Start template, an SEO co-pilot agent, multi-runtime artifact emitters, a severity rubric \+ batch-fix engine \+ pre-deploy gate, migration detector \+ pre-render fallback \+ upgrade wizard, and a self-meta marketing surface that scores 100 on its own audit. 234 tests behind it.
+
+## May 12
+
+**Web · The chat IS the signup.** Email capture happens inline in the Clarua interview bubble — magic-link confirmation renders as the next bubble. No detour to a separate signup page, no context loss.
+
+## May 11
+
+**Web · Live signal extraction under the textarea.** As the visitor types, a "Heard" chip strip materializes below the input — proves the agent is reading the prompt in real time, before they hit Send.
+
+**Agent · Verdict cards under the BigReveal.** The analysis bubble now reads as a deliverable: signals → BigReveal → provenance chip → three leak cards → narrative → "Next, Clarua would ask" hook.
+
+## May 10
+
+**Voice · Clarua talk pill replaces the raw FAB.** Expandable cream label, coral orb with concentric wave rings, state-driven icon swap. No more raw voice-credential errors leaking into the UI.
+
+## May 9
+
+**Agent · Personalized BigReveal — the visitor's number.** Signal extraction computes a tailored dollar figure from city, headcount, average value, key percent, and named surfaces. The figure counts up dramatically in the analysis bubble.
+
+## May 8
+
+**Web · Clarua interview hero.** 5-question interview as the homepage hero — brick road, breathing orb, sketching indicator, seven-template classifier, integrated signup hand-off.
+
+## May 7
+
+**Marketing · Homepage v3.5 — operator clarity pass.** Plain-English positioning ("Your AI build partner"), concrete phase timing on every method tile, FAQ moved before pricing for conversion flow, sticky bottom CTA, dark-to-light navbar pattern, "A day with the fleet" timeline.
+
+**Loop · Scheduled subagents.** Loops wake up on a cadence, run a constrained tick, and earn promotion to higher trust through clean runs. Five-gate budget (per-run, per-day, per-month, token velocity, tool-call ceiling), three locked v1 templates (PR babysitter / dependency updater / competitor signal).
+
+## May 5
+
+**Personal · Operator-mode skills.** First-person surface for the founder at the keyboard: decongest a stuck thought, get unlocked on a blocker (gated by Empirica), audit the week, process a braindump, prep for a 1:1. Five skills \+ one weekly read-only audit loop.
+
+## May 4
+
+**Partner API · Sub-workspaces, dual-visible chats, routed billing.** Anchor admins provision member workspaces, submit tasks on members' behalf, and pin billing to either side. Bearer-token auth, HMAC-signed webhooks with two-secret rotation, atomic credit reservation, cross-org isolation guard.
+
+## May 3
+
+**ATLAS v2 · Self-improving content ops.** A 9-agent DAG that produces weekly content, learns from outcomes, and proposes prompt mutations — canary-deployed to 10% of traffic, never auto-shipped. Adversarial evals, error budget, stigmergic memory, knowledge graph.
+
+## May 1
+
+**Forge Image · Public image generation API.** Customer-callable endpoint at api.clarua.com/forge/v1/images. ~15 second turnaround, key-rotation-friendly security boundary, HMAC-signed webhooks, idempotency, daily-spend ceiling, anomaly detection.
