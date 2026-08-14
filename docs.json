@@ -3,11 +3,14 @@
   "theme": "mint",
   "name": "Mintlify Starter Kit",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#256bc1",
+    "light": "#2b80e8",
+    "dark": "#194c8a"
   },
-  "favicon": "/favicon.svg",
+  "favicon": {
+    "light": "/images/clarua-mark-cf-light.svg",
+    "dark": "/images/clarua-mark-cf.svg"
+  },
   "navigation": {
     "pages": [
       {
@@ -34,8 +37,9 @@
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/images/clarua-lockup-cf-light.svg",
+    "dark": "/images/clarua-lockup-cf.svg",
+    "href": "https://clarua.com"
   },
   "navbar": {
     "links": [
@@ -67,6 +71,11 @@
       "x": "https://x.com/mintlify",
       "github": "https://github.com/mintlify",
       "linkedin": "https://linkedin.com/company/mintlify"
+    }
+  },
+  "background": {
+    "color": {
+      "dark": "#212121"
     }
   }
 }
