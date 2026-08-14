@@ -4,7 +4,7 @@ description: "How Clarua turns prompts, specs, files, and designs into productio
 icon: "compass"
 ---
 
-Clarua's build surface takes a spec (chat, form, spreadsheet, design, screenshot, API contract) and produces a working project with real source code. Generation is deterministic where it can be, scaffolded around the shape of what you gave it, and held to a production quality bar by default.
+Clarua's build surface takes a spec (chat, form, spreadsheet, design, screenshot, API contract) and produces a working project with real source code. Clarua generates deterministically where it can, scaffolds around the shape of what you gave it, and holds the output to a production quality bar by default.
 
 ## What you can start from
 
@@ -45,7 +45,7 @@ Every generated app meets a production floor by default:
 - Form errors move focus to the first field to fix.
 - Loading states for anything fetched lazily.
 
-The bar is baked into how apps are generated, so it can't quietly regress between builds.
+Clarua bakes this bar into how it generates apps, so the quality floor can't quietly regress between builds.
 
 ## Deterministic pipelines
 
