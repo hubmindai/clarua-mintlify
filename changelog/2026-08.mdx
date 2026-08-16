@@ -8,7 +8,7 @@ sidebarTitle: "August 2026"
 
 ### Bug fixes
 
-**Uploaded photos replace placeholders reliably.** When you attach a photo and ask the agent to swap it in for an existing image, the send path now re-verifies the attachment is persisted in the project before the message goes out. The instructions delivered to the model spell out the replacement contract: update the existing element's `src` at that exact path, don't re-create the file, don't add a duplicate element, and don't fall back to a stock photo. End-to-end, the picture you uploaded is the picture that lands in the app.
+**Uploaded photos replace placeholders reliably.** When you attach a photo and ask the agent to swap it in for an existing image, the send path now re-verifies the attachment is persisted in the project before the message goes out. The instructions delivered to the model spell out the replacement contract. Update the existing element's `src` at that exact path, don't re-create the file, don't add a duplicate element, and don't fall back to a stock photo. End-to-end, the picture you uploaded is the picture that lands in the app.
 
 **Reopening a chat no longer replays old actions.** Opening a past chat used to let late-arriving history run as if it were live, which could fire stray shell, start, or file actions on load. Restored history is now treated as history: the actions render in the transcript without executing again.
 
