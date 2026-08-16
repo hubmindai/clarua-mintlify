@@ -1,8 +1,18 @@
 ---
 title: "August 2026"
-description: "August 2026 Clarua updates: Private registry is renamed to Managed registry for workspace-hosted npm packages on Enterprise plans."
+description: "August 2026 Clarua updates: reliability fixes for uploaded-photo replacement and reopened chats, plus Private registry renamed to Managed registry."
 sidebarTitle: "August 2026"
 ---
+
+## Aug 15
+
+### Bug fixes
+
+**Uploaded photos replace placeholders reliably.** When you attach a photo and ask the agent to swap it in for an existing image, the send path now re-verifies the attachment is persisted in the project before the message goes out. The instructions delivered to the model spell out the replacement contract: update the existing element's `src` at that exact path, don't re-create the file, don't add a duplicate element, and don't fall back to a stock photo. End-to-end, the picture you uploaded is the picture that lands in the app.
+
+**Reopening a chat no longer replays old actions.** Opening a past chat used to let late-arriving history run as if it were live, which could fire stray shell, start, or file actions on load. Restored history is now treated as history: the actions render in the transcript without executing again.
+
+**A single blipped auth probe won't sign you out.** A transient failure on one session-check request no longer hard-redirects you to `/signin`. The probe retries on network hiccups, and if it still can't reach the auth service, the app surfaces a normal load-error state instead of logging you out.
 
 ## Aug 12
 
