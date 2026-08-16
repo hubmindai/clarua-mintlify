@@ -1,0 +1,77 @@
+---
+title: "Onboarding: plan, upsell, and your first build"
+description: "How Clarua's onboarding ends, including the persona-aware Pro upsell, the one-time downsell, and the first-build tour that opens the moment your first project settles."
+icon: "door-open"
+---
+
+Onboarding is where a new Clarua account chooses a plan and lands in the builder for the first time. The last three screens are a real commerce funnel, not a paywall maze, and completing them arms a one-time guided tour that opens on your first successful build.
+
+This page describes what you see, when each screen appears, and how to skip anything you don't want.
+
+## When it applies
+
+Every new signup goes through onboarding before the workbench, so what's on this page is what you'll see on your first visit. You never see any of it again after you finish, and the flow can't loop you back into a pitch.
+
+## The plan step
+
+The plan step lists Free and Pro side by side. Free is a full-width control on the grid, not a footnote, so picking it is one plain click. Picking Pro (monthly or annual) sends you straight to checkout — there is no interstitial between a card-ready buyer and the payment page.
+
+## The upsell
+
+If you pick Free, Clarua shows a single upsell for Pro before completing onboarding. It's built from the same offer table that generates your checkout link, so every dollar figure you see is the price you'd actually pay:
+
+- **Annual Pro** shows `$17/mo` with a `$36 back per year` chip.
+- **Monthly Pro** shows `$20/mo` with a cancel-anytime note.
+
+The card is personalized to the role you picked earlier (the headline reflects the work you said you do), and the Free/Pro comparison beneath it only lists claims already made on the plan cards themselves. "Continue with the Free plan" stays a full-weight, one-click option.
+
+## The downsell (at most once, only if it's real)
+
+If you decline the upsell, Clarua may show one honest downsell on the opposite billing axis:
+
+- Declined the **annual** pitch? The downsell is one month of Pro at the monthly rate, so the commitment objection has a real answer.
+- Declined **monthly**? The downsell is the lower annual rate, so the price objection has a real answer.
+
+Rules the downsell follows:
+
+- **It appears at most once per session.** If you decline it, or navigate back and land on the plan step again, the next Free pick completes onboarding without another pitch.
+- **Declining always finishes onboarding on Free.** There is no third screen.
+- **It never advertises savings that don't exist.** If annual isn't actually cheaper per month in the current catalog, the price-direction downsell doesn't render at all — you go straight to Free.
+- **It says out loud that it's the last step.** Your Free workspace is ready either way.
+
+If you already have a card-ready intent, picking Pro from the downsell goes straight to checkout, same as on the plan step.
+
+## What lands in the builder
+
+When onboarding completes, Clarua drops you into the workbench with a seed prompt tuned to the role you chose, and kicks off your first build automatically. You don't need to type anything to see something appear.
+
+## The first-build tour
+
+The moment your first build settles — files written, streaming done, and all three anchors visible on screen — a three-step guided tour opens:
+
+<Steps>
+  <Step title="Files">
+    The file explorer highlights so you can see everything Clarua just generated.
+  </Step>
+  <Step title="Reality ledger">
+    Clarua points at the reality ledger, the panel that lists what's actually real in your project versus what was inferred. This is the honest middle of the tour: it's what makes Clarua different from a codegen demo.
+  </Step>
+  <Step title="Deploy">
+    The Deploy button lights up so you can see where to ship what you just built.
+  </Step>
+</Steps>
+
+The tour finishes on the Preview of the project you just built, so the last thing you see is your own working app.
+
+### How the tour behaves
+
+- **It runs once ever.** The moment the tour opens, Clarua marks it seen. Completing it, skipping it, or refreshing the page mid-tour all count. It won't reopen on your next build.
+- **It never runs over a streaming build.** If your first build is still writing files, the tour waits.
+- **It's all-or-nothing.** If any of the three anchors (files, reality ledger, Deploy) is off screen, the tour waits or stands down rather than showing a partial story. If the files anchor lives on the Code tab and you're currently on Preview, Clarua flips to Code once to reveal it, then continues.
+- **Skipping counts as an answer.** If you dismiss the tour, Clarua takes that as your call and doesn't ask again.
+
+You can still explore Files, the reality ledger, and Deploy manually at any time — the tour just shows them the first time.
+
+## Related
+
+- [Build overview](/features/build/overview) — what the builder does with the seed prompt onboarding hands off.
