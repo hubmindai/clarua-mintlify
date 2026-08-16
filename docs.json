@@ -50,6 +50,13 @@
         ]
       },
       {
+        "group": "Onboarding",
+        "icon": "door-open",
+        "pages": [
+          "features/onboarding/overview"
+        ]
+      },
+      {
         "group": "Build & code generation",
         "icon": "hammer",
         "pages": [
