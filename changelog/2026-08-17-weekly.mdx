@@ -31,7 +31,7 @@ The paste-a-secret guard and unexpected-country sign-in alerts shipped last week
 - **Toasts** — modernized notification design across the app.
 - **Guest landing** — updated icons, onboarding flow, and upsell/downsell paths for clearer plan choices.
 - **Menu** — added a **Gift Clarua** entry and the PWA install prompt is now wired into the menu.
-- **Chat theme** — dark mode tokens tightened to meet AA contrast, theme persistence fixed.
+- **Chat theme** — dark mode tokens tightened to meet AA contrast, and theme persistence fixed.
 - **Welcome greetings** — rewritten in a cleaner, Claude-style register.
 - **Build mode prompts** — clearer prompt wording during builds.
 - **Onboarding upsell/downsell** — smoother plan-review step during signup.
@@ -43,9 +43,9 @@ The paste-a-secret guard and unexpected-country sign-in alerts shipped last week
 - Fixed live preview and auto-deploy issues where streamed files were incorrectly rejected as unchanged.
 - Fixed a client deploy race where the starter placeholder project could trigger an unwanted deploy.
 - Fixed email magic-link sign-in and sign-up delivery, including the return-path used after clicking the link.
-- Restored session integrity: session tokens are now signature-verified before any user identity is trusted.
+- Clarua now verifies session token signatures before trusting the user identity they carry.
 - Closed a share-link leak where soft-deleted shared chats were still being served.
-- Redirects in the resource proxy are re-validated to block open-redirect abuse.
+- Clarua now re-validates redirects in the resource proxy to block open-redirect abuse.
 - Fixed a workspace access issue where users could see resources they shouldn't.
 - Fixed the image replacement bug when swapping images in the workbench.
 - Fixed image upload on the first-page prompt.
