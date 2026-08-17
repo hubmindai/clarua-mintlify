@@ -145,8 +145,9 @@
       {
         "group": "Changelog",
         "pages": [
-          "changelog/2026-01",
-          "changelog/2026-02"
+          "changelog/2026-08-14-weekly",
+          "changelog/2026-02",
+          "changelog/2026-01"
         ]
       }
     ]
