@@ -6,6 +6,20 @@ icon: "robot"
 
 The Clarua agent isn't a single model call. It's a loop that plans, acts, and verifies against your project, with distinct modes, memory, and preferences. It can drive code, drive a browser, and drive a computer, and it can hand off work to itself in the background.
 
+## The loop
+
+Every turn runs the same shape, tuned by the current mode:
+
+1. **Read.** Pull in the prompt, attachments, project rules, and any memory that applies.
+2. **Plan.** State what will change, in files or on screen, before touching anything.
+3. **Act.** Edit files, run tools, drive a browser, spawn sub-agents.
+4. **Verify.** Auto-fix errors, run checks, re-read what was written.
+5. **Record.** Save a receipt, update memory, notify anyone watching.
+
+The loop stops when the goal is reached, the budget is spent, or a gate you set (plan approval, safety check) holds it.
+
+## Capabilities at a glance
+
 <CardGroup cols={2}>
   <Card title="Custom modes" icon="sliders" href="/features/agent/custom-modes">
     Shape how the agent works per project: plan-only, debug, architect, or your own.
@@ -15,19 +29,43 @@ The Clarua agent isn't a single model call. It's a loop that plans, acts, and ve
     Model tier, plan mode, and auto-approve toggles stick to you, not the project.
   </Card>
 
+  <Card title="Skills" icon="graduation-cap" href="/features/agent/skills">
+    Reusable playbooks the agent auto-triggers on matches, or runs on `/slug`.
+  </Card>
+
+  <Card title="Prompt queue" icon="list-check" href="/features/agent/prompt-queue">
+    Queue work, reorder it, hold risky steps, and watch the activity panel.
+  </Card>
+
   <Card title="Computer use" icon="display" href="/features/agent/computer-use">
-    The agent can see and operate a UI when there's no API to call.
+    See and operate any UI when there's no API to call.
   </Card>
 
   <Card title="Agent browser" icon="window" href="/features/agent/browser">
-    Open a real browser, read the page as a structured snapshot, and act on it.
+    Open a real browser, read the page structurally, and act on it.
   </Card>
 
   <Card title="Background agents" icon="clock-rotate-left" href="/features/agent/background">
-    Long tasks keep running in warm sandboxes while you work on something else.
+    Long tasks run in warm sandboxes while you work on something else.
   </Card>
 
   <Card title="Memory" icon="brain" href="/features/agent/memory">
-    Facts age honestly, get scored for trust, and can't be silently tampered with.
+    Facts age honestly, carry trust scores, and can't be silently tampered with.
+  </Card>
+
+  <Card title="Long chats" icon="compress" href="/features/agent/chat-compression">
+    A context meter and structured compaction keep sessions going.
   </Card>
 </CardGroup>
+
+## Choosing how much control
+
+- **Plan mode on, auto-approve off.** You see and approve every plan. Best for unfamiliar codebases and risky work.
+- **Plan mode on, auto-approve on.** Plans still generate, but they run. Best for daily work you trust.
+- **Plan mode off.** The agent goes straight from prompt to action. Best paired with a tight [custom mode](/features/agent/custom-modes) and [checkpoints](/features/editor/checkpoints).
+
+## Related
+
+- [Build overview](/features/build/overview)
+- [Editor and preview](/features/editor/visual-edit)
+- [Auto-mode safety](/features/security/auto-mode-safety)

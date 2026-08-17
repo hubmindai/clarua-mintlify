@@ -46,7 +46,9 @@
         "group": "Getting Started",
         "pages": [
           "index",
-          "quickstart"
+          "quickstart",
+          "key-concepts",
+          "first-project"
         ]
       },
       {

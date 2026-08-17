@@ -4,25 +4,77 @@ description: "Every dependency the Clarua agent tries to add is checked against 
 icon: "shield-virus"
 ---
 
-Every dependency the agent adds is checked against a supply-chain firewall first.
+Every dependency the agent adds is checked against a supply-chain firewall first. Nothing gets to `node_modules` before the check runs.
 
 ## What it catches
 
-- Known-malicious and hijacked packages.
-- Typosquats of popular names, including transposition look-alikes hiding under a scope.
-- Versions with published advisories.
-- Dangerous install-time scripts.
-- Dependency confusion on your private names.
-- Insecure or unpinned sources.
-- Your project's own risky install hooks.
+<CardGroup cols={2}>
+  <Card title="Malicious packages" icon="skull-crossbones">
+    Known-malicious and hijacked releases from the curated threat catalog.
+  </Card>
+
+  <Card title="Typosquats" icon="spell-check">
+    Look-alikes of popular names, including transposition attacks and scope hiding.
+  </Card>
+
+  <Card title="Advisories" icon="triangle-exclamation">
+    Versions with published CVEs or ecosystem advisories.
+  </Card>
+
+  <Card title="Install-time scripts" icon="scroll">
+    Dangerous postinstall hooks that would run before you notice.
+  </Card>
+
+  <Card title="Dependency confusion" icon="crosshairs">
+    Public packages colliding with your private names.
+  </Card>
+
+  <Card title="Unpinned sources" icon="link-slash">
+    Sources without integrity or an insecure protocol.
+  </Card>
+</CardGroup>
 
 ## Outcomes
 
-Each check returns **allow**, **warn**, or **block** with the evidence behind the call.
+Each check returns one of three verdicts, always with the evidence behind it:
 
-- A clear-cut malicious name is a **hard block**.
-- Fuzzy look-alikes **warn loudly** instead of silently blocking a package you actually wanted.
+| Verdict | Meaning | Example |
+| --- | --- | --- |
+| Allow | Safe under current policy | A known-good version of a common package |
+| Warn | Proceeds after acknowledgment | Fuzzy match to a popular name |
+| Block | Refused | Known-malicious package or CVE without a patched version |
+
+- A **clear-cut malicious name is a hard block**. No override.
+- **Fuzzy look-alikes warn loudly** instead of silently blocking a package you actually wanted.
 
 ## Runs on the edge
 
-The firewall runs entirely on the edge from a curated threat catalog. No manifest leaves the worker.
+The firewall runs entirely on the edge from a curated threat catalog. No manifest leaves the worker, so:
+
+- Your dependency list stays private.
+- Verdicts are fast enough to run on every install attempt.
+- The threat catalog updates without you deploying anything.
+
+## Turning up strictness
+
+For production workspaces, admins can:
+
+- Require the firewall on every install (default: on).
+- Auto-block on warnings, not just hard blocks.
+- Require an admin to override any block.
+- Restrict installs to an allow-list of registries. See [Managed registry](/features/workspace/managed-registry).
+
+## What you see in the transcript
+
+Every check posts to the transcript with:
+
+- Package name and version.
+- Verdict and reason.
+- Link to the advisory or catalog entry.
+- Suggested alternative when there is one.
+
+## Related
+
+- [Security Center](/features/security/security-center)
+- [Managed registry](/features/workspace/managed-registry)
+- [Audit log export](/features/security/audit-export)

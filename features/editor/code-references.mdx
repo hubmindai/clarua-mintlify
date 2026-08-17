@@ -4,8 +4,35 @@ description: "Cite exact file paths and line ranges with /code inside Clarua cha
 icon: "code"
 ---
 
-Use `/code` in chat to reference code with **line ranges**, so you cite exactly the lines you mean.
+Use `/code` in chat to reference code with **line ranges**, so you cite exactly the lines you mean instead of "somewhere in the auth file."
+
+## How to reference
+
+- `/code app/lib/auth.ts` — the whole file.
+- `/code app/lib/auth.ts:42-58` — an exact range.
+- `/code app/lib/auth.ts#signIn` — a named symbol (function, class, component).
+- Drag-select in the editor, then send. The reference lands with the message.
+
+## Why line ranges matter
+
+Vague references drift. When you say "the sign-in function," the model has to guess which of three files you mean. A line range removes that ambiguity, and small edits stay small: the model doesn't touch code outside the range unless it needs to.
 
 ## Follow-ups see the whole project
 
-A setting lets the model see the project on follow-up turns, not just the current message, so revisions land in the right places.
+A setting lets the model see the project on follow-up turns, not just the current message, so revisions land in the right places. Turn it on for:
+
+- Refactors that span multiple files.
+- Bug fixes where the root cause is somewhere else than the symptom.
+- Turns where consistency across the project matters (naming, patterns, types).
+
+Turn it off for quick, isolated edits where scope creep is a bigger risk than missing context.
+
+## Combining with pins
+
+You can drop a [preview annotation](/features/editor/preview-annotations) on the rendered output and `/code`-reference the source that renders it in the same message. The agent handles both together.
+
+## Related
+
+- [Visual edit](/features/editor/visual-edit)
+- [Preview annotations](/features/editor/preview-annotations)
+- [Agent memory](/features/agent/memory)

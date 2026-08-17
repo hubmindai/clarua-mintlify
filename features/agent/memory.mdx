@@ -4,23 +4,51 @@ description: "Agent memory that ages over time, carries a live trust score, and 
 icon: "brain"
 ---
 
-What the agent remembers carries a **live trust score** instead of being taken on faith.
+What the agent remembers carries a **live trust score** instead of being taken on faith. Old memories don't stay authoritative just because they were once true.
+
+## Why trust-scored memory
+
+A long-running project accumulates facts the agent depends on: which library owns which module, why a shortcut exists, what a stakeholder cares about. Some of those facts stay true; others quietly rot as the project changes. Ordinary memory treats them the same. Clarua doesn't.
 
 ## Aging honestly
 
-- Facts the agent has proven out **decay slowly**.
-- Anything reality later contradicts **fades faster** and has to be re-earned.
+- Facts the agent has **proven out** in the real code or conversation **decay slowly**.
+- Facts reality later **contradicts fade faster** and have to be re-earned.
+- Facts that were **never validated** stay tentative and never gain full weight.
 
 Stale or disproven knowledge stops getting recalled as if it were still true.
 
 ## Tamper-evident
 
-Every sealed fact is written into a tamper-evident chain. A silent edit, deletion, or reordering of history is **structurally detectable**.
+Every sealed fact is written into a tamper-evident chain. A silent edit, deletion, or reordering of history is **structurally detectable**, both by the agent and by an admin auditor.
+
+This matters because:
+
+- You can trust that "the agent said this last month" is real.
+- A compromised session can't rewrite the past to make a bad decision look justified.
+- Audit exports of memory events (via [audit log export](/features/security/audit-export)) reflect what actually happened.
 
 ## Recall
 
-Only what's still intact, still fresh, and still uncontradicted comes back when the agent reaches for it.
+When the agent reaches for memory, only what's still **intact, still fresh, and still uncontradicted** comes back. Contradicted facts don't get quietly reused; they surface with the contradiction so you can resolve it.
 
 ## Related conversations
 
-When you're working on something close to a past conversation, the relevant ones surface on their own, matched by both wording and meaning. Search across your history when you want, and resume any conversation from where it left off.
+When you're working on something close to a past conversation, the relevant ones surface on their own, matched by both wording and meaning.
+
+- Search across your history when you want.
+- Resume any conversation from where it left off.
+- Pin conversations you want to keep close.
+
+## Managing what the agent remembers
+
+- **Review memories** in the project's Memory panel.
+- **Correct a fact.** The correction seals over the old one and boosts the corrected version's weight.
+- **Forget a memory.** Explicit deletion is recorded in the chain, so it can be audited.
+- **Export or import** across projects when a fact should travel.
+
+## Related
+
+- [Agent overview](/features/agent/overview)
+- [Long chats and compaction](/features/agent/chat-compression)
+- [Audit log export](/features/security/audit-export)

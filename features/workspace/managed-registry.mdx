@@ -17,3 +17,33 @@ It sits alongside an external registry you'd run yourself (which you can still c
 - Publish internal packages without standing up your own registry.
 - Consume workspace-only packages from projects you build.
 - Keep private dependency names off the public index.
+- Vend shared components, utilities, or SDKs to every project in the workspace.
+
+## How it fits
+
+- Every project in the workspace resolves the managed registry alongside the public one.
+- Scoped names (`@your-org/*`) can be reserved so [dependency confusion](/features/security/package-firewall) is impossible.
+- The [package firewall](/features/security/package-firewall) still applies to what you publish, so an internal package with a bad postinstall script is caught.
+
+## Publishing to it
+
+<Steps>
+  <Step title="Get a token">
+    Generate a publish token from workspace Settings. Tokens scope by package name pattern.
+  </Step>
+  <Step title="Point npm at the registry">
+    Configure `npmrc` or the equivalent in your CI to use the managed registry URL and token.
+  </Step>
+  <Step title="Publish">
+    `npm publish` or `pnpm publish` as usual. The package lands on the workspace registry immediately.
+  </Step>
+  <Step title="Use it">
+    Any project in the workspace can `install` the package by its name.
+  </Step>
+</Steps>
+
+## Related
+
+- [Package firewall](/features/security/package-firewall)
+- [Security Center](/features/security/security-center)
+- [Billing](/features/workspace/billing)

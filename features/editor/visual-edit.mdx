@@ -6,6 +6,53 @@ icon: "arrow-pointer"
 
 Click an element in the live preview and edit it directly: text, spacing, color, layout. Changes are written straight back to the real source, not faked in the browser.
 
+## What you can edit inline
+
+- **Text.** Double-click to edit copy in place.
+- **Spacing.** Drag margin and padding handles, or type exact values.
+- **Color.** Pick from your token palette or type a hex value.
+- **Typography.** Font size, weight, line height, and letter spacing.
+- **Layout.** Flex direction, alignment, gap, and wrap. See [layout tools](/features/editor/layout-tools).
+- **Component props.** Any prop the component exposes shows up in the inspector.
+
 ## How it stays honest
 
-A deterministic bridge maps what you clicked to the exact line that produced it. Edits are precise and reversible, and the code stays the source of truth. Nothing about the visual editor bypasses the file system.
+A deterministic bridge maps what you clicked to the exact line that produced it. Edits are:
+
+- **Precise.** Only the relevant lines change. Nothing else in the file moves.
+- **Reversible.** Undo, redo, and [checkpoints](/features/editor/checkpoints) all work.
+- **Grounded.** The code stays the source of truth; the visual editor writes into it, never around it.
+
+Nothing about the visual editor bypasses the file system. A visual edit is indistinguishable from a hand-edit in git.
+
+## Typical flow
+
+<Steps>
+  <Step title="Click the element">
+    The inspector opens with the element's current styles and props.
+  </Step>
+  <Step title="Change what you want">
+    Drag, type, or pick. The preview updates instantly through [instant preview](/features/editor/instant-preview).
+  </Step>
+  <Step title="See the diff">
+    Every edit posts a small diff to the transcript so you know what changed.
+  </Step>
+  <Step title="Iterate or undo">
+    Keep going, or roll back with a [checkpoint](/features/editor/checkpoints) if you went the wrong direction.
+  </Step>
+</Steps>
+
+## Working with tokens
+
+When you pick a color or size, Clarua prefers your project's tokens over raw values. Editing "primary" updates the token; editing "#3355FF" writes a hard-coded value. The inspector shows which is which so you don't accidentally drift.
+
+## When the bridge can't map an element
+
+Some elements (server-only components, elements produced by third-party libraries) don't map cleanly to a single source line. In that case, the visual editor opens the component's file at the closest ancestor and tells you what it did.
+
+## Related
+
+- [Instant preview](/features/editor/instant-preview)
+- [Layout tools](/features/editor/layout-tools)
+- [Preview annotations](/features/editor/preview-annotations)
+- [Checkpoints](/features/editor/checkpoints)

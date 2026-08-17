@@ -6,28 +6,62 @@ icon: "chart-line"
 
 Point a monitor at any app you publish and Clarua tracks availability and response time on a schedule.
 
+## Setting up a monitor
+
+<Steps>
+  <Step title="Pick a URL">
+    Any HTTP(S) URL, from the app's root to a specific health endpoint.
+  </Step>
+  <Step title="Set the schedule">
+    From every 30 seconds to every 15 minutes.
+  </Step>
+  <Step title="Define healthy">
+    Expected status code, response contains, or a JSON path assertion.
+  </Step>
+  <Step title="Set the SLA target">
+    e.g. 99.9% monthly. Mean time to recovery is tracked against it.
+  </Step>
+</Steps>
+
 ## What's tracked
 
-- Uptime percentage.
-- **p50 / p95 / p99** latency.
-- HTTP status mix.
-- Incidents.
-- Mean time to recovery against an SLA target you set.
+| Metric | Why it matters |
+| --- | --- |
+| Uptime percentage | Rolls up to your SLA |
+| p50 / p95 / p99 latency | Where your slow tail lives |
+| HTTP status mix | Are 5xxs sneaking in under an "up" verdict? |
+| Incidents | Discrete outages with start and end |
+| MTTR | Are you getting faster at recovery? |
 
 ## Incidents don't flap
 
-A single blip never counts as an outage. An incident only opens after a configurable run of failures, and it closes itself the moment a healthy check returns.
+A single blip never counts as an outage. An incident only opens after a configurable run of failures, and it closes itself the moment a healthy check returns. The default (3 consecutive failures) catches real issues without paging you for a single dropped packet.
 
 ## Automatic investigation
 
 When something goes down, the root cause is classified:
 
-- DNS.
-- Certificate.
-- Timeout.
-- Connection refused.
-- Server error.
-- Client error.
-- Content mismatch.
+| Class | Typical remediation |
+| --- | --- |
+| DNS | Recheck resolver, TTL, and NS records |
+| Certificate | Renew or replace the cert; check the chain |
+| Timeout | Check origin load, upstream connectivity, and worker limits |
+| Connection refused | Confirm the process is listening; check firewall |
+| Server error (5xx) | Investigate application logs; recent deploy? |
+| Client error (4xx) | Confirm the monitor URL and expected content are current |
+| Content mismatch | Response reached, but the assertion failed. Check the payload |
 
 Each classification comes with concrete, ordered remediation steps and the failing checks that prove it.
+
+## Where the data shows up
+
+- The project's **Reliability** panel.
+- The workspace [Security Center](/features/security/security-center) as an SLA input.
+- The app's [Trust Center](/features/security/trust-centers) as a public uptime posture.
+- The [audit log export](/features/security/audit-export) as monitor and incident events.
+
+## Related
+
+- [Security Center](/features/security/security-center)
+- [Trust centers](/features/security/trust-centers)
+- [Project environments](/features/data/environments)

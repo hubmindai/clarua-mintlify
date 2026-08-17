@@ -4,7 +4,7 @@ description: "Any Clarua-published app can generate a public Trust Center that s
 icon: "certificate"
 ---
 
-Any app you publish can generate a **Trust Center**: a public page that surfaces its security posture from what's already known about it.
+Any app you publish can generate a **Trust Center**: a public page that surfaces its security posture from what's already known about it. Send the URL when a prospect asks for a security review instead of filling out a questionnaire.
 
 ## No extra setup
 
@@ -12,10 +12,38 @@ The Trust Center is generated from your existing signals: security scans, firewa
 
 ## What it shows
 
-- Current security grade for the app.
-- Uptime and reliability posture.
-- Data handling and connector inventory.
+- **Current security grade** for the app, from [Security Center](/features/security/security-center).
+- **Uptime and reliability** posture, from [uptime monitoring](/features/security/uptime-monitoring).
+- **Data handling and connector inventory.** Which [connectors](/features/data/connectors) the app uses, what data leaves the app, and where.
+- **Auth model.** Which provider, which flows, and which scopes.
+- **Subprocessors.** Third-party services the app depends on, refreshed automatically.
+- **Contact.** How to reach your security team.
+
+## What you control
+
+- Which sections are public.
+- Custom copy for context ("here's how we handle SSO").
+- A branded header (logo, color).
+- A downloadable PDF snapshot for procurement.
 
 ## Should-I-ship verdict
 
-When you're ready to deploy, Clarua answers the whole question in one move. She re-checks everything you'd marked as proven against its actual source, flags evidence that has gone stale, and pools every check into a single calibrated verdict: **ship**, **review**, or **hold**. Checks that have proven reliable weigh more than ones that haven't.
+When you're ready to deploy, Clarua answers the whole question in one move.
+
+- She **re-checks everything** you'd marked as proven against its actual source.
+- She **flags evidence that has gone stale**, so a two-month-old scan doesn't count the same as a fresh one.
+- She **pools every check** into a single calibrated verdict:
+
+| Verdict | Meaning |
+| --- | --- |
+| Ship | All checks recent, all green, no open criticals |
+| Review | One or more checks stale or amber. Human review recommended |
+| Hold | Blocker: open critical, failed check, or stale evidence in a required area |
+
+Checks that have proven reliable weigh more than ones that haven't, so the verdict adapts to your actual track record.
+
+## Related
+
+- [Security Center](/features/security/security-center)
+- [Uptime monitoring](/features/security/uptime-monitoring)
+- [Audit log export](/features/security/audit-export)

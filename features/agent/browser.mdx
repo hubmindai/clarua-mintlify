@@ -8,10 +8,43 @@ The agent browser lets Clarua get things done on sites that have no API.
 
 ## How it acts
 
-- Opens a real browser session.
-- Reads the page as a **structured snapshot**, not raw pixels.
+- Opens a real browser session in a sandbox.
+- Reads the page as a **structured snapshot**: elements, text, roles, and geometry, not raw pixels.
 - Navigates, fills forms, clicks through a flow against that structured view.
+- Retries when the DOM changes underneath it instead of failing on stale references.
+
+## What it's good for
+
+- **Working with sites you own.** Pull data from your own admin consoles without an export API.
+- **End-to-end tests.** Drive a real browser through the flows your users take.
+- **Filing forms.** Government and legacy portals that only expose a UI.
+- **Research passes.** Pull structured facts from a list of URLs into a table.
+
+## Structured, not pixel-perfect
+
+The agent reads a semantic snapshot of the page, so it understands "the second Submit button in the Billing panel" instead of "a rectangle at coordinates 412, 880." That means:
+
+- It survives layout shifts as long as the semantics are the same.
+- Element IDs and roles matter more than positions, so accessible sites are the easiest to drive.
+- Screenshots are supplementary, not the source of truth.
 
 ## Bounded by policy
 
-Every browser session runs under a security policy that bounds where the agent can go. The policy sets which origins are reachable, which credentials can be used, and what surfaces the agent is not allowed to touch. Attempts outside the policy fail closed.
+Every browser session runs under a security policy that bounds where the agent can go:
+
+- **Origin allow-list.** Which domains are reachable.
+- **Credential scope.** Which stored secrets are eligible for injection.
+- **Read-only surfaces.** Pages the agent may view but never post to.
+- **Explicit confirmation** for anything financial or destructive.
+
+Attempts outside the policy fail closed and are recorded.
+
+## Session state
+
+Sessions can hold cookies, local storage, and login state across turns. When a run finishes, the session either persists for follow-ups or is destroyed (the default), based on how you launched it.
+
+## Related
+
+- [Computer use](/features/agent/computer-use)
+- [Background agents](/features/agent/background)
+- [Auto-mode safety](/features/security/auto-mode-safety)

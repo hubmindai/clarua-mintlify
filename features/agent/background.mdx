@@ -6,18 +6,62 @@ icon: "clock-rotate-left"
 
 Background agents run in remote sandboxed environments, not on your local machine. They keep going while you switch contexts.
 
+## When to hand off
+
+- **Long refactors** across many files that will take minutes to complete.
+- **Test and lint sweeps** you want to run once and check on later.
+- **Migrations** where the diff is large and mostly mechanical.
+- **Data backfills** through the [agent browser](/features/agent/browser) that touch hundreds of pages.
+- **Parallel exploration.** Kick off three approaches, keep the one that lands cleanest.
+
 ## Optimizations
 
-- **Pre-built environment images** refreshed on a regular cadence, so start-up isn't cold.
-- **Warm sandbox pools** for instant session starts.
-- **Filesystem snapshots** for session persistence across pauses.
-- **Predictive sandbox warming** when you start typing.
-- **Self-spawning agents** for parallel task execution.
+<CardGroup cols={2}>
+  <Card title="Pre-built environment images" icon="box">
+    Refreshed on a regular cadence, so start-up isn't cold.
+  </Card>
+
+  <Card title="Warm sandbox pools" icon="fire">
+    Instant session starts. No waiting for `npm install` before your first turn.
+  </Card>
+
+  <Card title="Filesystem snapshots" icon="camera">
+    Session persistence across pauses. Come back tomorrow, keep going.
+  </Card>
+
+  <Card title="Predictive warming" icon="wand-sparkles">
+    Sandboxes warm up when you start typing, not when you hit send.
+  </Card>
+
+  <Card title="Self-spawning agents" icon="clone">
+    An agent can fan out to sub-agents in parallel for wide tasks.
+  </Card>
+
+  <Card title="Reads before sync" icon="bolt">
+    File reads work before git sync completes. Only writes block on it.
+  </Card>
+</CardGroup>
 
 ## Multiplayer
 
-Sessions support collaborative agent work, so multiple people or agents can operate on the same environment at once.
+Sessions support collaborative agent work, so multiple people or agents can operate on the same environment at once. Handoffs preserve open files, terminal state, and the transcript.
 
-## Reads before sync
+## Watching a background run
 
-File reads are allowed before git sync completes; only writes block on it. That keeps interactive latency low even when a session first attaches.
+- The activity panel shows what the agent is doing right now.
+- The transcript records every turn, streamed live.
+- A [build receipt](/features/build/receipts) posts to the project when the run ends.
+- Errors and blocked turns notify you through the workspace notification channel.
+
+## Best practices
+
+- **Kick off with a clear scope.** Background runs are for well-shaped tasks. Ambiguous prompts do best interactively.
+- **Snapshot before you run.** Take a [checkpoint](/features/editor/checkpoints) so rollback is one click.
+- **Cap the budget.** Combine with [spend limits](/features/workspace/spend-limits) so runaway runs don't drain credits.
+- **Chain, don't monolith.** Two focused background runs beat one giant one.
+
+## Related
+
+- [Agent overview](/features/agent/overview)
+- [Prompt queue](/features/agent/prompt-queue)
+- [Spend limits](/features/workspace/spend-limits)

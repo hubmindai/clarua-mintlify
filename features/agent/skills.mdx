@@ -4,17 +4,64 @@ description: "Package structured playbooks as Clarua skills the agent auto-trigg
 icon: "graduation-cap"
 ---
 
-Skills are structured playbooks the agent can call. Each skill is a self-contained set of instructions the agent follows when it matches.
+Skills are structured playbooks the agent can call. Each skill is a self-contained set of instructions the agent follows when it matches: a name, a trigger pattern, a short prompt, optional tool restrictions, and optional example inputs and outputs.
+
+## The anatomy of a skill
+
+```yaml
+# .clarua/skills/postmortem.yml
+name: Draft postmortem
+slug: postmortem
+description: >
+  Write a postmortem from an incident conversation, using our template.
+trigger:
+  patterns:
+    - "postmortem"
+    - "write up the incident"
+mode: manual
+prompt: |
+  Use the template at docs/templates/postmortem.md.
+  Include: timeline, contributing factors, mitigations,
+  and follow-up actions with owners.
+tools:
+  - file.read
+  - file.write
+```
 
 ## Auto vs manual
 
-Every skill has an **Auto / Manual** toggle in settings.
+Every skill has an **Auto / Manual** toggle.
 
-- **Auto (default).** The agent may trigger the skill when its pattern matches.
+- **Auto (default).** The agent may trigger the skill when its pattern matches, weighing it against other candidates.
 - **Manual only.** The skill stays callable by name with `/slug`, but never auto-triggers.
 
-Manual-only mode is useful for narrowly scoped skills that shouldn't fire on their own, playbooks you keep on the shelf until you call for them.
+Manual-only mode is useful for:
 
-## Debug logs
+- Narrowly scoped skills that shouldn't fire on their own.
+- Skills with side effects you want gated behind an explicit call.
+- Playbooks you're still iterating on, kept on the shelf until you're ready.
 
-Drop a wall of server or runtime logs into chat and get back a clean read. You get a count of each severity, the time span they cover, and your errors grouped by what they actually are. Identifiers, numbers, paths, and quoted values are normalized away before grouping, so the same failure four hundred times collapses into one row with a count and an example message.
+## Sharing skills
+
+Skills live in the project (`.clarua/skills/*.yml`) or the workspace, so a team shares the same playbooks. Personal skills live in your account and travel with you across workspaces.
+
+## Included skills
+
+Clarua ships with a small catalog of skills you'll see in Settings, including:
+
+- **Debug logs.** Drop a wall of server or runtime logs into chat and get back a clean read: a count of each severity, the time span they cover, and errors grouped by what they actually are. Identifiers, numbers, paths, and quoted values are normalized away before grouping, so the same failure four hundred times collapses into one row with a count and an example message.
+- **Compact.** Structured summarization of a long chat. See [long chats and compaction](/features/agent/chat-compression).
+- **Postmortem.** A template-driven writeup skill you can adapt.
+
+## Best practices
+
+- **One skill per intent.** Small, sharp skills beat a general-purpose megaskill.
+- **Include examples.** A `input:` and `expected:` pair sharpens the match and the output.
+- **Restrict tools.** Only give a skill the tools it needs; skills inherit the current [custom mode's](/features/agent/custom-modes) allow-list too.
+- **Version them.** Ship skills in the repo. Reviewing a skill change is reviewing team behavior.
+
+## Related
+
+- [Custom modes](/features/agent/custom-modes)
+- [Agent preferences](/features/agent/preferences)
+- [Long chats and compaction](/features/agent/chat-compression)

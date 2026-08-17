@@ -10,6 +10,33 @@ Single-page apps preview the moment you change them.
 
 The view is bundled in the browser, so there's no server round-trip and no build step between an edit and seeing it. The preview is effectively instant, even from a cold start.
 
+## Why it matters
+
+- **Tight feedback loop.** Every visual edit shows immediately, so you iterate on the real thing, not a stale copy.
+- **Real behavior.** Preview runs your actual code, not a rendered simulation. State, effects, and interactions all work.
+- **Screenshot-worthy at any point.** You can capture what you see and share it, and it will look the same when you open the project later.
+
+## What runs in the browser
+
+- Your components, hydrated with your data.
+- Your styles, compiled with your tokens.
+- Client-side routing, so every route behaves like it will in production.
+- Mock or connected data, depending on your [environment](/features/data/environments).
+
+## What still needs a server
+
+- Server-only rendering paths (SSR, RSC boundaries).
+- Real database queries against a [data connector](/features/data/connectors).
+- Auth flows that hit a real provider.
+
+For those, Clarua falls back to a server preview on the same URL.
+
 ## Per-project toggle
 
-Turn the live preview on or off per project from the project settings.
+Turn the live preview on or off per project from the project settings. Disable it for projects with heavy backends or when you're doing pure data work.
+
+## Related
+
+- [Visual edit](/features/editor/visual-edit)
+- [Checkpoints](/features/editor/checkpoints)
+- [Project environments](/features/data/environments)

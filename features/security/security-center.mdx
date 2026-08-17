@@ -8,11 +8,39 @@ See your whole workspace at a glance: a single **A to F security grade** rolled 
 
 ## What it surfaces
 
-- Apps blocked from publishing.
-- Total open **critical** and **high-severity** issues.
-- Your worst offenders ranked first.
-- Projects that have **never been scanned at all**, because an unknown is a risk, not a pass.
+- **Apps blocked from publishing.** Publishing is gated by security posture, and blocked apps show up first.
+- **Total open critical and high-severity issues** across the workspace.
+- **Worst offenders** ranked first, so you know where to spend an hour.
+- **Never scanned** projects. An unknown is a risk, not a pass.
+- **Trend line.** How the grade moved this week, this month, this quarter.
+
+## What contributes to the grade
+
+| Signal | Source |
+| --- | --- |
+| Code security | Static analysis and pattern-based rules against the project source |
+| Dependency risk | [Package firewall](/features/security/package-firewall) verdicts and open advisories |
+| Secret exposure | Detection of accidentally-committed credentials |
+| Auth posture | Auth wiring against the project's chosen provider |
+| Uptime SLA | [Uptime monitoring](/features/security/uptime-monitoring) data for published apps |
 
 ## Rollup, not average
 
-The grade is a rollup, not an average that hides bad projects behind good ones. One project failing hard shows up clearly at the workspace level.
+The grade is a rollup, not an average that hides bad projects behind good ones. One project failing hard shows up clearly at the workspace level. That's the point: a broken app matters even if the other twelve are fine.
+
+## Publishing gate
+
+An admin can require a minimum grade to publish. Common settings:
+
+- **Any grade.** Anything can ship (default for new workspaces).
+- **C or above.** Blocks obviously broken releases.
+- **A or B.** Locks down production posture.
+
+Overrides for a single release are recorded in the audit log.
+
+## Related
+
+- [Package firewall](/features/security/package-firewall)
+- [Auto-mode safety](/features/security/auto-mode-safety)
+- [Uptime monitoring](/features/security/uptime-monitoring)
+- [Trust centers](/features/security/trust-centers)

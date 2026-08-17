@@ -4,25 +4,53 @@ description: "Adjust layouts in the Clarua visual editor with flex controls, a s
 icon: "ruler-combined"
 ---
 
-The visual editor gives you real layout tools that write back to your source.
+The visual editor gives you real layout tools that write back to your source. No CSS window, no separate stylesheet to keep in sync.
 
 ## Layout controls
 
 Select any container, open the **Layout** section, and set:
 
-- Flex direction.
-- Alignment.
-- Justification.
-- Gap.
-- Wrap.
+| Control | What it does |
+| --- | --- |
+| Flex direction | Row, row-reverse, column, column-reverse |
+| Alignment | Cross-axis alignment (start, center, end, stretch, baseline) |
+| Justification | Main-axis distribution (start, center, end, between, around, evenly) |
+| Gap | Space between children (single or split row and column) |
+| Wrap | Whether children wrap to a new line |
 
 Every choice compiles deterministically to conflict-resolved utility classes, so re-picking a direction cleanly replaces the old one, and turning on a layout makes the container flex in a single step.
 
-## Spacing ruler and layers
+## Spacing ruler
 
-- A **spacing ruler** shows margins, padding, gaps, and the distances between elements.
-- A **layers tree** you can expand and collapse to follow nesting.
+The spacing ruler overlays your selection with:
+
+- **Margin** as an outer band.
+- **Padding** as an inner band.
+- **Gap** between children.
+- **Distances** to neighboring elements.
+
+Drag any band to adjust, or type an exact value. Hold Shift to scale symmetrically.
+
+## Layers tree
+
+The layers tree shows the component structure of the current page. Expand and collapse to follow nesting. Click a layer to select it; drag to reorder within its parent.
+
+- **Hidden layers** are dimmed.
+- **Component boundaries** are marked, so you can see where you leave one file and enter another.
+- **Named layers** show their source name, so "Card / Header" reads as "CardHeader" in code.
 
 ## Keyboard navigation
 
-Arrow keys walk the structure: up to the parent, down into a child, left and right across siblings. Fast, mouse-free navigation.
+- **Up arrow.** Move to parent.
+- **Down arrow.** Move to first child.
+- **Left / Right.** Previous / next sibling.
+- **Enter.** Open the current element's inspector.
+- **Escape.** Deselect.
+
+Fast, mouse-free navigation for tuning nested layouts.
+
+## Related
+
+- [Visual edit](/features/editor/visual-edit)
+- [Instant preview](/features/editor/instant-preview)
+- [Preview annotations](/features/editor/preview-annotations)

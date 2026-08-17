@@ -10,12 +10,55 @@ When the agent runs unattended, the safety gate inspects the **whole command cha
 
 A destructive step hidden after a harmless one (a clean-looking command followed by a recursive delete or a force-push) used to be able to slip through on auto-approve. Chain inspection closes that hole.
 
+For example, a command that looks like `ls && rm -rf ~` passes a naive check because the first token is `ls`. Clarua reads the whole chain and blocks it as a hard-delete.
+
 ## Levels
 
-- **Hard-blocked.** The worst forms stay blocked with no override.
-- **Overridable.** Ordinary destructive steps you might actually want stay overridable with a confirmation.
-- **Denials are logged.** Every denial shows the exact reason in the transcript.
+| Level | Behavior | Examples |
+| --- | --- | --- |
+| Hard-block | Refused with no override | `rm -rf /`, `git push --force main`, unscoped `DROP DATABASE` |
+| Overridable | Allowed after explicit confirmation | Scoped deletes, force-push to a feature branch |
+| Auto-approved | Runs without asking under current mode | Reads, adds, formatter runs |
+
+Every denial shows the exact reason in the transcript, including which rule fired.
 
 ## Readable rules
 
 Permission rules are written in a clear, readable form with precise domain and wildcard matching, so "allow this" means exactly what it says.
+
+```yaml
+# .clarua/safety.yml
+allow:
+  - shell.git: ["status", "diff", "log", "add", "commit", "push origin feat/*"]
+  - shell.pnpm: ["install", "run test", "run build"]
+  - net.get: ["docs.internal.example.com/*"]
+require_confirmation:
+  - shell.git: ["push origin main", "reset --hard"]
+  - shell.rm: ["*"]
+hard_block:
+  - shell.rm: ["-rf /", "-rf ~", "-rf $HOME"]
+  - shell.git: ["push --force main", "push --force master"]
+```
+
+The rules are additive by default: your workspace policy applies, project overrides layer on top, and the current [custom mode](/features/agent/custom-modes) can tighten further.
+
+## What auto-mode is for
+
+- Repetitive edits across many files.
+- Test and lint sweeps.
+- Data backfills and imports.
+- Anything you'd delegate to a diligent junior with a checklist.
+
+## What auto-mode is not for
+
+- First-time work in an unfamiliar codebase.
+- Production database migrations without a plan review.
+- Anything financial, legal, or reputational.
+
+For those, keep plan mode on and auto-approve off. See [agent preferences](/features/agent/preferences).
+
+## Related
+
+- [Custom modes](/features/agent/custom-modes)
+- [Agent preferences](/features/agent/preferences)
+- [Audit log export](/features/security/audit-export)

@@ -6,19 +6,62 @@ icon: "file-export"
 
 Forward your audit log to the security tooling your team already runs.
 
+## What's in the audit log
+
+- Sign-ins, session starts, and workspace joins.
+- Every agent run: prompt, mode, tools called, files changed.
+- Publish, promote, and rollback events across environments.
+- Package firewall verdicts (allow, warn, block).
+- Auto-mode denials and overrides.
+- Memory writes, corrections, and forgets.
+- Admin actions: role changes, spend-limit updates, registry changes.
+
 ## Formats
 
-- Newline-delimited JSON.
-- CEF.
-- Plain JSON.
+| Format | Best for |
+| --- | --- |
+| Newline-delimited JSON (NDJSON) | Splunk, Datadog, Panther, most modern SIEMs |
+| CEF | ArcSight and older SIEMs that expect Common Event Format |
+| Plain JSON | Custom collectors and one-off tooling |
 
 ## Delivery
 
-- **Pull.** Your collector fetches batches on its own cadence, with a cursor that never double-counts or skips.
-- **Push.** New events go to a webhook in near real time, each delivery signed so the receiver can prove it came from you.
+<CardGroup cols={2}>
+  <Card title="Pull" icon="cloud-arrow-down">
+    Your collector fetches batches on its own cadence, with a cursor that never double-counts or skips.
+  </Card>
+
+  <Card title="Push" icon="cloud-arrow-up">
+    New events go to a webhook in near real time. Each delivery is signed so the receiver can prove it came from you.
+  </Card>
+</CardGroup>
 
 ## Safety and privacy
 
-- Sensitive fields can be redacted on the way out.
-- Deliveries retry on transient failures and stop cleanly on permanent ones.
-- Only a **public endpoint** is a valid destination, so the export can never be pointed inward.
+- **Sensitive fields can be redacted** on the way out. Configure per-field redaction in workspace settings.
+- **Deliveries retry** on transient failures and stop cleanly on permanent ones. Push targets that fail repeatedly are paused with a notification.
+- **Only a public endpoint** is a valid destination, so the export can never be pointed inward at private infrastructure.
+- **Signing keys rotate**, and old signatures remain verifiable for the configured retention window.
+
+## Setup
+
+<Steps>
+  <Step title="Choose format and delivery">
+    Pick NDJSON, CEF, or JSON, and push or pull based on what your SIEM expects.
+  </Step>
+  <Step title="Configure the endpoint">
+    For push, provide the target URL and a shared signing secret. For pull, generate an API token.
+  </Step>
+  <Step title="Set redaction">
+    Mark any fields your compliance team wants stripped (email addresses, IPs, project names).
+  </Step>
+  <Step title="Verify">
+    Trigger a test event and confirm it landed in your SIEM with the expected shape and a valid signature.
+  </Step>
+</Steps>
+
+## Related
+
+- [Security Center](/features/security/security-center)
+- [Auto-mode safety](/features/security/auto-mode-safety)
+- [Trust centers](/features/security/trust-centers)

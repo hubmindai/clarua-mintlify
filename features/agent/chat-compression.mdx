@@ -4,21 +4,47 @@ description: "Keep long agent chats productive with a live context meter and str
 icon: "compress"
 ---
 
-A running **context meter** shows how full the conversation is.
+A running **context meter** shows how full the conversation is, so a long session doesn't hit an invisible wall.
 
 ## When it fills up
 
 History is compacted into a **structured summary** that keeps the decisions and drops the noise. Compaction runs:
 
 - **Automatically** at the context limit.
-- **On demand** with `/compact`.
+- **On demand** with `/compact` when you want a clean slate mid-session.
+- **On session resume** if you're picking up a long conversation from earlier.
 
 ## What survives
 
 Compaction preserves:
 
-- Decisions you and the agent have settled.
-- Files, endpoints, and identifiers the conversation depends on.
-- Open threads that still need action.
+- **Decisions** you and the agent have settled.
+- **Files, endpoints, and identifiers** the conversation depends on.
+- **Open threads** that still need action.
+- **Constraints and preferences** you stated earlier in the session.
 
-A long working session keeps going instead of stalling, without losing the thread of what you've already settled.
+Everything else (chit-chat, tool retries, resolved errors) is dropped or summarized.
+
+## What compaction is not
+
+- **Not memory.** Compaction is per-conversation. Cross-conversation recall comes from [agent memory](/features/agent/memory).
+- **Not lossless.** The full transcript stays available; the compacted version is what future turns see. You can always scroll up.
+- **Not silent.** Every compaction lands as a message in the transcript, marked as such.
+
+## When to `/compact` on demand
+
+- The conversation just wrapped a large decision and you want the noise gone.
+- You're about to change direction (from planning to building, from debug to refactor).
+- The context meter is above 70% and you can feel the model losing thread.
+
+## Reading the meter
+
+- **Green.** Comfortable. Ignore it.
+- **Amber.** Close to compaction. Consider compacting on your own beat rather than mid-turn.
+- **Red.** Auto-compaction is imminent.
+
+## Related
+
+- [Agent memory](/features/agent/memory)
+- [Prompt queue](/features/agent/prompt-queue)
+- [Agent preferences](/features/agent/preferences)

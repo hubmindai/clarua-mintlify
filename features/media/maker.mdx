@@ -4,14 +4,32 @@ description: "Turn plain language prompts into printable 3D models inside the Cl
 icon: "cube"
 ---
 
-Maker studio turns plain-language descriptions into printable 3D models.
+Maker studio turns plain-language descriptions into printable 3D models. Describe what you need; get back a real model, not a rendering.
 
 ## What it produces
 
-- Parametric 3D geometry ready to slice.
-- Print-ready file exports.
-- A working model to iterate on instead of a starting-from-zero CAD file.
+- **Parametric 3D geometry** ready to slice.
+- **Print-ready file exports** (STL, 3MF, STEP).
+- **A working model to iterate on**, so tweaking a dimension is a slider, not a rebuild.
+
+## Typical prompts
+
+- "A wall-mount phone holder that fits a phone up to 80mm wide, with a slot for the charging cable at the bottom."
+- "A pen-cup organizer with three compartments and a base 100mm x 40mm."
+- "A snap-fit lid for a jar with an 82mm outer diameter."
 
 ## Where it fits
 
-Good for hobbyist and functional parts described in ordinary language, without needing to model them by hand.
+Good for hobbyist and functional parts described in ordinary language, without needing to model them by hand. Not a replacement for a mechanical engineer working on tight-tolerance parts.
+
+## Iterating
+
+- **Dimensions** are exposed as parameters; edit and re-slice without regenerating.
+- **Features** (fillets, holes, ribs) can be added or removed with a follow-up prompt.
+- **Reference photos** help Maker match a real object you're extending.
+
+## Related
+
+- [Icons, shapes, and charts](/features/build/svg-and-charts)
+- [Screenshot to UI](/features/build/screenshot-to-ui)
+- [Deck](/features/media/deck)

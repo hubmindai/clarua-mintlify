@@ -4,16 +4,56 @@ description: "Queue multiple prompts for the Clarua agent, then hold, reorder, e
 icon: "list-check"
 ---
 
-The prompt queue is manageable, not a one-shot commitment.
+The prompt queue is manageable, not a one-shot commitment. Line up work, rearrange it while you think, and let the agent run down the list.
 
 ## What you can do to a queued item
 
-- **Hold** it so it doesn't run yet.
-- **Reorder** it against other items in the queue.
-- **Edit** its text before it runs.
-- **Copy** it to start a new item from the same prompt.
-- **Repeat** it after it's run.
+| Action | Why you'd do it |
+| --- | --- |
+| Hold | Pause an item so the queue skips it until you release it |
+| Reorder | Move an urgent item to the front, or push a dependent one behind its blocker |
+| Edit | Tighten the wording after you see how an earlier turn landed |
+| Copy | Start a new item from the same prompt for a variant or retry |
+| Repeat | Re-run a completed prompt against updated state |
+| Delete | Drop an item that's no longer needed |
+
+## Typical rhythm
+
+<Steps>
+  <Step title="Brain-dump">
+    Type each thing you want the agent to do, hitting send between each. They land in the queue.
+  </Step>
+  <Step title="Reshape">
+    Reorder so dependencies are respected. Hold any items that need a manual check first.
+  </Step>
+  <Step title="Let it run">
+    The agent works down the queue. You watch (or do something else).
+  </Step>
+  <Step title="Course-correct">
+    Edit or hold the next item based on what the last one produced.
+  </Step>
+</Steps>
 
 ## Activity side panel
 
 A ChatGPT-style turn activity view shows what the agent did on the current turn, in a side panel you can open or dismiss. See the work as it happens instead of scrolling the transcript.
+
+The panel shows:
+
+- **Files touched** on the current turn.
+- **Tools called**, in order.
+- **Sub-agents spawned**, if any.
+- **The plan** the agent is executing.
+
+## Best practices
+
+- **Queue small tasks, not epics.** Each queued item is one turn.
+- **Hold the risky ones.** Anything destructive should be held for confirmation.
+- **Use with background agents.** Queue a chain, then walk away. See [background agents](/features/agent/background).
+- **Pair with checkpoints.** Snapshot before a queue drains so you can undo cleanly.
+
+## Related
+
+- [Background agents](/features/agent/background)
+- [Custom modes](/features/agent/custom-modes)
+- [Checkpoints](/features/editor/checkpoints)

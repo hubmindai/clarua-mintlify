@@ -8,8 +8,40 @@ Build a multi-step funnel and test variants against each other, with the math fo
 
 ## What you get
 
-- Clean linking between steps.
-- Variant tests you can read off the numbers instead of guess at.
+- **Clean linking between steps** so a real user flows through it the way you designed.
+- **Variant tests** you can read off the numbers instead of guess at.
 - A **winning variant** call that's grounded in significance, not vibes.
+- Automatic **guardrail metrics** so you know when a win came at another metric's expense.
+
+## Building a funnel
+
+<Steps>
+  <Step title="Sketch the steps">
+    Landing, offer, checkout, thanks. Or whatever your flow looks like.
+  </Step>
+  <Step title="Add variants">
+    Two or more versions of any step you want to test.
+  </Step>
+  <Step title="Publish">
+    Live traffic gets split evenly. You can weight the split if you'd rather ramp.
+  </Step>
+  <Step title="Read the result">
+    The winning-variant call arrives once significance is reached. Ship the winner or run another round.
+  </Step>
+</Steps>
+
+## Why the math matters
+
+Calling a winner too early is the fastest way to build the wrong thing. Clarua waits for statistical significance before declaring a winner, and shows you:
+
+- The p-value at the moment of the call.
+- The expected lift range.
+- The sample size behind it.
 
 You know when a result is real and not noise.
+
+## Related
+
+- [Feature flags](/features/build/feature-flags)
+- [Deck](/features/media/deck)
+- [Maker](/features/media/maker)

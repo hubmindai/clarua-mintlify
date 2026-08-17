@@ -6,22 +6,64 @@ icon: "database"
 
 Run SQL against a connected database and read the results in a grid.
 
+## What you can do
+
+- **Query.** Grid results, sortable columns, exportable to CSV.
+- **Iterate.** Edit the query, re-run, compare. Query history is per project.
+- **Save.** Turn a query into a named source your app can bind to.
+- **Chart.** Send results into an SVG chart with [icons, shapes, and charts](/features/build/svg-and-charts).
+
 ## Safety layer
 
-A deterministic classifier runs in front of every statement:
+A deterministic classifier runs in front of every statement.
 
-| Class | What happens |
-| --- | --- |
-| Read | Runs immediately |
-| Write | Runs after standard review |
-| Destructive | Held for explicit confirmation |
+| Class | Examples | What happens |
+| --- | --- | --- |
+| Read | `SELECT`, `EXPLAIN`, `SHOW` | Runs immediately |
+| Write | `INSERT`, `UPDATE` (scoped), `MERGE` | Runs after standard review |
+| Destructive | `DROP`, `TRUNCATE`, unscoped `DELETE`, `ALTER` | Held for explicit confirmation |
 
 Drops, truncates, and unscoped deletes are held for confirmation before anything runs.
 
 ## Blocks by construction
 
-- Stacked statements.
-- Unbalanced quotes.
-- Comment-smuggled injections.
+- **Stacked statements.** Multiple semicolon-separated statements are refused unless the connection explicitly allows batching.
+- **Unbalanced quotes.** Refused; a missing terminator is a red flag.
+- **Comment-smuggled injections.** Anything hidden after a `--` or inside a `/* ... */` that changes intent is refused.
 
-The safety check itself needs no database connection at all, so classification runs even in offline previews.
+## Deterministic classification
+
+The safety check itself needs no database connection. Classification runs even in offline previews, so:
+
+- You can review what a query would do before ever connecting.
+- The same query is always classified the same way.
+- The classifier can be audited: it's rules, not a model call.
+
+## Example: safe pattern
+
+```sql
+-- Read: runs immediately.
+SELECT id, email, plan
+FROM users
+WHERE created_at >= now() - interval '30 days'
+ORDER BY created_at DESC
+LIMIT 100;
+
+-- Write: runs after review.
+UPDATE users
+SET plan = 'pro'
+WHERE id = $1;
+
+-- Destructive: held for confirmation.
+DELETE FROM users WHERE created_at < '2020-01-01';
+```
+
+## Environment awareness
+
+Queries know which [environment](/features/data/environments) they're running in. A query saved against **test** doesn't accidentally run against **live** on a re-open, and destructive queries against live show an extra confirmation.
+
+## Related
+
+- [Data connectors](/features/data/connectors)
+- [Project environments](/features/data/environments)
+- [Auto-mode safety](/features/security/auto-mode-safety)

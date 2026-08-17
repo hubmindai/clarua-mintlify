@@ -4,7 +4,7 @@ description: "Run separate test and live environments per Clarua project, with p
 icon: "layer-group"
 ---
 
-Every project has separate **test** and **live** environments.
+Every project has separate **test** and **live** environments. You iterate against one and publish from the other, without either bleeding into its neighbor.
 
 ## Why two environments
 
@@ -13,6 +13,44 @@ Every project has separate **test** and **live** environments.
 
 Environments never collide on add. You can wire a new connector or add a new secret to test without stepping on live.
 
+## What's per-environment
+
+| Kind | Per-environment | Shared |
+| --- | --- | --- |
+| Data connectors | Yes (different targets, different creds) | Schema mapping |
+| Secrets | Yes | Secret names |
+| Feature flag rollouts | Yes | Flag definitions |
+| Domain and URL | Yes | Codebase |
+| Uptime monitors | Yes | Monitor config |
+
+The code is the same in both. What changes is what it points at.
+
+## Promoting from test to live
+
+<Steps>
+  <Step title="Verify against test">
+    Confirm the change behaves the way you want against test's data and configuration.
+  </Step>
+  <Step title="Review the promotion">
+    The promotion view shows what will change: which secrets, which flag rollouts, which schema differences.
+  </Step>
+  <Step title="Confirm">
+    Live picks up the new configuration. The code is already the same across both.
+  </Step>
+</Steps>
+
+## Guardrails
+
+- **Destructive SQL against live** shows an extra confirmation. See [SQL queries](/features/data/sql-queries).
+- **Secret rotation on live** requires an admin.
+- **Rollbacks** use [checkpoints](/features/editor/checkpoints); you can undo a live promotion cleanly.
+
 ## Live preview toggle
 
-The live preview can be turned on or off per project from project settings, so a project with a heavy backend doesn't have to pay for preview it isn't using.
+The live preview can be turned on or off per project from project settings, so a project with a heavy backend doesn't have to pay for preview it isn't using. Turning it off doesn't affect either environment: it only turns off the browser-side preview surface.
+
+## Related
+
+- [Data connectors](/features/data/connectors)
+- [SQL data queries](/features/data/sql-queries)
+- [Spend limits](/features/workspace/spend-limits)

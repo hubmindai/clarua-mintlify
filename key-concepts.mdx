@@ -1,0 +1,87 @@
+---
+title: "Key concepts"
+description: "The core ideas behind Clarua: the agent loop, modes, memory, checkpoints, environments, and how the pieces fit together."
+icon: "lightbulb"
+sidebarTitle: "Key concepts"
+---
+
+A short tour of the ideas that show up everywhere in Clarua. Read this once and the rest of the docs will click faster.
+
+## The agent loop
+
+Every turn runs the same five-step shape:
+
+1. **Read.** Prompt, attachments, memory, project rules.
+2. **Plan.** State what will change before touching anything.
+3. **Act.** Edit files, run tools, drive a browser, spawn sub-agents.
+4. **Verify.** Auto-fix errors, run checks, re-read what was written.
+5. **Record.** Save a receipt, update memory, notify anyone watching.
+
+See [Agent overview](/features/agent/overview).
+
+## Modes
+
+A **mode** is a preset that shapes how the agent works: which tools it can use, whether plan mode is on, how aggressive auto-approve is. Every project has a default mode; you can define your own.
+
+See [Custom modes](/features/agent/custom-modes).
+
+## Preferences
+
+**Preferences** are personal. They stick to you, not to the project: your model tier, plan mode default, auto-approve default. They apply on top of the current mode.
+
+See [Agent preferences](/features/agent/preferences).
+
+## Skills
+
+**Skills** are structured playbooks the agent can call. Auto-triggered on match, or run on demand with `/slug`. Team skills live in the repo; personal skills travel with you.
+
+See [Skills](/features/agent/skills).
+
+## Memory
+
+What the agent remembers carries a **live trust score**. Proven facts decay slowly; contradicted facts fade fast. Every sealed fact is written into a tamper-evident chain.
+
+See [Agent memory](/features/agent/memory).
+
+## Checkpoints
+
+Every meaningful step is captured as a snapshot you can return to. Deduplicated by content, so history stays cheap. Rollback is one click.
+
+See [Checkpoints](/features/editor/checkpoints).
+
+## Environments
+
+Every project has separate **test** and **live** environments. Data connectors, secrets, and rollouts are per-environment; code is shared.
+
+See [Project environments](/features/data/environments).
+
+## Receipts
+
+Each build turn ends with a **receipt**: what changed, what was verified, what failed. Receipts are how you audit the agent's work at a glance.
+
+See [Build receipts](/features/build/receipts).
+
+## Safety
+
+Unattended runs are bounded by rules that inspect the **whole command chain**, not just the first step. Denials show the exact reason. Dependencies are checked against a supply-chain firewall before install.
+
+See [Auto-mode safety](/features/security/auto-mode-safety) and [Package firewall](/features/security/package-firewall).
+
+## How they compose
+
+A typical flow uses all of them together:
+
+1. Your **preferences** pick the model tier.
+2. The project's **mode** limits which tools the agent can use.
+3. The agent reads relevant **memory** and any **skills** that match.
+4. It runs against the current **environment** (test or live).
+5. Every action passes through the **safety** layer.
+6. The result is captured as a **checkpoint** and summarized as a **receipt**.
+
+Once this shape is familiar, everything else in the docs is just a specific tool or surface plugged into the same loop.
+
+## Related
+
+- [Quickstart](/quickstart)
+- [Agent overview](/features/agent/overview)
+- [Build overview](/features/build/overview)

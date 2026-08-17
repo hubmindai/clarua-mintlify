@@ -4,20 +4,75 @@ description: "Wire real data sources such as Redshift, Microsoft Fabric, Google 
 icon: "plug"
 ---
 
-Data connectors bring real data directly into the projects you build.
+Data connectors bring real data directly into the projects you build. No custom glue code, no per-connector auth code to hand-write.
+
+## What a connector gives you
+
+- **Schema.** Tables, columns, and types the app can bind to.
+- **Auth.** Managed credentials per environment.
+- **Queries.** [SQL queries](/features/data/sql-queries) where the source supports SQL; typed methods where it doesn't.
+- **Refresh.** Live streams or scheduled pulls, depending on the connector.
 
 ## Included connectors
 
-- Amazon Redshift.
-- Microsoft Fabric.
-- Google Analytics.
-- Xero.
-- Plus the existing catalog of database, SaaS, and file sources.
+<CardGroup cols={2}>
+  <Card title="Amazon Redshift" icon="warehouse">
+    Warehouse-scale reads for analytics and reporting apps.
+  </Card>
+
+  <Card title="Microsoft Fabric" icon="microsoft">
+    OneLake tables and Power BI datasets.
+  </Card>
+
+  <Card title="Google Analytics" icon="chart-line">
+    Traffic and behavior data, ready to chart.
+  </Card>
+
+  <Card title="Xero" icon="file-invoice-dollar">
+    Invoices, contacts, and accounts for finance-shaped apps.
+  </Card>
+</CardGroup>
+
+Plus the existing catalog of database, SaaS, and file sources: Postgres, MySQL, MongoDB, S3, Google Sheets, Stripe, HubSpot, Notion, and more.
 
 ## Dedicated connection pages
 
-Health and Finances each have their own connection pages, with a blank-slate design tuned for the real thing you're about to wire up.
+Health and Finances each have their own connection pages, with a blank-slate design tuned for the real thing you're about to wire up. Both surfaces:
+
+- Ask for the credentials the connector actually needs, not a generic key-value dump.
+- Explain scopes and permissions in plain language.
+- Test the connection before saving, so bad credentials fail loudly.
+
+## Adding a connector
+
+<Steps>
+  <Step title="Open the Data panel">
+    From your project, open Data. Pick a connector from the catalog.
+  </Step>
+  <Step title="Authenticate">
+    Follow the connector's flow: OAuth, API key, or service account. Credentials land in your project's secret store.
+  </Step>
+  <Step title="Pick tables or scopes">
+    Choose which tables (databases) or scopes (SaaS APIs) the project can read. Least-privilege is the default.
+  </Step>
+  <Step title="Bind">
+    Bind schema to your app. Existing tables get a matching type; new tables become new views.
+  </Step>
+</Steps>
 
 ## Test and live environments
 
-Every project has separate **test** and **live** environments, so you can iterate against one and publish from the other without conflict. Environments never collide on add.
+Every project has separate **test** and **live** environments, so you can iterate against one and publish from the other without conflict. Environments never collide on add, so:
+
+- You can point test at a sandbox database and live at production.
+- Rotating a live credential doesn't touch test.
+- A destructive query held in [SQL queries](/features/data/sql-queries) shows an extra confirmation on live.
+
+See [project environments](/features/data/environments) for the details.
+
+## Related
+
+- [SQL data queries](/features/data/sql-queries)
+- [Project environments](/features/data/environments)
+- [Build from a spreadsheet](/features/build/from-spreadsheet)
+- [API import](/features/build/api-import)

@@ -4,8 +4,56 @@ description: "Clarua editor snapshots your project at every meaningful step, so 
 icon: "camera-retro"
 ---
 
-Every meaningful step is captured as a snapshot you can return to, so an experiment that goes sideways is one click from undone.
+Every meaningful step is captured as a snapshot you can return to, so an experiment that goes sideways is one click from undone. Checkpoints sit alongside git, not in place of it.
+
+## When Clarua checkpoints automatically
+
+- **Before each agent turn** that will write files.
+- **After a successful publish**, so you can compare live-vs-current.
+- **Before a destructive tool call** the agent is about to make.
+- **On demand**, from the composer or the timeline.
 
 ## Cheap to keep
 
-Snapshots are **deduplicated by content**, so they stay cheap to keep and fast to restore. You always have a clean point to fall back to, and you don't pay for it.
+Snapshots are **deduplicated by content**, so they stay cheap to keep and fast to restore. You always have a clean point to fall back to, and you don't pay for it linearly.
+
+- Identical files across snapshots share storage.
+- Restoring is a metadata switch, not a file copy.
+- History depth is only limited by your workspace retention policy.
+
+## Rolling back
+
+<Steps>
+  <Step title="Open the timeline">
+    Every checkpoint shows as a row with a timestamp, the turn that made it, and a short summary.
+  </Step>
+  <Step title="Preview">
+    Click a checkpoint to preview it without restoring. Diffs against your current state appear per file.
+  </Step>
+  <Step title="Restore">
+    Hit Restore. Your current work is checkpointed first, so nothing is lost. The workspace switches to the earlier snapshot atomically.
+  </Step>
+  <Step title="Fork if you want to keep both">
+    Restoring optionally forks into a branch, so you can compare the two paths side by side.
+  </Step>
+</Steps>
+
+## Diffing between checkpoints
+
+Any two checkpoints can be diffed:
+
+- Per file, per line.
+- With semantic hunk labels ("added feature flag", "renamed component").
+- Alongside the [build receipts](/features/build/receipts) from the turns that ran between them.
+
+## Pairs well with
+
+- **Background agents.** Snapshot before a long unattended run so rollback is one click.
+- **Auto-approve on.** When the agent runs without asking, checkpoints keep the safety net.
+- **Merge conflicts.** Roll back to before the merge, retry with more context.
+
+## Related
+
+- [Build receipts](/features/build/receipts)
+- [Auto merge resolution](/features/build/merge-resolve)
+- [Visual edit](/features/editor/visual-edit)

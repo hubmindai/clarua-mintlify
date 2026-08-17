@@ -6,18 +6,44 @@ icon: "user-plus"
 
 Invite someone outside your workspace as a **guest** and give them access to exactly the apps you choose, nothing else, through a share link. No account or single sign-on to set up.
 
+## When to use guest links
+
+- Show a stakeholder the current build without adding them to the workspace.
+- Give an external agency access to a specific app during an engagement.
+- Send a live preview to a customer for feedback via [preview annotations](/features/editor/preview-annotations).
+- Provide a portal to a shipped app for a small pilot audience.
+
 ## Scope per link
 
 Each guest gets a **high-entropy link** you can:
 
-- Scope to one app or many.
-- Set to expire.
-- Revoke the moment you want.
+- **Scope** to one app or many.
+- **Set to expire** at a specific time or after a set number of hours.
+- **Restrict to view or comment**, not edit.
+- **Revoke** the moment you want.
 
 ## Admin table
 
-One admin table shows who has access, which apps they can reach, and when they were last active.
+One admin table shows:
+
+- Who has access.
+- Which apps they can reach.
+- When they were last active.
+- When the link expires.
+- Who created the link and when.
+
+Filter, sort, and revoke in bulk from the same view.
 
 ## Link is the credential
 
-The link is the credential: shown once, checked in constant time on every request, and stops working the instant you revoke it or it expires.
+The link is the credential: shown once, checked in constant time on every request, and stops working the instant you revoke it or it expires. Practically that means:
+
+- **Save it in a password manager**, not in an email thread.
+- **Rotate on any suspicion.** Revoke the old, generate a new one; the guest keeps their access without you re-adding anything.
+- **Don't share a link scoped to more than the guest needs.** Create per-app links instead of a workspace-wide one.
+
+## Related
+
+- [Preview annotations](/features/editor/preview-annotations)
+- [Files](/features/workspace/files)
+- [Audit log export](/features/security/audit-export)

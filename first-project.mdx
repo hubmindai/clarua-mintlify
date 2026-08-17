@@ -1,0 +1,112 @@
+---
+title: "Your first project"
+description: "A guided walkthrough of building, wiring, reviewing, and publishing a real Clarua project from an empty workspace to a live URL."
+icon: "rocket"
+sidebarTitle: "Your first project"
+---
+
+A guided walkthrough of a real project, end to end. It takes about 30 minutes and covers the surfaces you'll use every day.
+
+We'll build a small internal tool: a **contact directory** that reads a spreadsheet, lets you edit rows, and lands at a shareable URL.
+
+## Before you start
+
+- A workspace on any plan.
+- A CSV of a few dozen rows with at least `name`, `email`, and `company` columns.
+
+<Tip>
+  If you don't have a spreadsheet handy, ask the agent for a sample and copy it into a CSV.
+</Tip>
+
+## Step 1. Create the project
+
+<Steps>
+  <Step title="New project">
+    From the workspace home, hit **New project**. Give it a name.
+  </Step>
+  <Step title="Pick a starting shape">
+    Choose **Blank** for a totally clean start, or **App** for a scaffolded web app.
+  </Step>
+</Steps>
+
+## Step 2. Bring your data in
+
+Open the composer and drop your CSV into it. Ask:
+
+```text
+Build a contact directory from this CSV. Add a search box that
+filters by name, email, and company. Show 25 rows per page.
+```
+
+The agent parses the CSV, infers types, and generates the table. Read the [build receipt](/features/build/receipts) when it lands to see what shipped.
+
+See [Build from a spreadsheet](/features/build/from-spreadsheet) for what's happening under the hood.
+
+## Step 3. Refine in the preview
+
+Open the live preview. Click any element to edit it in place through [visual edit](/features/editor/visual-edit).
+
+Try:
+
+- Rename "Company" to "Organization."
+- Tighten the row height on the table.
+- Change the primary button color to your brand color.
+
+Every edit writes straight back to the source.
+
+## Step 4. Add an edit form
+
+Drop a [preview annotation](/features/editor/preview-annotations) on the table's row action column with the note:
+
+```text
+1. Add an Edit button per row that opens a dialog
+   to edit name, email, and company.
+```
+
+Send it. The agent adds the dialog and wires the update path in one turn.
+
+## Step 5. Wire a real data source (optional)
+
+If you want the directory to read from a database instead of the CSV, open **Data** and pick a [connector](/features/data/connectors). Bind the same table to your Postgres or Airtable table. The UI doesn't change; only the source does.
+
+Environments split into **test** and **live** so you can iterate against test data. See [project environments](/features/data/environments).
+
+## Step 6. Check safety and quality
+
+Open the [Security Center](/features/security/security-center). Confirm your app has a passing grade and no open criticals. The [package firewall](/features/security/package-firewall) already checked every dependency the agent added.
+
+## Step 7. Publish
+
+Hit **Publish**. Clarua deploys to a `.clarua.app` URL and shows the [Trust Center](/features/security/trust-centers) verdict: ship, review, or hold.
+
+When it says ship, the URL is live.
+
+## Step 8. Share
+
+Send the URL to a teammate. If they're outside the workspace, create a [guest link](/features/workspace/guest-access) scoped to just this app.
+
+## What to try next
+
+<CardGroup cols={2}>
+  <Card title="Add auth" icon="lock" href="/features/agent/overview">
+    Ask the agent to wire sign-in. Least-privilege by default.
+  </Card>
+
+  <Card title="Send an email" icon="envelope" href="/features/build/api-import">
+    Import an email API and use it from the app.
+  </Card>
+
+  <Card title="Add a chart" icon="chart-column" href="/features/build/svg-and-charts">
+    Chart contacts by company using icons, shapes, and charts.
+  </Card>
+
+  <Card title="Track uptime" icon="chart-line" href="/features/security/uptime-monitoring">
+    Point a monitor at the published URL.
+  </Card>
+</CardGroup>
+
+## Related
+
+- [Quickstart](/quickstart)
+- [Key concepts](/key-concepts)
+- [Build overview](/features/build/overview)
