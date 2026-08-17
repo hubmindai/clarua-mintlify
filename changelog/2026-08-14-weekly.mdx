@@ -1,0 +1,105 @@
+---
+title: "Week of August 14, 2026"
+description: "Default skills, project environments, new data connectors, and reliability fixes across build, chat, and publishing."
+sidebarTitle: "Aug 14, 2026"
+---
+
+This week we turned on a large default skill catalog, shipped test/live project environments, expanded Managed Registry connectors, and fixed a batch of follow-up prompt and auto-publish issues.
+
+## New features
+
+### Default skills catalog
+
+Design, UX, and engineering skills now ship on by default. New default skills include Animate, Arrange, Bolder, Clarify, Colorize, Emil design engineering, Frontend design, Harden, Impeccable, Normalize, Onboard, Optimize, Overdrive, Polish, Quieter, Shape, Typeset, and the bundled Anthropic skills. No enablement step is required to use them from the agent. See [Skills](/features/agent/skills).
+
+### Project environments
+
+Every project now has separate **test** and **live** environments so you can iterate against non-production data before promoting a change. Environment variables and connections are scoped per environment. See [Environments](/features/data/environments).
+
+### Live app builder hero
+
+The guest landing hero is now a live app builder — visitors can start generating a project directly from the homepage without signing in.
+
+### Livey — live video AI
+
+Livey is a new [live video AI feature](/features/media/livey) powered by Decart, with usage-based billing.
+
+### Managed Registry connectors
+
+Four new data connectors are available in the [Managed Registry](/features/workspace/managed-registry):
+
+- Amazon Redshift
+- Microsoft Fabric
+- Google Analytics
+- Xero
+
+### Trust centers for published apps
+
+Publishing an app now generates a [Trust Center](/features/security/trust-centers) automatically, including policies, subprocessors, and security posture for that app.
+
+### Veo 3.1 in Montage
+
+[Montage](/features/media/montage) now supports Google Veo 3.1 video models alongside the existing generators.
+
+### Files surface
+
+Every conversation now has a dedicated [Files](/features/workspace/files) surface listing everything the project has generated, so assets are easy to find outside the chat transcript.
+
+### Project live preview toggle
+
+You can turn the live preview on or off per project from the workbench.
+
+### Full-file context on follow-ups
+
+Follow-up prompts can now include the full contents of relevant project files, so the agent sees your latest state instead of a stale summary when you ask for a change.
+
+### Image provenance marks
+
+Generated images carry provenance marks so downstream viewers can confirm they came from Clarua.
+
+### Sign-in country alerts
+
+You'll get an alert when a sign-in happens from an unexpected country, and the same signal shows up as a tab-status badge in the app.
+
+### Paste-a-secret guard
+
+When you paste something that looks like an API key or secret into chat, Clarua warns you before it's sent to the model.
+
+### More destinations menu
+
+A **More destinations** menu in the sidebar makes it faster to jump between projects, files, and workspace areas.
+
+### AI training opt-out
+
+Workspace settings now include an explicit AI training opt-out with clearer guidance on how your data is used.
+
+### Unlimited paid-workspace invites
+
+Paid workspaces no longer have an email invite cap — invite as many teammates as you need.
+
+## Updates
+
+- **Guest landing** — refreshed hero, navigation, and conversion journey with a new **Supa Agents** section.
+- **Onboarding pricing** — reworked plan selection flow to make plan differences clearer during signup.
+- **Workbench sharing** — updated share menu, share modal trigger, and handoff controls.
+- **Auth callback** — smoother loading transition after sign-in.
+- **Upgrade modal** — refreshed background and layout.
+- **User menu** — updated affiliate link destination.
+- **Store header** — renamed to reflect the full set of actions it exposes.
+
+## Bug fixes
+
+- Auto-publish now fires reliably after a build finishes.
+- Follow-up prompts consistently update code and preview files instead of silently no-oping.
+- Restored email magic-link delivery for sign-in and sign-up.
+- Fixed email sign-in cookie migration for existing sessions.
+- Fixed chat deletion on legacy database schemas.
+- Fixed authenticated callback landing to route users to the right destination.
+- Fixed a 400 error when pinning chats.
+- Fixed Rewardful referral tracking and conversion attribution.
+- Chat image attachments are now saved as project assets and reused correctly.
+- Fixed legacy plan weekly usage limits so they match plan entitlements.
+- Fixed the workbench share modal trigger.
+- Cloudflare Pages size guard no longer fails Vercel builds.
+- Cleared referral and workbench console errors.
+- Fixed several drifts in the Claude-style usage surfaces so credits and limits display consistently.
