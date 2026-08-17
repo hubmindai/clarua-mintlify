@@ -52,7 +52,7 @@ Dial the rollout up by editing `percentage(10)` to `percentage(50)`, or split in
 
 ## Stable assignment
 
-Assignment hashes the user id (or session id for logged-out) with the flag key. A user in the 10% bucket is **always** in the 10% bucket for that flag until you change it, and moving to 50% is additive: everyone in 10% stays, plus 40% more.
+Assignment hashes the user id (or session id for logged-out) with the flag key. A user in the 10% bucket is **always** in the 10% bucket for that flag until you change it. Moving to 50% is additive: everyone in 10% stays, plus 40% more.
 
 ## No external service
 
