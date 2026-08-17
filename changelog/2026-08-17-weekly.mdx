@@ -1,0 +1,61 @@
+---
+title: "Week of August 17, 2026"
+description: "More default skills, project-wide truth across conversations, deploy and preview reliability, and a batch of chat, auth, and security fixes."
+sidebarTitle: "Aug 17, 2026"
+---
+
+This week we expanded the default [Skills](/features/agent/skills) catalog again, unified project state across multiple conversations, and hardened the deploy, preview, and auth paths.
+
+## New features
+
+### More default skills
+
+Another wave of skills now ships on by default in the agent, alongside last week's set. Newly bundled defaults include Adapt, Audit, Webapp Testing, and additional design and engineering skills grouped under the Anthropic bundle. Nothing to enable, they show up in every project. See [Skills](/features/agent/skills).
+
+### One project across many conversations
+
+Projects now hold a single source of truth even when you split work across multiple chats. Verdicts like "checkout works" or "auth is stubbed" are reported at the project level, and conflicting reports from different conversations are surfaced with their evidence instead of silently overwriting each other.
+
+### First-build tour
+
+New projects get a one-time guided tour with tooltips at the first successful build, so you see where the preview, deploy, and share controls live without hunting.
+
+### Paste-a-secret and country alerts stay on
+
+The paste-a-secret guard and unexpected-country sign-in alerts shipped last week are now the default across all workspaces.
+
+## Updates
+
+- **File generation modal** — cleaner layout and polished streaming visuals during builds.
+- **Workbench header sharing** — refreshed share and handoff controls.
+- **Toasts** — modernized notification design across the app.
+- **Guest landing** — updated icons, onboarding flow, and upsell/downsell paths for clearer plan choices.
+- **Menu** — added a **Gift Clarua** entry and the PWA install prompt is now wired into the menu.
+- **Chat theme** — dark mode tokens tightened to meet AA contrast, and theme persistence fixed.
+- **Welcome greetings** — rewritten in a cleaner, Claude-style register.
+- **Build mode prompts** — clearer prompt wording during builds.
+- **Onboarding upsell/downsell** — smoother plan-review step during signup.
+- **File generation experience** — smoother streaming and end-of-generation states.
+
+## Bug fixes
+
+- Fixed [auto-deploy](/features/build/overview) failing to fire after builds finish; deploy URLs are now resolved from cache reliably.
+- Fixed live preview and auto-deploy issues where streamed files were incorrectly rejected as unchanged.
+- Fixed a client deploy race where the starter placeholder project could trigger an unwanted deploy.
+- Fixed email magic-link sign-in and sign-up delivery, including the return-path used after clicking the link.
+- Clarua now verifies session token signatures before trusting the user identity they carry.
+- Closed a share-link leak where soft-deleted shared chats were still being served.
+- Clarua now re-validates redirects in the resource proxy to block open-redirect abuse.
+- Fixed a workspace access issue where users could see resources they shouldn't.
+- Fixed the image replacement bug when swapping images in the workbench.
+- Fixed image upload on the first-page prompt.
+- Fixed the chat surface so reopening a chat no longer replays late-arriving history and a single failed auth probe no longer signs you out.
+- Fixed the workbench preview and deploy modal so the deploy status matches what actually shipped.
+- Fixed a homepage rating that displayed a fabricated value.
+- Fixed a Cloudflare Pages size guard that was misreporting an estimate as a hard verdict.
+- Fixed duplicate deploy-status polling and a noisy restore warning.
+- Fixed a MaxListeners warning that appeared in long sessions.
+- Fixed a deployment memory leak on long-running previews.
+- Improved reliability for durable chat streams, cron-based cleanup, ledger batching, and rewind safety.
+- Fixed catastrophic backtracking in two regexes reachable from user input.
+- Fixed a re-queue path in the reliability layer so failed batches restore correctly instead of being pushed a second time.
