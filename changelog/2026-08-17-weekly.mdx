@@ -1,0 +1,60 @@
+---
+title: "Week of August 17, 2026"
+description: "Build, auto-publish, and preview reliability; chat dark mode that sticks and meets AA contrast; per-project design variety; and a sweep of workspace surface and honesty fixes."
+---
+
+## Updates
+
+**Per-project design variety in generated apps.** New builds pick a per-project hue derived from the opening brief instead of every project defaulting to the same orange/warm-cream palette. The page ground defaults to pure white or true near-black, only the neutral ramp tints toward the brand, and the attribution badge follows the project theme. The build prompt also picked up a few concrete design skills: fixed rem type scales for app UIs versus fluid clamp for marketing, ease-out tokens with duration bands, Core Web Vitals targets, and teaching empty states.
+
+**Reality Findings pill on phones.** The honesty pill that surfaces reality findings during a run was desktop-only. It now shows on mobile too.
+
+**Composer nudges strip actually populates.** The tips strip below the composer had been shipping empty. It now renders with useful nudges.
+
+**Branch picker reads both forms of fork-parent edges.** Forks you actually made now show up in the branch picker; previously the picker either failed to mount or missed one of the two edge shapes.
+
+**Drag a project onto a folder chip to move it.** Drop a project onto a folder chip to move it into that folder, or drop it on **All projects** to remove it from its current folder.
+
+**Share Offer and Handoff sheets are back.** Both sheets had lost their mounts in a recent header rewrite and are restored.
+
+## Bug fixes
+
+**Follow-up prompts no longer deploy the previous prompt's files.** A follow-up build now deploys the files it actually produced, not the ones from the previous turn.
+
+**A declined registered deploy no longer falls through to publishing raw source.** The unbuilt-fallback rule is now decided in one place. Declining a registered deploy stops there instead of quietly publishing unbuilt source four checks later.
+
+**The stability gate actually gates torn publishes.** The gate meant to block half-written builds from being published now does so.
+
+**Auto-publish state stays visible for the full registered deploy.** The indicator no longer disappears partway through.
+
+**Planning and preview-pending phases render.** The pre-file **planning** and **preview-pending** phases now show up. They were unreachable before, so a build whose dev server never booted looked like a finished blank preview.
+
+**Preview panel no longer double-flashes 'live' over the previous URL.** Follow-up builds no longer briefly show the prior deploy's URL as live before switching over.
+
+**Discuss mode no longer destroys a scheduled deploy.** Switching to discuss mode used to unmount the workbench and drop a queued deploy on the floor.
+
+**Imports with no preview no longer pin the panel open forever.** An import that produces no preview now closes the preview panel instead of holding it open indefinitely.
+
+**Chat dark mode actually persists across reloads.** A subscribe-fires-with-current-value bug was overwriting the saved theme with `light` on every load. Your chosen theme now survives a reload.
+
+**Chat 'system' preference resolves to the actual mode.** `system` had been written raw to `data-theme`, which gave system-dark visitors the dark class with light tokens. It now resolves to `light` or `dark` on load and reacts when the OS preference changes.
+
+**Chat surface meets WCAG AA (4.5:1) contrast.** Blockquotes, the composer placeholder, and dark-mode assistant and user-bubble link colours all clear the 4.5:1 floor.
+
+**Dark-mode code blocks, inline chips, and artifact cards match the chat panel.** Their grounds are warm-toned to match the chat panel instead of drifting into the app's cool navy.
+
+**Deploy Gate stops naming a failure a later run has cleared.** Honest-recovery now applies across turns, not just within a single batch, so the gate no longer keeps pointing at a failure a subsequent run has already resolved. The failure-veto layer also no longer swallows fix reports that agree with the ledger.
+
+**Reality Ledger flush re-queues a failed batch with restore, not push.** Newer observations are no longer overwritten by the stale copy on retry.
+
+**Scheduled crons actually fire.** The Neon usage cron, the funnels abandon-checkout and CAPI cron, and the improve cron had no scheduler wired up and were silently no-ops. They now run on schedule.
+
+**Durable-stream races fixed.** Resumed messages no longer drop their tail, and an errored stream is no longer served as `completed`.
+
+**Resource-proxy and vercel-deploy re-validate every redirect hop.** A redirect chain can no longer reach internal addresses.
+
+**Deleted shared chats stop being served.** A deleted share is no longer reachable at the share route or leaked into link unfurls.
+
+**Workspace member mutations are scoped by workspace_id.** They can no longer be flipped by `member_id` alone.
+
+**Fabricated homepage review rating removed.** The `4.8 · 1,643 reviews` structured-data rating that was shipping on the homepage without any real reviews is gone.
