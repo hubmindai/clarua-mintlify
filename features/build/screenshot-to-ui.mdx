@@ -1,0 +1,56 @@
+---
+title: "Screenshot to UI"
+description: "Drop in a screenshot and get clean, production-shaped front-end code that matches its layout."
+icon: "image"
+---
+
+Drop a screenshot into chat and Clarua returns clean front-end code that matches its layout.
+
+## How it works
+
+<Steps>
+  <Step title="Read the image into structure">
+    Clarua parses the screenshot into a structured layout tree: containers and their arrangement, headings versus body text, buttons, inputs, images. This is a layout tree, not pixel data.
+  </Step>
+  <Step title="Compile deterministically">
+    The layout tree compiles into either React with utility-class styling or a standalone HTML page. Every visual property gets one tidy class, with no conflicting styles.
+  </Step>
+  <Step title="Edit and recompile">
+    Hand-edit the structure and recompile without surprises. The same layout tree always produces the same output.
+  </Step>
+</Steps>
+
+## Output shapes
+
+- **React \+ utility classes.** Component tree that fits alongside the rest of your app.
+- **Standalone HTML.** One file you can drop straight into a static site.
+- **Semantic markup by default.** Headings, buttons, and inputs use real elements, not generic divs.
+
+## Safe by construction
+
+Text from the image is escaped on the way in, so nothing inside a screenshot can inject into the generated code. Even a screenshot of code stays as text, never as executable output.
+
+## What works well
+
+- Marketing pages and landings.
+- Dashboards with a clear grid.
+- Forms and settings panels.
+- Simple mobile-shaped layouts.
+
+## What to expect less from
+
+- Screenshots of interactive states (hover, focus). Send one screenshot per state.
+- Heavily anti-aliased or low-resolution captures. Higher DPI helps.
+- Screenshots with obscured content behind modals or dropdowns.
+
+## Common recipes
+
+- **"Rebuild this dashboard in our stack."** Paste the screenshot, then follow up with "Use our token library" once the initial layout lands.
+- **"Turn this landing into a template."** Paste, then ask for variants: hero swap, feature grid variant, CTA variant.
+- **"Match this competitor's onboarding."** Paste each step, one screenshot per turn, so the flow lands as separate routes.
+
+## Related
+
+- [Design to code](/features/build/design-to-code)
+- [Visual edit](/features/editor/visual-edit)
+- [Instant preview](/features/editor/instant-preview)

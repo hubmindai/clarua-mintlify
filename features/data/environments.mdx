@@ -1,0 +1,18 @@
+---
+title: "Project environments"
+description: "Test and live environments per project, plus per-project live preview control."
+icon: "layer-group"
+---
+
+Every project has separate **test** and **live** environments.
+
+## Why two environments
+
+- **Test.** Where you iterate: data connectors, secrets, and configuration you can change without touching production.
+- **Live.** Where you publish: what your users see.
+
+Environments never collide on add. You can wire a new connector or add a new secret to test without stepping on live.
+
+## Live preview toggle
+
+The live preview can be turned on or off per project from project settings, so a project with a heavy backend doesn't have to pay for preview it isn't using.

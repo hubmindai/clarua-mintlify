@@ -1,0 +1,46 @@
+---
+title: "Auto-fix"
+description: "Errors in generated output are detected and repaired in place before they land in your lap."
+icon: "wand-magic-sparkles"
+---
+
+When generated output has a code error, Clarua detects it and repairs it in place. Common breakages get cleaned up before they reach you.
+
+## What auto-fix handles
+
+- **Type errors** in TypeScript, including missing props and mismatched shapes.
+- **Import errors**: missing paths, wrong file extensions, unused imports.
+- **Runtime errors** surfaced during preview: unhandled null, missing keys, bad iteration.
+- **Build errors**: config drift, missing dev dependencies, bad module resolution.
+- **Formatter and linter errors** that the project's own tooling raised.
+
+## The loop
+
+<Steps>
+  <Step title="Read the real failure">
+    Auto-fix reads the actual stack trace, compiler output, or lint diagnostic. It doesn't guess from vibes.
+  </Step>
+  <Step title="Propose a targeted fix">
+    The fix touches the smallest scope that resolves the error. If two files caused it, both change.
+  </Step>
+  <Step title="Apply and re-verify">
+    The fix runs through the same checks. If a new error surfaces, the loop repeats.
+  </Step>
+  <Step title="Surface what remains">
+    When the retry budget is spent, you see exactly what was tried, what failed, and the last diagnostic.
+  </Step>
+</Steps>
+
+## Bounded, on purpose
+
+Auto-fix retries a bounded number of times per turn. If it can't resolve the error, you get a clean surface of what tried and what failed rather than watching a loop chase its own tail. You then take over with a plan-mode turn or a targeted prompt.
+
+## Turning it off
+
+For a turn where you want strict control, disable auto-fix in your [agent preferences](/features/agent/preferences). The agent will still write the code, but errors will surface directly for you to handle.
+
+## Related
+
+- [Build overview](/features/build/overview)
+- [Build receipts](/features/build/receipts)
+- [Agent preferences](/features/agent/preferences)

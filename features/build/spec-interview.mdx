@@ -1,0 +1,56 @@
+---
+title: "Spec interview"
+description: "Clarifying questions gathered as a quick form before build starts, locking the spec cleanly."
+icon: "clipboard-question"
+---
+
+Before Clarua starts building, the spec interview asks the questions it needs to lock the spec. Instead of a back-and-forth in chat, it can present a tidy form: single-select options, multi-select checkboxes, or free text with an "Other" field.
+
+Your answers fold straight back into the same spec-locking flow, so nothing about downstream generation changes. The plain-text conversational path still works exactly as before.
+
+## What the form covers
+
+The interview only asks about ambiguity it can't resolve from context, and only about things that would change the shape of the code.
+
+| Section | Example questions |
+| --- | --- |
+| Surfaces | Which pages you need: marketing, dashboard, admin, mobile-shaped, embed |
+| Data | Where records come from, which fields are required, what's read-only |
+| Auth | Public, workspace-only, per-user, or role-scoped, and which providers |
+| Environments | Whether to split test and live, and where to publish first |
+| Third parties | Which connectors, providers, or APIs the app should use |
+
+## When it triggers
+
+The interview fires when the spec is ambiguous in a way that would change the code Clarua writes. It does **not** fire when:
+
+- Your prompt is already concrete about surfaces, data, and auth.
+- An attachment (spreadsheet, screenshot, design, API spec) already pins the shape.
+- You're extending an existing project and the new work fits its existing patterns.
+
+## Typical flow
+
+<Steps>
+  <Step title="You describe the app">
+    Prose is fine. Attachments are better. If Clarua can build without asking, it will.
+  </Step>
+  <Step title="Clarua opens the form (if needed)">
+    You'll see a short structured form. Answer as many questions as you like, skip the rest, and pick "Other" to write in your own answer.
+  </Step>
+  <Step title="Spec locks">
+    Your answers merge with your original prompt into a single locked spec. You'll see it before the build starts.
+  </Step>
+  <Step title="Build begins">
+    Downstream generation reads the locked spec, not the raw back-and-forth. The plan you see is what will actually run.
+  </Step>
+</Steps>
+
+## Editing a locked spec
+
+You can edit the locked spec at any point in the project. Changes create a new build plan the agent runs on the next turn, so course-correcting the shape of an app is a single edit rather than a rebuild.
+
+## Related
+
+- [Build overview](/features/build/overview)
+- [Custom modes](/features/agent/custom-modes)
+- [Agent preferences](/features/agent/preferences)

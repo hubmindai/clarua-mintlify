@@ -1,0 +1,64 @@
+---
+title: "Build from a spreadsheet"
+description: "Paste CSV, TSV, or a spreadsheet export and get an app scaffolded around your real rows and columns."
+icon: "table"
+---
+
+Paste a CSV, a spreadsheet export, or tab-separated data into chat and Clarua builds an app around your real rows, not placeholder data.
+
+## What gets extracted
+
+| From your data | Into the app |
+| --- | --- |
+| Column headers | Field names on a typed schema |
+| Cell values | Inferred types (string, number, date, boolean, enum) |
+| Repeated small sets | Dropdown options |
+| Unique identifier columns | Primary keys |
+| All your rows | Seed data for the running app |
+
+## Deterministic pipeline
+
+Schema and seed generation runs without a model in the loop. The same paste always produces the same schema and the same starting point, so you can iterate on your data and get consistent scaffolds without prompt drift.
+
+## Example
+
+Paste this into chat:
+
+```csv
+name,company,stage,mrr,last_touched
+Ada Chen,Northwind,Trial,290,2026-08-01
+Sam Reed,Acme,Closed Won,1200,2026-08-08
+Jules Park,Globex,Trial,150,2026-08-11
+```
+
+Clarua produces:
+
+- A **Contact** table with `name`, `company`, `stage` (enum: Trial, Closed Won), `mrr` (number), `last_touched` (date).
+- A working **list view** with filters on stage.
+- A **detail view** with editable fields.
+- Seed rows loaded from your data so the app runs immediately.
+
+## Good inputs
+
+- CSV, TSV, or a spreadsheet copy-paste.
+- Small reference tables (5 to 500 rows).
+- Clean headers on the first row.
+- Consistent types per column.
+
+## Not great inputs
+
+- Merged cells or grouped headers. Flatten them first.
+- Free-form text where you meant a category. Add a normalized column.
+- More than a few thousand rows. Import as a real data source with a [connector](/features/data/connectors) instead.
+
+## What to do next
+
+- Wire the app to a live database with a [connector](/features/data/connectors), promoting seed data to real records.
+- Add [SQL queries](/features/data/sql-queries) for reports that need aggregation.
+- Move the working app from test to live with [project environments](/features/data/environments).
+
+## Related
+
+- [Build overview](/features/build/overview)
+- [API import](/features/build/api-import)
+- [Attachments in chat](/features/build/attachments)

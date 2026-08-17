@@ -53,48 +53,100 @@
         "group": "Build & code generation",
         "icon": "hammer",
         "pages": [
-          "features/build/overview"
+          "features/build/overview",
+          "features/build/spec-interview",
+          "features/build/from-spreadsheet",
+          "features/build/design-to-code",
+          "features/build/screenshot-to-ui",
+          "features/build/api-import",
+          "features/build/url-to-codebase",
+          "features/build/feature-flags",
+          "features/build/auto-fix",
+          "features/build/merge-resolve",
+          "features/build/attachments",
+          "features/build/receipts",
+          "features/build/svg-and-charts"
         ]
       },
       {
         "group": "Agent capabilities",
         "icon": "robot",
-        "pages": []
+        "pages": [
+          "features/agent/overview",
+          "features/agent/custom-modes",
+          "features/agent/preferences",
+          "features/agent/computer-use",
+          "features/agent/browser",
+          "features/agent/background",
+          "features/agent/memory",
+          "features/agent/skills",
+          "features/agent/chat-compression",
+          "features/agent/prompt-queue"
+        ]
       },
       {
         "group": "Editor & preview",
         "icon": "pen-to-square",
-        "pages": []
+        "pages": [
+          "features/editor/visual-edit",
+          "features/editor/instant-preview",
+          "features/editor/checkpoints",
+          "features/editor/preview-annotations",
+          "features/editor/layout-tools",
+          "features/editor/code-references"
+        ]
       },
       {
         "group": "Data & integrations",
         "icon": "database",
-        "pages": []
+        "pages": [
+          "features/data/sql-queries",
+          "features/data/connectors",
+          "features/data/environments"
+        ]
       },
       {
         "group": "Security & trust",
         "icon": "shield-halved",
-        "pages": []
+        "pages": [
+          "features/security/package-firewall",
+          "features/security/security-center",
+          "features/security/auto-mode-safety",
+          "features/security/audit-export",
+          "features/security/trust-centers",
+          "features/security/uptime-monitoring"
+        ]
       },
       {
         "group": "Workspace & collaboration",
         "icon": "users",
-        "pages": []
+        "pages": [
+          "features/workspace/files",
+          "features/workspace/guest-access",
+          "features/workspace/spend-limits",
+          "features/workspace/command-menu",
+          "features/workspace/managed-registry",
+          "features/workspace/referrals",
+          "features/workspace/billing"
+        ]
       },
       {
         "group": "Voice, media & presentation",
         "icon": "microphone",
-        "pages": []
+        "pages": [
+          "features/media/livey",
+          "features/media/voice-partner",
+          "features/media/deck",
+          "features/media/montage",
+          "features/media/funnels",
+          "features/media/maker"
+        ]
       },
       {
         "group": "Changelog",
         "pages": [
-          "changelog/2026-08-14-weekly",
-          "changelog/2026-08",
-          "changelog/2026-06",
-          "changelog/2026-05",
-          "changelog/2026-04",
-          "changelog/2026-earlier"
+          "changelog/2026-01",
+          "changelog/2026-02"
         ]
       }
     ]

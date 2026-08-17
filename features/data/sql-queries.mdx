@@ -1,0 +1,27 @@
+---
+title: "SQL data queries"
+description: "Run SQL against a connected database with a deterministic safety layer that classifies every statement."
+icon: "database"
+---
+
+Run SQL against a connected database and read the results in a grid.
+
+## Safety layer
+
+A deterministic classifier runs in front of every statement:
+
+| Class | What happens |
+| --- | --- |
+| Read | Runs immediately |
+| Write | Runs after standard review |
+| Destructive | Held for explicit confirmation |
+
+Drops, truncates, and unscoped deletes are held for confirmation before anything runs.
+
+## Blocks by construction
+
+- Stacked statements.
+- Unbalanced quotes.
+- Comment-smuggled injections.
+
+The safety check itself needs no database connection at all, so classification runs even in offline previews.

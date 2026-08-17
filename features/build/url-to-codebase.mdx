@@ -1,0 +1,53 @@
+---
+title: "URL to codebase"
+description: "Point Build at any URL and get a codebase that matches its structure and content."
+icon: "globe"
+---
+
+Give Clarua a URL and the Build agent produces a codebase that mirrors the page's structure. Layout, sections, copy, and asset placeholders come across as source, not a static clone.
+
+## Good for
+
+- Rebuilding a **landing page you own** in your stack.
+- Kicking off a **redesign** from a reference implementation.
+- Extracting the **structure of a component-heavy page** to use as a starting point.
+- Porting a page from one framework to another with the structure preserved.
+
+## Please don't use it to
+
+- Clone a site you don't own or have permission to reproduce.
+- Bypass a paywall or scrape content behind auth. Clarua respects `robots.txt` and refuses obvious cases.
+
+## What Clarua extracts
+
+- **Layout tree.** Sections, containers, and their arrangement.
+- **Typography and color hints.** Pulled into token candidates you can accept or replace.
+- **Copy.** Placed inline as editable strings.
+- **Asset placeholders.** Images and icons noted but not embedded (you supply your own).
+- **Routing hints.** Multi-page sites become multi-route scaffolds.
+
+## Not a scraper
+
+The output is a project scaffold, not a snapshot. You get editable components, real routing, and a clean starting point rather than a locked HTML dump. Nothing is loaded from the source site at runtime.
+
+## Typical flow
+
+<Steps>
+  <Step title="Paste the URL">
+    Any public URL. For multiple pages, paste them one per turn or as a list.
+  </Step>
+  <Step title="Confirm the scope">
+    Clarua shows what it extracted and which sections it will build. Trim or expand before it writes.
+  </Step>
+  <Step title="Replace tokens and assets">
+    Point Clarua at your token library and asset library so hex values and stock images become yours.
+  </Step>
+  <Step title="Iterate">
+    Use [visual edit](/features/editor/visual-edit) and [preview annotations](/features/editor/preview-annotations) to polish, exactly like any other build.
+  </Step>
+</Steps>
+
+## Related
+
+- [Screenshot to UI](/features/build/screenshot-to-ui)
+- [Design to code](/features/build/design-to-code)

@@ -3,45 +3,72 @@ title: "Quickstart: get started with Clarua"
 description: "Step-by-step quickstart that walks you through prerequisites, initial setup, and your first successful use of Clarua from zero to working."
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
-
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
+This quickstart takes you from zero to a working app in about ten minutes. You'll create an account, describe what you want to build, watch Clarua generate it, edit it visually, and publish it.
 
 ## Prerequisites
 
-Before you begin, you must have:
+- A modern browser (Chrome, Safari, Firefox, or Edge).
+- An email address for your workspace account.
+- Optional: a data source (CSV, spreadsheet, or database) if you want to build around your own data.
 
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
-
-## Get started
+## Create your first project
 
 <Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
-
-    ```bash
-    npm install your-package
-    ```
+  <Step title="Sign in">
+    Go to [clarua.com](https://clarua.com) and sign up. New accounts land in onboarding, where a live workspace preview assembles as you answer a few questions about what you want to build.
   </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
+  <Step title="Describe what you want">
+    In the chat composer, describe the app in plain language. Be concrete about who it's for and what it does.
 
-    ```bash
-    your-cli init
+    ```text
+    Build me a simple CRM for a two-person sales team.
+    Contacts have name, company, email, deal stage,
+    and last-touched date. I want a pipeline view and
+    a contacts list I can filter.
     ```
+
+    If Clarua needs to lock the spec, the [spec interview](/features/build/spec-interview) will ask a short form of clarifying questions before it starts.
   </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
+  <Step title="Watch it build">
+    The workbench streams the plan, the file changes, and the live preview. Open the [activity side panel](/features/agent/prompt-queue) to see what the agent did on each turn.
 
-    ```bash
-    your-cli start
-    ```
+    A [build receipt](/features/build/receipts) records files touched, lines changed, time, and cost for every turn.
+  </Step>
+  <Step title="Edit it in place">
+    Click any element in the preview to change text, spacing, color, or layout. Edits are written straight back to source through [visual edit](/features/editor/visual-edit).
+
+    Drop [numbered pins](/features/editor/preview-annotations) on the preview for anything you want the agent to fix on the next pass.
+  </Step>
+  <Step title="Wire up real data (optional)">
+    Open the project's Data panel and connect a [data connector](/features/data/connectors) (Postgres, Redshift, GA, Xero, or others), or paste a CSV directly into chat to [build from a spreadsheet](/features/build/from-spreadsheet).
+
+    Iterate against the **test** environment before promoting to **live**. See [project environments](/features/data/environments).
+  </Step>
+  <Step title="Publish">
+    Hit Publish. Clarua runs a should-I-ship check, and if it's green your app deploys to a Clarua-hosted URL. Add [uptime monitoring](/features/security/uptime-monitoring) and a [Trust Center](/features/security/trust-centers) from the project settings.
   </Step>
 </Steps>
 
-<Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
+## What to try next
 
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
+<CardGroup cols={2}>
+  <Card title="Build from a spreadsheet" icon="table" href="/features/build/from-spreadsheet">
+    Paste real rows and get an app scaffolded around your data.
+  </Card>
+
+  <Card title="Rebuild from a screenshot" icon="image" href="/features/build/screenshot-to-ui">
+    Turn any UI screenshot into clean, editable front-end code.
+  </Card>
+
+  <Card title="Set agent preferences" icon="user-gear" href="/features/agent/preferences">
+    Pick your model tier and auto-approval defaults.
+  </Card>
+
+  <Card title="Invite a collaborator" icon="user-plus" href="/features/workspace/guest-access">
+    Share a specific app with someone outside your workspace.
+  </Card>
+</CardGroup>
+
+<Tip>
+  Need help? Reach out at [support@clarua.com](mailto:support@clarua.com) or open the in-app help menu.
 </Tip>

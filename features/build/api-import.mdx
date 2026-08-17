@@ -1,0 +1,64 @@
+---
+title: "API import"
+description: "Paste an OpenAPI spec, request collection, or cURL and get a typed client wired into your project."
+icon: "plug"
+---
+
+Paste an API spec, a saved request collection, or a single cURL command and Clarua imports the endpoints, types, and auth into your project.
+
+## Accepted inputs
+
+- **OpenAPI 3.x** or **Swagger 2.0** JSON or YAML.
+- A **request collection** export (Postman, Insomnia, HAR).
+- A single **cURL command** with headers and body.
+- A **URL** to a hosted spec file. Clarua will fetch and validate.
+
+## What you get
+
+- A **typed client** with a method per endpoint.
+- **Request and response types** generated from the schema, including enums and unions.
+- **Auth wired** to match the spec: bearer, API key in header, cookie, or OAuth.
+- **Error types** modeled from the spec's error responses instead of a generic `Error`.
+- A small **usage example** in the same commit so you can see the shape immediately.
+
+## Example: from cURL to typed client
+
+Paste this:
+
+```bash
+curl -X POST https://api.example.com/v1/customers \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Ada","email":"ada@example.com"}'
+```
+
+Clarua generates:
+
+```ts
+import { customers } from "@/lib/api";
+
+const created = await customers.create({
+  name: "Ada",
+  email: "ada@example.com",
+});
+```
+
+with a typed `create` method, a typed `Customer` return, and the bearer token pulled from your project's environment.
+
+## Auth handling
+
+- **Bearer / API key.** Stored as a project secret, injected at request time.
+- **OAuth.** Clarua scaffolds the redirect flow and token storage.
+- **Signed requests.** Detected from the spec's security scheme and implemented in the client.
+
+Auth secrets are per-environment. You'll get one wiring for **test** and one for **live** via [project environments](/features/data/environments).
+
+## When the spec drifts
+
+Re-paste the updated spec and Clarua reconciles: new endpoints are added, changed shapes are diffed, and removed endpoints are marked as deprecated in the client. Your call sites break only where the API actually changed.
+
+## Related
+
+- [Data connectors](/features/data/connectors)
+- [Build overview](/features/build/overview)
+- [Package firewall](/features/security/package-firewall)

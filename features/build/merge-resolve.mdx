@@ -1,0 +1,39 @@
+---
+title: "Auto merge resolution"
+description: "Trivial pull-request merge conflicts resolve themselves, while genuine overlaps are flagged for review."
+icon: "code-merge"
+---
+
+When a pull request hits a merge conflict, the trivial cases sort themselves out.
+
+## Handled automatically
+
+- **Clean additions** on both sides of the same file.
+- **Non-overlapping deletions**.
+- **Whitespace-only** differences (indent, trailing space, EOL).
+- **Reordered imports**.
+- **Formatter-only** rewrites where the semantic content is identical.
+- **Lockfile churn** where both sides bumped versions with no real disagreement.
+
+## Flagged for review
+
+Anything where both sides **genuinely changed the same lines** is flagged for a human, not guessed at. When Clarua flags a conflict, you get:
+
+- The conflicting hunk highlighted with both branches side by side.
+- A note on why auto-resolve refused ("both sides changed line 42 differently").
+- A suggested merge only when the resolution is unambiguous from other context in the diff.
+
+## What routine PRs look like
+
+Dependency-update PRs, formatter passes, and rename refactors sail through without anyone untangling markers by hand. A weekly Renovate or dependency bot batch that used to eat an afternoon typically merges cleanly.
+
+## Guardrails
+
+- Auto-resolve never touches a hunk it isn't certain about.
+- Every auto-resolved hunk is recorded in the PR description with the class of change ("import reorder", "whitespace only") so a reviewer can spot-check.
+- You can turn auto-resolve off per repository if your team prefers manual handling.
+
+## Related
+
+- [Build receipts](/features/build/receipts)
+- [Checkpoints](/features/editor/checkpoints)

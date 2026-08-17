@@ -1,0 +1,21 @@
+---
+title: "Auto-mode safety"
+description: "The safety gate inspects the whole command chain, not just the first step, so destructive steps can't hide behind harmless ones."
+icon: "shield"
+---
+
+When the agent runs unattended, the safety gate inspects the **whole command chain**, not just the first thing in it.
+
+## Why the chain
+
+A destructive step hidden after a harmless one (a clean-looking command followed by a recursive delete or a force-push) used to be able to slip through on auto-approve. Chain inspection closes that hole.
+
+## Levels
+
+- **Hard-blocked.** The worst forms stay blocked with no override.
+- **Overridable.** Ordinary destructive steps you might actually want stay overridable with a confirmation.
+- **Denials are logged.** Every denial shows the exact reason in the transcript.
+
+## Readable rules
+
+Permission rules are written in a clear, readable form with precise domain and wildcard matching, so "allow this" means exactly what it says.

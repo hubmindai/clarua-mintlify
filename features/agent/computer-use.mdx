@@ -1,0 +1,52 @@
+---
+title: "Computer use"
+description: "The agent can perceive a UI and act on it in a continuous look-then-act loop."
+icon: "display"
+---
+
+For tasks that only exist behind a screen, the agent can perceive a UI and act on it: read what's on the page, decide the next step, and click, type, or scroll to carry it out, in a continuous look-then-act loop.
+
+## When to reach for it
+
+- **No API exists.** The vendor doesn't ship one, or the free tier doesn't include it.
+- **The API is worse than the UI.** Legacy consoles where the UI does things the API can't.
+- **You're testing a UI you own.** End-to-end flows that need to match user paths.
+- **You need a screenshot workflow.** Comparative captures across states, sizes, or themes.
+
+## Single operator, two surfaces
+
+Browser automation and desktop control run through one operator. The same agent can drive a website or an app by sight when there's no API to call. That means you write "log into the admin console and export last month's report" the same way whether the console is a web app or a native tool.
+
+## The look-then-act loop
+
+<Steps>
+  <Step title="Look">
+    The agent captures a structured view of the current screen: elements, text, roles, and geometry.
+  </Step>
+  <Step title="Decide">
+    Given the goal and the current view, the agent picks the next action: click, type, key, scroll, or wait.
+  </Step>
+  <Step title="Act">
+    The action executes. If it fails (element missing, screen changed), the loop retries with the new view.
+  </Step>
+  <Step title="Verify">
+    A check step confirms the action had the intended effect before moving on.
+  </Step>
+</Steps>
+
+## Bounded actions
+
+- **Grounded.** Every action targets an element that's actually visible.
+- **Recorded.** Every step is written to the transcript, with the view it acted on.
+- **Policy-scoped.** What origins and applications the agent may touch is set by workspace policy.
+- **Interruptible.** You can pause, take over, and hand back at any point.
+
+## Watching a run
+
+The activity side panel shows each look-then-act cycle in real time. Click any step to see the snapshot the agent used to make its decision.
+
+## Related
+
+- [Agent browser](/features/agent/browser)
+- [Background agents](/features/agent/background)
+- [Auto-mode safety](/features/security/auto-mode-safety)

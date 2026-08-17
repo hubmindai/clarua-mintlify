@@ -1,0 +1,81 @@
+---
+title: "Custom modes"
+description: "Define operational modes per project with their own tools, rules, and file scopes."
+icon: "sliders"
+---
+
+Custom modes let you shape how the agent works on each project. The same workspace can be tightly constrained for one task and broadly capable for another, just by switching modes.
+
+## Built-in modes
+
+<CardGroup cols={2}>
+  <Card title="Plan-only" icon="clipboard-list">
+    The agent may read and reason, but never write. Good for reviews, spec locking, and architecture discussion.
+  </Card>
+
+  <Card title="Debug" icon="bug">
+    Runtime and log tools are enabled, edits are cautious, and the agent prefers small isolated fixes over refactors.
+  </Card>
+
+  <Card title="Architect" icon="compass">
+    Broad reasoning, structural refactors, cross-file edits. Use for framework changes and shared-library work.
+  </Card>
+
+  <Card title="Custom" icon="sliders">
+    Any combination of tools, scopes, and rules you define per project.
+  </Card>
+</CardGroup>
+
+## Per-mode configuration
+
+Each mode has its own:
+
+- **Scoped tools.** Which tools the agent may call (file edit, shell, browser, database, network).
+- **Project rules.** File-based rules the agent always follows in this mode.
+- **File allow-list.** Paths the mode may edit. Everything outside is read-only.
+- **Auto-approval defaults.** What the mode may do without asking.
+
+## Example: a "release" mode
+
+```yaml
+# .clarua/modes/release.yml
+name: Release
+tools:
+  - file.read
+  - shell.git
+  - shell.test
+files:
+  allow:
+    - CHANGELOG.md
+    - package.json
+    - packages/*/package.json
+rules:
+  - Bump semver only, never touch source
+  - Every change goes in the CHANGELOG
+autoApprove:
+  planMode: true
+  merge: false
+```
+
+Now the same project supports:
+
+- **Architect mode** for building features.
+- **Debug mode** for fixing production issues.
+- **Release mode** for the actual cut, with no risk of source drift.
+
+## Switching modes
+
+Pick a mode from the composer or set a default per project. Modes are personal per user via [agent preferences](/features/agent/preferences), so a teammate can be in Debug while you're in Architect on the same repo.
+
+## Best practices
+
+- **Name modes after the task, not the model.** "Release" travels better than "Sonnet".
+- **Start with plan-only for unfamiliar codebases.** Read before you write.
+- **Give risky modes a smaller allow-list.** Constraint is the point.
+- **Version modes with the project.** Keep `.clarua/modes/*.yml` in the repo so the team shares them.
+
+## Related
+
+- [Agent overview](/features/agent/overview)
+- [Agent preferences](/features/agent/preferences)
+- [Auto-mode safety](/features/security/auto-mode-safety)

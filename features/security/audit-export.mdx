@@ -1,0 +1,24 @@
+---
+title: "Audit log export"
+description: "Forward your audit log to any SIEM in NDJSON, CEF, or JSON, over pull or signed push."
+icon: "file-export"
+---
+
+Forward your audit log to the security tooling your team already runs.
+
+## Formats
+
+- Newline-delimited JSON.
+- CEF.
+- Plain JSON.
+
+## Delivery
+
+- **Pull.** Your collector fetches batches on its own cadence, with a cursor that never double-counts or skips.
+- **Push.** New events go to a webhook in near real time, each delivery signed so the receiver can prove it came from you.
+
+## Safety and privacy
+
+- Sensitive fields can be redacted on the way out.
+- Deliveries retry on transient failures and stop cleanly on permanent ones.
+- Only a **public endpoint** is a valid destination, so the export can never be pointed inward.

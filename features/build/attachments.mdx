@@ -1,0 +1,43 @@
+---
+title: "Attachments in chat"
+description: "Spreadsheets, documents, archives, images, and animations parse locally and feed the build."
+icon: "paperclip"
+---
+
+Chat attachments understand more than plain text. Files are parsed locally and deterministically, and large inputs are trimmed to stay within the conversation's budget.
+
+## Supported inputs
+
+| Type | What Clarua reads | Common formats |
+| --- | --- | --- |
+| Spreadsheets | Sheets, headers, row counts, sample rows | `.csv`, `.tsv`, `.xlsx`, `.ods` |
+| Documents | Full text | `.md`, `.txt`, `.pdf`, `.docx` |
+| Compressed archives | File listing for context | `.zip`, `.tar.gz` |
+| Images | Vision input plus Files library entry | `.png`, `.jpg`, `.webp`, `.gif` |
+| Animation files | Format and version | `.lottie`, `.riv` |
+| Code | Highlighted, syntax-aware | Any recognized language |
+| API specs | Endpoints, schemas, auth | OpenAPI, Swagger, Postman |
+
+## Image handling
+
+- Attached images are clamped to the provider's 8000-pixel limit before upload.
+- Every image lands in three places on the same turn: **the model** (for vision), **the project** (as an asset), and the [Files library](/features/workspace/files) (browsable later).
+- Sensitive content stays inside your workspace when your policy blocks external providers.
+
+## Sizing and budgets
+
+Large inputs are trimmed to stay within the conversation's context budget. Clarua trims deterministically:
+
+1. Full content up to a per-file cap.
+2. A representative excerpt for anything larger (headers plus a sample for spreadsheets, first and last N pages for documents).
+3. A note in the transcript telling you what was trimmed and where to find the full file.
+
+## Combining attachments
+
+You can attach several files in a single message. Clarua treats them as one unit for the turn, so a spreadsheet plus a screenshot plus a design brief all inform the same build.
+
+## Related
+
+- [Files](/features/workspace/files)
+- [Build from a spreadsheet](/features/build/from-spreadsheet)
+- [Screenshot to UI](/features/build/screenshot-to-ui)

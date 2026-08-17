@@ -1,0 +1,54 @@
+---
+title: "Agent preferences"
+description: "Personal defaults for model tier, plan mode, and auto-approval that follow you across projects."
+icon: "user-gear"
+---
+
+Your agent preferences stick to you, not to the whole project. Two people working in the same project can each run the agent how they prefer, without overriding each other.
+
+## What's personal
+
+| Setting | What it does |
+| --- | --- |
+| Model tier | Which model runs your turns (Fast, Balanced, Deep, Max) |
+| Plan mode | Whether the agent produces a plan you approve before it writes |
+| Auto-merge | Whether the agent may merge its own PRs when checks are green |
+| Auto-approve plan | Whether a plan runs automatically after it's generated |
+| Deeper thinking | Extra reasoning budget for hard turns |
+| Web search | Whether the agent may fetch from the public web on a turn |
+
+## Account defaults, project overrides
+
+<Steps>
+  <Step title="Set account defaults">
+    In Settings, pick the defaults that fit most of your work. These follow you into every new project.
+  </Step>
+  <Step title="Override per project">
+    A new project override inherits your account settings, then diverges. Overrides are visible in the project's Agent panel.
+  </Step>
+  <Step title="Remove overrides to reset">
+    Delete a project override at any time to fall back to your account default. No hidden state.
+  </Step>
+</Steps>
+
+## Suggested defaults
+
+- **First time using Clarua.** Balanced model, plan mode on, auto-approve off. See what the agent proposes before it runs.
+- **Comfortable daily use.** Balanced or Deep, plan mode on, auto-approve on for low-risk turns.
+- **High-trust, high-throughput.** Deep model, plan mode off, auto-approve on. Best paired with [checkpoints](/features/editor/checkpoints) and a strong [custom mode](/features/agent/custom-modes).
+- **Fixing production incidents.** Deep model plus deeper thinking, plan mode on, auto-approve off. Slow down, get it right.
+
+## Model tiers at a glance
+
+- **Fast.** Cheapest, best for text edits and small tweaks.
+- **Balanced.** Default. Good for most build turns.
+- **Deep.** Slower, better at multi-file reasoning and refactors.
+- **Max.** Highest capacity for complex, long-horizon work.
+
+Tiers are cost-metered per turn. Watch your [receipts](/features/build/receipts) to see what each tier costs on your workload.
+
+## Related
+
+- [Custom modes](/features/agent/custom-modes)
+- [Auto-mode safety](/features/security/auto-mode-safety)
+- [Spend limits](/features/workspace/spend-limits)

@@ -1,0 +1,44 @@
+---
+title: "Design to code"
+description: "Import a design file and get design tokens and components written back into your source."
+icon: "pen-ruler"
+---
+
+Bring a design file into a project and Clarua returns structured front-end code, not a screenshot trace.
+
+## What you get
+
+- **Design tokens** for color, type, and spacing, pulled into a coherent system your app imports from a single source.
+- **Layout as components** written into your source tree, matching the design's structure and naming.
+- **Editable code**. It's a real source write, so hand-editing and round-tripping work.
+
+## Supported inputs
+
+- Figma files and frames.
+- Design token JSON (W3C-style).
+- Component libraries with clean layer naming.
+
+## Recommended prep
+
+Designs that survive the import cleanly usually share a few properties:
+
+- **Named layers.** Frames named `Card / Header` translate to `<CardHeader>`. Junk names produce junk components.
+- **Auto-layout.** Structure that already uses flex or grid maps directly to flex utility classes.
+- **A token system.** Color, spacing, and type styles that come from a shared library land as named tokens instead of raw hex values.
+
+## What Clarua writes
+
+1. A **tokens module** exporting typed values for color, spacing, radius, type, and shadow.
+2. A **components tree** mirroring the design's frame structure, with props for content and variants.
+3. A **stylesheet or utility-class layer** that references tokens, not hard-coded values.
+4. A small **README** describing the mapping, so a designer can read the diff.
+
+## Round-trip friendly
+
+Because the output is real components with real tokens, you can hand-edit and re-import without losing your changes. When Clarua re-imports, it detects existing token names and component shells and updates them in place instead of duplicating.
+
+## Related
+
+- [Screenshot to UI](/features/build/screenshot-to-ui)
+- [Visual edit](/features/editor/visual-edit)
+- [Layout tools](/features/editor/layout-tools)

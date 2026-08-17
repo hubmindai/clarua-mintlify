@@ -1,0 +1,33 @@
+---
+title: "Uptime monitoring"
+description: "Availability and latency monitoring for published apps, with automatic downtime investigation."
+icon: "chart-line"
+---
+
+Point a monitor at any app you publish and Clarua tracks availability and response time on a schedule.
+
+## What's tracked
+
+- Uptime percentage.
+- **p50 / p95 / p99** latency.
+- HTTP status mix.
+- Incidents.
+- Mean time to recovery against an SLA target you set.
+
+## Incidents don't flap
+
+A single blip never counts as an outage. An incident only opens after a configurable run of failures, and it closes itself the moment a healthy check returns.
+
+## Automatic investigation
+
+When something goes down, the root cause is classified:
+
+- DNS.
+- Certificate.
+- Timeout.
+- Connection refused.
+- Server error.
+- Client error.
+- Content mismatch.
+
+Each classification comes with concrete, ordered remediation steps and the failing checks that prove it.

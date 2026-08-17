@@ -1,0 +1,808 @@
+---
+title: "February 2026"
+description: "Everything that shipped in February 2026, grouped by area: new features, improvements, and fixes."
+sidebarTitle: "February 2026"
+---
+
+February 2026 in numbers: **714 shipped changes** across **17 areas**. The busiest work landed in everything else, chat & workbench, auth & onboarding.
+
+## Auth & onboarding
+
+### New
+
+- Fully integrated dashboard with Stytch auth, credit tracking, and more
+- Add first-deployment wizard for onboarding new deployments
+- Add guest welcome experience with sign-in banner and suggestion cards
+- Add dark theme toggle and SupaCode wordmark to signin/signup
+- Add authentication login section to chat intro page
+- Add Geani login/signup pages and update chatbox to ChatGPT-style design
+- Add auth error detection and auto-redirect to signin
+- Update buttons and modal to v0 style with auth check
+- Add Notion-style signup, onboarding, and reset-password pages
+
+### Improved
+
+- Parallelize Stytch discovery auth and optimize SDK readiness polling
+- Transparent header, gray banner, ClickUp-style Login/Sign Up buttons
+- Surface Stytch OAuth errors on Sign In and show friendly project-type message
+- Handle auth callback failures on /signin with user-friendly messaging
+- Redesign sign-in modal with email/phone toggle and passkey support
+- Improve dashboard, auth pages, and pricing for better conversion
+- Clean auth hero: ChatGPT/Claude-style greeting with 40\+ time-aware intros
+- Route OAuth callback failures to `/signin` instead of legacy `/auth/login`
+- Force light theme on TPT sign-in page
+- Improve voice-first UX: error handling, auth gate, accessibility, edge cases
+- Seed Chat with server auth and bootstrap client auth to avoid signed-out flash
+- Bootstrap auth from localStorage to remove signed-in root flicker
+- Use Geani sign-in/sign-up routes with returnTo in Geani BaseChat and Header
+- Optimize auth state management and reduce profile sync timeout
+- Further speed up post-signin loading with deeper optimizations
+- Geani: Add dedicated sign-in / sign-up flows and redirect handling in BaseChat
+- Reveal auth actions on scroll and improve header scroll detection
+- Header: use black background and reveal auth/help buttons after scroll
+- Update Geani lockup and emblem in auth pages and header
+- Migrate Google One Tap auth to use Supabase signInWithIdToken
+- Upgrade access denied modal with premium polish and seamless sign-in
+- Improve Supabase auth handling and graceful degradation
+
+### Fixed
+
+- Vercel deploy, auth callback, Workbench imports, and preload warnings
+- Fix B2B OAuth errors: flatten Stytch name object to string
+- Fix auth flow: eliminate 404, fix FK constraint, fix getUserId fallback
+- Harden Stytch logout during deploy and normalize Vercel deploy URLs
+- Fix Stytch B2B auth profile creation via server-side API
+- Fix deploy-triggered logout: verify server session before broadcasting
+- Resolve ChatHistory auth errors and Stytch session refresh 401
+- Resolve auth callback stuck on 'Completing Sign In'
+- Use SDK as primary auth strategy to fix PKCE mismatch
+- Route 'discovery' token type to OAuth discovery endpoint first
+- Handle B2B PKCE token exchange at /auth/callback (no redirect)
+- Redirect ALL B2B tokens to client callback, not just OAuth
+- Delegate B2B OAuth callbacks to client SDK for PKCE compatibility
+- Add session token exchange endpoint and fix B2B callback token type
+- Handle B2B discovery redirect URL errors and improve OAuth flow
+- Fix project invite login flow losing query params on redirect
+- Fix Workbench modal close callback initialization order
+- Remove guest sign-in banner, fix rotating word cutoff, clean up unused code
+- Harden forced-avatar onboarding persistence and redirect handling
+- Fix build: resolve unmerged git conflict markers in auth callback
+- Fix `/auth/callback/client` 404 by using supported nested route module layout
+- Fix Google auth callback route crash by avoiding `.client` route filename
+- Pass `initialIsAuthenticated` into ChatImpl to fix chat auth runtime error
+- Fix Google One Tap nonce handling for Supabase ID token sign-in
+- Fix slow post-signin loading by parallelizing operations and reducing timeouts
+- Guard auth callback client against SSR `window` access
+- Make Product, Solutions, Resources, and Login nav items transparent
+
+## Billing & pricing
+
+### New
+
+- Add per-agent daily credit limits with TokenDisplay integration
+- Upgrade ThinkingLoader with animated SVG bracket loader and dark mode
+- Major conversion upgrade: animated stats, demo section, comparisons
+- Upgrade ImpactStatsSection with 20x stats and enhanced visual design
+- Add pricing tab navigation and segmented plan views (Individual, Team & Enterprise, API)
+- Add near-limit usage badge with reset tooltip to header token display
+- Add out-of-credits message when user exhausts credit balance
+- Add agentic plan checklist UI for todo tracking
+- Add v0-style task progress panel, queue enhancements, and credit notifications
+- Add v0-style design wizard with stepped question cards and plan review
+- Upgrade FileGenerationModal to v70.0 with live streaming visuals
+- Upgrade FileGenerationModal to v69.0 with v0.dev-style design
+
+### Improved
+
+- Redesign billing section with new pricing plans and credit system
+- Competitor-inspired landing page upgrade: bento grid, FAQ, marquee, testimonials
+- Refine pricing cards to match Free/Pro markup and add tabbed pricing UI
+- Restyle pricing cards and add tabbed pricing UI
+- Update pricing page hero to match requested header layout
+- Redesign Plan Card with structured sections and interactive UI
+- Upgrade thinking icons with refined SVGs and new animation variants
+- Polish plan checklist UI and hide quick-build prompt echo
+- UpgradeModal: show real usage, account type, and hide downsells
+- Upgrade PlanningStage to chat-bubble conversational UX (v4.0)
+- Restore plan/build CTA, require plan approval, add Skip & Build, and disable auto-voice
+- Gate Start Building behind plan approval, hide floating CTA, and disable auto-voice
+- Improve discuss/plan UX: remove thinking stages, design questions, first-message flow
+- Replace Feedback links with Pricing and normalize Log in styling in header
+- Refine discuss plan flow and make approval-to-build transition reliable
+- Render planning stage inline and auto-start build after plan approval
+- Integrate Metronome billing: full API coverage, notifications, auto-reload
+- Redesign referral modal with new layout and light theme support
+- Improve chatbox, credit notification bar, and queue components
+- Wire WorkbenchHeader Upgrade CTA to open upgrade modal
+- Improve WorkbenchHeader and Share popover (publish, refer, upgrade, close controls)
+- Voice-first redesign: AI speaks first, one plan not menus, conversational flow
+- Upgrade skeleton loading to v13.0 with premium shimmer overlay
+- Improve file generation modal UX/UI and upgrade completion sound
+- Redesign UpgradeModal with improved UI and default to annual billing
+- Enhance modal animations and upgrade completion sound to premium stereo
+
+### Fixed
+
+- Resolve Supabase RLS blocking profile/credit queries after Stytch sign-in
+- Fix todo/plan checklist data flow: server parsing, prompt, and client
+- Fix chat scroll, centering, thinking indicators, and plan UX
+- Add specialized fix prompt route with auto-approved plan stages
+- Fix UpgradeModal height shift on billing toggle and redesign Referral modal
+- Wire agent questions and plan display in production chat
+- Fix WorkbenchHeader `onUpgrade` ReferenceError; wire Upgrade CTA and update Share popover
+- Fix AI-speaks-first flow, upgrade orb, FFT-reactive background, plan bubbles
+- Fix plan card showing too early: require real conversation before display
+- Fix voice plan submission: detect plans, show card, submit to LLM
+
+## Guest landing & marketing
+
+### New
+
+- Redesign BaseChat with Claude-inspired UX/UI and refresh FAQ
+- Add ClickUp-inspired hero section to top of BaseChat
+- Complete ClickUp-inspired homepage rework for high conversions
+- Add ClickUp Impact-inspired ImpactStatsSection to homepage
+- Add hero particles, comparison table, verified testimonials, CTA pulse
+- Add animated module-style hero header to BaseChat (typewriter \+ status pill)
+
+### Improved
+
+- Update site logo/emblem across header, menu, chat, and footer
+- Redesign hero UI to Claude-inspired clean aesthetic (v12.0)
+- Redesign guest landing page with conversion-focused hero and social proof
+- Refine hero section design with Luma-inspired styling
+- Revamp BaseChat hero and Public Header for 2026 SaaS conversion focus
+- Redesign BaseChat landing page for higher conversion
+- Redesign landing page with social proof and feature sections
+- Improve BaseChat guest hero for higher conversion
+- Show more recent chats with screenshots and add footer \+ layout tweaks to /chat/projects
+- Hide BaseChat hero for authenticated users
+- Update BaseChat guest hero copy and suggestion chips to pill buttons
+- Redesign hero section with Companion-inspired styling and new UI components
+- Redesign hero section with Cloudflare-inspired animations
+- Update homepage SEO metadata and add JSON-LD structured data
+- Refine BaseChat guest hero, resolve lint blockers, and improve intro input UX
+- Improve homepage intro: add logo cloud, channel cards, and default light theme
+- Enhance BaseChat hero UX with prompt chips and trust signals
+- Improve BaseChat hero styling
+- Update SupaCode SEO metadata and homepage tagline
+
+### Fixed
+
+- Fix BaseChat hero rotating line centering
+
+## Chat & workbench
+
+### New
+
+- Deepen Agent Skills integration with system prompt, API, and IDs
+- Enhance chat UX with streaming indicator, keyboard shortcuts, and more
+- Deepen GitNexus integration across editor, chat, and workbench
+- Add WebSocket fetch adapter, connection pool, and streaming protocol
+- Integrate assistant-ui library for enhanced chat experience
+- Add subtle typing dots indicator for discuss mode streaming
+- Add multi-session tab bar to chat header
+- Add resumable chat streaming and "Thinking" indicators in Recents dashboard
+- Add chat sidebar overlay mode when chat has started
+- Add shareable chat links with v0-style share modal UI
+- Add chat search modal with keyboard navigation
+- Add voice chat promotion overlay and external voice modal trigger
+- Hide template creation messages from chat view
+- Make workbench components production-ready with enhanced functionality
+- Update chatbox with voice/send button toggle
+- Instant chat loading: skip intro on existing chat routes
+- Implement Claude-style instant chatbox loading (v11.3)
+- Enhance chat description with AI (Sonnet 4.5) and inline editor
+
+### Improved
+
+- Move HomeHero below chatbox, use white light theme, hide when logged in
+- Wire Nebari into deployment flow, hooks, and system prompt
+- Improve mobile responsiveness in chat and workbench surfaces
+- Short-circuit chat metadata calls after 404 to avoid repeated failing requests
+- Make logo and chat name area fully transparent
+- Redesign workbench header to match Loveable-style layout
+- Remove streaming stop logic from message input handlers
+- Instant deployed chat preview: skip reachability check, load iframe immediately
+- Update chat header to Lovable style and add remix project modal
+- Improve /c URL prompt startup UX
+- Start Building instantly opens workbench \+ FileGenerationModal; /c/ routing polish
+- Refine chat header title interaction to breadcrumb style
+- Polish chat header title control and header visuals
+- Show FileGenerationModal immediately on streaming start
+- Return null for missing chat metadata (avoid 404 noise)
+- Always show initial thinking badge while streaming (remove discuss-mode gating)
+- Default agent thinking UI to visible when chat mode is missing
+- Gate agent thinking UI to build/discuss and mark server stages as streaming
+- Persist AI-generated chat titles to chat metadata
+- Improve task/thinking chat reliability with atomic task sync
+- Restore chat visibility for task progress and thinking timeline
+- Render GFM task list items reliably in chat Markdown
+- Improve task-list markdown rendering in chat
+- Preserve GFM task-list checkboxes and strikethrough in chat markdown
+- Remove "Generating response..." agent status indicator from chat
+- Handle iframe-blocked Vercel previews in Workbench
+- Center resize divider, make it hover-only, and unify chat body width handling
+- Make chat area full width when workbench is closed
+- Make chat/workbench split pane more resizable
+- Restore task checklist parsing and harden task/agent streaming handling
+- Workbench: multi-file editor tabs and white file-tree background (light theme)
+- Remove thinking stages and response clamping; add streaming pulse pill indicator
+- Speed up chat-to-preview and auto-deploy flow for instant UX
+- Improve chat UI: narrower width, faster buttons, smarter AI questions
+- Improve quick action buttons styling and streaming XML handling
+- Improve assistant/user message action buttons to match chat background
+- Update workbench header buttons: unified styling, remove terminal/copy
+- Update chatbox placeholder to "Build me" style prompts
+- Refine chat sidebar overlay: v0-style toggle, keyboard support, polish
+- Polish inline voice chat UX and reduce duplicate thread bubbles
+- Revamp voice mode UI to Grok-style full-screen composer
+- Remove leftover merge conflict markers in Workbench.client.tsx
+- Gate agent tool-use by chat mode with `effectiveMaxSteps` and explicit `enableToolUse`
+- Extract chat inaccessible error state into dedicated component
+- Use tpt-prompt for URL prompts from the /c route
+- Refine fallback thinking stages for clearer non-streaming progress
+- Refine design autopilot with manual override, clearer suggestions, and chat sanitization
+- Refine voice chatbox UX copy, helper guidance, and accessibility
+- Automate design-stage recommendations and normalize chat messages and cap Anthropic tokens
+- Improve voice agent chatbox UX copy and in-context guidance
+- …and 33 more
+
+### Fixed
+
+- Fix workbench header buttons not responding to clicks
+- Unify TodoListDisplay with PlanChecklist features and fix chat rendering
+- Fix duplicate deployments by centralizing auto-deploy to Workbench
+- Fix gray backgrounds in chat header and menu to #ffffff
+- Fix PlanChecklist not rendering inline in chat messages
+- Fix chat centering and auto-scroll by eliminating nested scroll containers
+- Fix todo list timeline and agentic task panel not showing in chat
+- Fix agent thinking and task progress visibility across chat modes
+- Harden chat metadata PATCH payload handling
+- Fix chat tasks not showing by hardening checklist extraction and stabilizing streaming/task handling
+- Fix agent prompt markdown rendering and refine quick prompts UI/behavior
+- Fix menu positioning: show above when chat started, below in pre-chat
+- Fix /c URL prompt routing to open chat immediately
+- Fix chat discuss mode: stale closures and Start Building button
+- Correct loading sequence: background first, then chatbox, then chat
+- Show current chat name in session tabs with inline rename and links
+- Harden api.chat server boundary and improve Agent thinking labels/content formatting
+- Fix Remix server-only import error in api.chat route
+- Fix chat deployment loading with improved timeout handling
+- Skip redundant deployment and modal on previous chat load
+- Fix Workbench header dropdowns layering above preview
+- Fix sidebar and chat header screenshot previews
+- Fix design stage UX: strip quick-action XML, warm workbench colors, cleanups
+- Fix UI bouncing during build and chat title not updating with AI
+- Fix chatbox tab and 'or type instead' button visibility
+- Fix double audio playback: separate context injection from prompt message
+- Fix chatbox dark-mode menus, theme selector visuals, mic button, tabs, and pre-chat actions
+- Fix design-stage inspiration panel width and sync voice context with chat
+- Improve design stage: bypass PlanningStage, fix workbench, enhance prompts
+- Improve chat loading UX and fix deployment URL handling
+- Fix chatbox input width/typing and redesign streaming UI buttons
+- Fix pasted text not being sent with prompt
+- Update All Projects sidebar link to /chat/projects
+- Improve chat file and image display
+
+### Performance
+
+- Background warmup for chat→workbench→deploy pipeline
+- Tighten deploy/workbench execution and rerender paths
+- Harden chat and workbench rendering paths, optimize file-generation and auto-deploy
+
+## Editor & preview
+
+### New
+
+- Add Refly-inspired visual workflow canvas with node-based editor
+- Add v0-style blurred screenshot loading for preview
+- Add Lovable-style top loading bar to preview
+- Add dot grid pattern and radial fade background to preview skeleton
+- Add screenshot preview to Publish dropdown and ProgressMeter to FileGenerationModal
+- Add AI-assisted error fixing feature for preview
+- Redesign Theme Editor to be world-class (better than Framer)
+- Update preview skeleton with monochrome SupaCode logo and orbital rings
+- Add live screenshot preview to Clone Website modal
+
+### Improved
+
+- Normalize deployed preview URLs for Preview iframe (handle missing/protocol-relative Vercel hosts)
+- Improve sidebar hover screenshot preview resilience
+- Show deployed screenshot preview in deploy dropdown
+- Throttle and dedupe local-preview preload; prefer local preview during deploy
+- Preload local preview before auto-deploy starts
+- Show local preview during deploy and auto-switch to live URL
+- Tune preview loading cadence and rotating text stages
+- Delay switching preview to remote until remote URL is reachable
+- Adjust preview loading stages and remove stage text
+- Show file-generation modal immediately to avoid editor flash
+- Refine preview loader with larger rings and staged encouragement messages
+- Preview: rotating dotted rings shimmer with staged center text
+- Make preview loading seamless and harden deploy/fallback timing
+- Local-first preview prelaunch and faster preview/deploy handoff
+- Event-driven preview handoff and stability fixes for auto-deploy
+- Polish sidebar menu hover preview experience
+- Keep Published UI on deploy errors and avoid unreachable deployed preview fallback
+- Improve deploy UX: preview iframe, icon updates, and auto-deploy
+- Refine sidebar UI with improved icons, layout, and preview interactions
+- Optimize Preview performance: extract skeleton CSS and improve caching
+- Polish UI/UX: header blur, spacing fixes, toolbar gaps, monochrome cursor
+- Enhance editor and file tree UI
+- Update MessageInput with V0-style toolbar layout
+- Update ChatHeader slideout to Notion-style with screenshot preview
+- Auto-switch to preview view after import/file generation
+
+### Fixed
+
+- Improve empty preview state UI and fix preview URL handling
+- Fix preview not working: stale closures, broken JSX, and retry bugs
+- Fix preview loading screen stuck after deployment completes
+- Fix autodeploy not completing and preview stuck on loading screen
+- Fix auto-deploy not launching and show preview while publishing
+- Fix UnifiedAutoDeploy to deploy via Vercel and keep local dev preview
+- Fix dev server not starting, preview loading forever, and auto-publish
+- Add "Fix for Free" feature for deployment and preview errors
+- Fix AssistantMessage redeclaration; improve preview warmup and deploy URL handling
+- Fix instant preview warmup and registered deploy URL propagation
+- Fix auto-deploy retrigger and preview loading text overlap
+- Fix preview handoff and deploy failures: reactive local preview and build-fallback
+- Fix preview wiring and restore deploy fields for unified auto-deploy
+- Fix FileGenerationModal, preview switching, and autodeploy
+- Guard editor viewport crashes with boundary recovery
+- Fix deploy dropdown screenshot preview recovery
+- Prevent preview flickering by fixing useEffect dependency loops
+
+### Performance
+
+- Improve preview loading and performance
+
+## Agent, plans & tools
+
+### New
+
+- Add OpenClaw-inspired channel, session, and skills features
+- Add Frontend Slides skill for creating animation-rich HTML presentations
+- Enhance Agent Skills integration with registry, UI tab, and CLA
+- Add Agent Skills for Context Engineering collection
+- Add skills@1.4.1 package and fully integrate Vercel agent skills
+- Add Anthropic Agent SDK as primary path with AI SDK fallback
+- Add agent question detection with quick response prompts
+- Add persistent memory, skills system, browser control, voice assistant
+- Add Claude.ai-style agent thinking timeline UI
+
+### Improved
+
+- Sync TaskProgressPanel with agent todo store updates
+- Update Thinking UI stages and rebrand Cloudflare agent to SupaCode/SupaAgent
+- Prefer Claude Agent workflows and show agentic thinking stages in UI
+- Rebrand agent thinking UI from Supacoder to Claude with improved UX
+- AI Agent Studio: revolutionary voice experience with neural particles
+- Handle binary reasoning stream chunks and migrate agent stack to Anthropic SDK
+
+## Memory & retrieval
+
+### Improved
+
+- Clarify Vercel iframe-embedding config labels
+- Compact warm terracotta quick prompts; preserve expanded/minimized state
+- Refine thinking stages into compact bottom summary
+- Refine Design Wizard: add Back navigation, keyboard accessibility, and compact layout tweaks
+
+### Fixed
+
+- Replace vaul drawer with @radix-ui/react-dialog and remove vaul dependency
+
+## Voice & talk
+
+### New
+
+- Add Stop control and waveform speaking indicator to voice assistant
+- Improve voice/send button with pill container design
+
+### Improved
+
+- Refine voice feedback flow and live voice-bubble merging
+- Remove duplicate voice mode button and keep single inline VoiceInput
+- Remove left dictation button and restyle primary voice button (white background \+ pulse)
+- Enhance voice UI with improved animations and keyboard shortcuts
+- Polish voice-first greeting flow and waiting-state UX
+- Refine voice-first startup and speaking UX
+- Elevate voice experience: waveform ring, celebration bursts, state sounds
+- World-class voice UI: multi-layer glow, speaking orb, polished UX
+- Voice-only discuss mode: single Hume connection, no double responses
+- Polish design-stage voice UX and consolidate quick-response context handling
+
+### Fixed
+
+- Add session\_duration\_minutes: 60 to SDK calls and skip client call
+- Improve voice UI: AI-only subtitles, fix glow, centered initial mic
+- Fix voice input color references and simplify permission tooltip
+
+## Build & deploy
+
+### New
+
+- Add post-deployment UI states: App Live, Dashboard, Edit Settings
+- Add post-deploy asset recovery and lazy-load retry logic
+
+### Improved
+
+- Phase 3: Wire Nebari into deploy button, server prompts, Argo workflows
+- Refine post-deploy states to match Lovable reference HTML exactly
+- Align useUnifiedAutoDeploy with DeployButton deployment flow
+- Enforce framework build commands for all non-prebuilt Vercel deployments
+- Use `npx vite build` for Vite projects in Vercel deployments
+- Improve Vercel deploy responsiveness with fast WebContainer fallback
+- Refine Vite build command extraction for Vercel source deployments
+- Ensure /c URL prompts start in build mode
+- Default new chats to discuss mode; improve deploy fallback and artifact handling
+- Support Cloudflare Pages VERCEL\_TOKEN fallback for deploy flows
+- Improve preload cleanup and artifact timeout handling
+- SaaS-harden deployment cache: TTL, quota safety, cross-user isolation
+- Improve Vercel deploy error reporting
+- Improve deployment UX with optimistic UI and granular progress
+- Performance optimize deployment hooks for production
+
+### Fixed
+
+- Fix duplicate StreamingIndicator import causing build failure
+- Resolve Cloudflare Error 1101: missing lucide-react imports
+- Fix Vercel deploy UX: instant discuss→build transition, faster auto-deploy
+- Fix Vercel auto-deploy flow when registered deploy function returns structured result
+- Fix Vercel deployment failures caused by mixed routing config
+- Fix syntax error in DashboardSection.tsx causing build failure
+- Fix Vercel auto-deploy token / team permission handling
+- Harden Vercel deploy path normalization and Vite build detection
+- Resolve Vercel build command for Vite source deployments
+- Prevent repeated auto-deploy triggers when deploymentReady becomes true
+- Overhaul discuss mode: AI-driven questions, skip\+build, fix quick actions
+- Fix Vercel deployment file collection path normalization
+- Fix duplicated WebContainer build path normalization for Vercel deploys
+- Fix auto-deploy timeout behavior and improve chunk-load 503 recovery
+- Fix Vercel deploy build path normalization in WebContainer
+- Fix Vercel deploy chatId handling from nanostore state
+- Eliminate duplicate loads, instant deployment display, suppress warnings
+- Guard Vercel auto-deploy when no connection token is available
+- Fix unresolved merge markers breaking BaseChat build
+- Fix deploy button popover dark mode: replace hardcoded light colors with tokens
+- Fix deploy button UX: friendly errors, dedup events, error recovery
+- Fix deploy button screenshot not showing and preload resource warnings
+- Fix deployment validation and silent fallback for auto-deploy
+
+## Data & connectors
+
+### New
+
+- Migrate authentication from Supabase to Stytch
+- Implement Nebari data science platform integration
+- Add comprehensive Nebari integration review for SupaCoder
+- Add resilient reconnection and retry logic to Supabase client
+
+### Improved
+
+- Phase 4: Full end-to-end Nebari integration wiring
+- Improve Supabase client initialization and preload handling
+
+### Fixed
+
+- Fix nonce mismatch between Google One Tap FedCM and Supabase
+- Fix multiple console errors: Supabase duplicates, GSI, preloads, CORS
+- Fix JWTIssuedAtFuture errors causing 401s on all Supabase API calls
+- Fix Supabase client initialization parameter order
+
+## Security & trust
+
+### New
+
+- Add security hardening, resilience, and OpenClaw patterns
+
+## Analytics & insights
+
+### New
+
+- Production-ready Mission Control dashboard with OpenClaw integration
+- Integrate OpenClaw Mission Control dashboard at /dashboard
+- Add collaboration, analytics, command palette, file explorer, and more
+
+### Improved
+
+- Refine dashboard recents behavior and improve project card screenshot fallback
+- Force light theme for /tpt/dashboard route
+- Filter dashboard Recent Projects to screenshot-backed chats
+- Update dashboard layout to match Recent Projects \+ My Chats design
+- Improve dashboard UI with better interactions and polish
+- Simplify dashboard to single "Recent Projects" section
+
+### Fixed
+
+- Add parent layout route for /dashboard to resolve 404
+- Refine collaboration, analytics, and command palette modules
+
+## Sidebar & navigation
+
+### New
+
+- Integrate companion components into /code route
+- Add right-click context menu on logo with Copy SVG and Download Brand assets
+- Convert settings from modal to full-page route with tab navigation
+- Add new menu items and user profile display to user menu
+- Add project-based settings/branding system and v0.dev-style breadcrumb
+- Add sidebar navigation and warm design updates to app detail page
+- Enhance sidebar with image library and new project links
+
+### Improved
+
+- Update menu logo to new SupaCoder brand with theme-aware center line
+- Skip discuss mode when URL prompts originate from /c routes
+- Improve ChatHeader slideout menu to match Menu.client sidebar
+- Handle modulepreload and preload link failures in chunk recovery
+- Update ChatHeader slideout menu to match Menu.client sidebar style
+- Improve sidebar accessibility and recent-project highlighting
+- Update GeaniMenu to ChatGPT-style sidebar v3.0
+
+### Fixed
+
+- Fix undefined 'dark' reference in sidebar Menu component
+- Fix dropdown menu positioning from bottom to top
+- Fix blank content area and improve sidebar active state
+- Prevent menu slideout from closing immediately and position below
+
+## Files & projects
+
+### New
+
+- Integrate all new modules into app with stores, hooks, UI
+- Redesign Workspace settings tab to match Lovable.dev layout
+- Add 'Meet SupaCode' section and refresh Discover Apps header
+- Add chunk-load recovery for FileGenerationModal lazy import
+- Add project type tabs and model selector v2 UI components
+- Add Share Project popover and GitHub sync button
+- Add AccessDeniedModal component for private project access
+- Add full-screen drag-and-drop file upload overlay (Claude-style)
+- Add smart path flattening for nested folder imports
+
+### Improved
+
+- Improve Discover Apps UI to 5 rows and redesign app detail page
+- Migrate domain from .supacoder.app to .supacoder.site
+- Update share project modal to Lovable-style design
+- Import stage derivation utilities in AssistantMessage
+- Revamp /apps with BaseChat-inspired workspace UI
+- Remove guest banner from BaseChat and improve active project-tab visibility
+- Reduce unused preload warnings on app bootstrap
+- Filter discover sections to screenshot-backed apps/templates
+- ChatHeader: wire share/visibility actions and guard async header controls
+- Update Discover templates and apps layout to new container design
+- Update project cards with SupaCoder branding and improved menus
+- Replace V0 logo with SupaCoder logo in project card placeholder
+
+### Fixed
+
+- Fix ThinkingDisplay ReferenceError by adding missing import
+- Fix AgentThinkingTimeline ReferenceError by adding missing import
+- Import planning stage modules directly to prevent runtime init issues
+- Fix server-only module import error and JSX syntax errors
+- Improve error handling in Clone Website modal
+
+## Search & docs
+
+### Improved
+
+- Use Geani emblem in header dropdown and update Geani lockups
+- Update geani logos to new emblem and lockup
+- Remove background/border from SupaCode dropdown and help button
+
+## Design system & polish
+
+### New
+
+- Add fading code snippets behind loading modal
+- Add ChatGPT-style image generation UX components
+- Add Start Building button and subtitle-style one-line-at-a-time text
+- Add TryFeature modal for promoting new features
+- Add Lovable-style People page with member table to settings
+- Update header logo to match new SupaCoder brand mark
+- Add comprehensive theme design prompts and theme persistence
+- Update branding elements to SupaCoder theme
+
+### Improved
+
+- Update all logo components with new brand SVG assets
+- Update header: dark notification badge, smooth scroll-hide banner
+- Refine header/top-banner: New badge color, hide-on-scroll animation, and scrolled blur
+- Deepen Claude-style UX: zero visual noise, refined palette, input-as-hero
+- Redesign header with new logo, notification banner, and ClickUp-style CTAs
+- Refine theme colors and improve settings UI component styling
+- Redesign logo with new bracket \+ cursor mark and gradient colors
+- Show ChatHeader in discuss mode and add dark mode support
+- Replace LoadingSpinner SVG with sprite-based spinning icon
+- Redesign todo list and task panel with Claude-style UX/UI
+- Darken and refine FileGenerationModal backdrop code typography
+- Make loading modal code background clearly visible
+- Restore loading text backdrop and raise file-gen modal above content
+- Refresh SupaCode badge colors and terminal cursor timing
+- Refine discuss quick-action timing and button styling
+- Replace discuss-mode typing dots with Thinking badge and dedupe PlanChecklist updates
+- Rebrand logo from dual-chevron to chevron\+cursor with terracotta color
+- Update ReferralModal color scheme from teal to warm terracotta
+- Integrate SupaStyle Theme System into PlanningStage design presets
+- Header: add dismissible status banner, external dropdown links, mobile nav and store/theme refinements
+- Apply Emil Kowalski animation framework to all connected components
+- Apply Emil Kowalski design animation framework across codebase
+- Update ChatHeader to use sticky positioning with v0.dev-style transitions
+- Replace indigo accent with Claude brand coral (#D97757)
+- Force CommunityHeader to light theme (remove dark variants, set white backgrounds)
+- Clean up file generation modal: Claude-style minimal UX
+- Improve file generation modal: remove clutter, add dark theme, better contrast
+- Improve ChatSearchModal: faster indexing, debounced input, and ChatGPT-style ranking
+- Update components for dark theme compatibility and always-visible authentication
+- Switch default theme to dark mode with updated color palette
+- Update SupaCode logo to new gradient double-bracket design with DM Sans
+- Update WorkbenchHeader download icon to custom markup
+- Update unauthorized header to ChatGPT-style with brand switcher dropdown
+- Integrate ExternalLink modal into LinkPreview component
+- Update GeaniBaseChat to ChatGPT-style interface v3.0
+- Redesign notification toasts with Google Drive-style UI
+- Redesign PublicHeader with Notion-style navigation dropdowns
+- Update mic icon and send button styling for cleaner ChatGPT-like UI
+
+### Fixed
+
+- Fix logo dark mode: use themeStore instead of MutationObservers
+- Replace div with motion.div for proper animation wrapper
+- Fix modal flickering, AI title race condition, and improve stop words
+- Fix thinking stages not showing and add dark theme support
+- Fix settings modal rendering by importing full SettingsModal component
+- Fix ThemeDialog centering and animation on smaller screens
+- Update nav button styling to be transparent
+
+## Everything else
+
+### New
+
+- Add comprehensive A2UI rendering engine and multi-channel adapters
+- Level up: sticky CTA, tool replacement bar, press mentions, and more
+- Add ClickUp-inspired Supa Agents showcase section
+- Refine BaseChat with elegant greeting, cleaner cards, and polish
+- Add superpowers bootstrap, parallel dispatch, branch finishing, and more
+- Add mobile nav, quick settings, thinking mode selector, and more
+- Integrate deer-flow inspired AI element components
+- Integrate superpowers-inspired development methodology
+- Add GitNexus-inspired code analysis and dependency visualization
+- Redesign Cloud and AI balance settings to match Lovable.dev layout
+- Redesign People settings tab to match Lovable.dev layout
+- Add notification system module
+- Add world-class below-fold sections: How It Works, Logo Bar, Demo, Testimonials
+- Add discuss mode styling and layout adjustments
+- Add task list with strikethrough for completed items in both modes
+- Show live code snippets in FileGenerationModal backdrop
+- Integrate thinking stages and thinking detail with agents
+- Add BaseChat top offset for logged-in header overlay
+- Add companion panel and enhanced UI components inspired by The-Vibe-Company
+- Add screenshot filtering and heart/like functionality to Discover
+- Add "Start building with SUPACODE TODAY" promo banner for guest users
+- Add SupaClaw promo popup to BaseChat home screen
+- Integrate model selection with thinking/agents capabilities
+- Add one-time cache-busted retry for failed asset loads
+- Add website info panel with AI-powered favicon and OG image generation
+- Add non-blocking connection lost banner and improve error UI
+- Make index and basechat scrollable in intro state
+- Add course management APIs and improve navigation active state
+- Enhance EditorPanel to v4.0 with improved UX and accessibility
+- Redesign UpgradeModal with Claude-inspired clean UI
+- Update header to always-sticky with border
+- Add projects management and image library
+
+### Improved
+
+- Enhance BaseChat input dock UX clarity
+- Redesign logo mark from triple chevrons to bracket sparkle
+- Hide top banner on scroll, blur header background when scrolled
+- Enlarge header logo in Header.client.tsx
+- Phase 5: Centralized nanostore, plugin tool bridge, interactive dashboard
+- Redesign public header with minimal Luma-inspired navigation
+- Rebrand to "Vibe Coding" and enhance SEO metadata
+- Visual polish: particles, dot grid, live indicator, card accents, badges
+- Restore full functionality, rename to Supacoder, remove Loveable refs
+- Redesign FileGenerationModal for cleaner, more purposeful UX
+- Remove collapsing of assistant messages (always show full content)
+- Centralize todo UI: remove per-message checklist and thinking UI from AssistantMessage
+- Refine FileGenerationModal backdrop contrast and progress copy
+- Preload starter template selection during discuss mode
+- Remove discuss mode restrictions from reasoning and thinking features
+- Reduce noisy unused preload warnings on initial load
+- Polish AssistantMessage: sanitize streamed fragments, harden quick-actions, and stabilize thinking timeline UX
+- Restore AssistantMessage agentic thinking timeline UX
+- Reduce default logger verbosity in browser runtime
+- Improve public header navigation and CTA hierarchy
+- DiscoverCard: hide duplicate description and remove heart background
+- Simplify header: remove dropdowns, fake social proof, and dead code
+- Remove isStreaming prop and loading indicator from EclipseIntegratedLayout
+- Restyle QuickPromptSuggestions to white card design and simplify expanded UI
+- QuickPromptSuggestions: expand by default and preserve minimize state
+- Improve UX/UI for both ReferralModal and UpgradeModal
+- Hide thinking stages and completion indicators in discuss mode
+- Remove thinking stages during discuss mode
+- Improve thinking stage pipeline: interleaved thinking, topic-aware labels
+- Redesign PlanningStage with conversational UX and auto-advance
+- Hide top status banner in public header
+- Personalize BaseChat welcome for signed-in users (time-based greetings)
+- Improve PublicHeader: add dismissible status banner and richer navigation
+- Show companion toggle on mobile and hide its label on very small screens
+- Improve agentic thinking readability with human-friendly summaries
+- Improve instant load experience with rich SSR shell
+- Align FileGenerationModal with unified design system
+- Broaden React #310 recovery to include early-hydration failures
+- Improve thinking stages with creator-friendly labels, shimmer animations
+- Remove extraneous closing tag causing JSX structure error
+- Improve thinking timeline stage readability
+- Require profile image setup when default avatar is still set
+- Smarter Recents "Thinking" polling and resumable stream persistence
+- Improve thinking stage labels and timing display
+- Remove ChatHeader from BaseChat since Header.client is already used
+- Remove inline screenshot dots, only show screenshot on hover
+- Reduce early unused preload warnings during startup
+- Refine guest welcome experience with enhanced UI and social proof
+- Reduce thinking stage churn and filter code-like stage labels
+- Allow server-side Vercel token fallback and add friendly error mapping
+- …and 25 more
+
+### Fixed
+
+- Reduce 503 errors by consolidating chunks and lazy-loading modals
+- Resolve React error #31 by rendering provider.name instead of provider
+- Normalize Stytch member IDs to UUIDs for supa\_profiles compatibility
+- Auto-create B2B organization for new users with 0 discovered orgs
+- Strip query params from discovery\_redirect\_url to match Stytch dashboard
+- Review and integrate GitNexus components across codebase
+- Bypass SDK PKCE by reading code\_verifier from localStorage directly
+- Switch all server-side Stytch API calls to B2B endpoints
+- Resolve template literal bug in server.ts and add B2B member support
+- Render logo as inline SVG instead of img tag
+- Try B2B client first instead of relying on console interception
+- Improve logo rendering in header
+- Fix AccountSection not defined error on /settings page
+- Resolve font 404s and add user-friendly Stytch error handling
+- Eliminate BaseChat blank-screen loading gates and preload warnings
+- Todo checklist items now update individually instead of all at once
+- Add Thinking indicator for discuss mode and fix raw XML flash during streaming
+- Fix Google One Tap: migrate to FedCM API for mandatory compliance
+- Fix discuss mode panel stuck at 60% width instead of centered full width
+- Fix duplicate task list and auto-minimize on completion
+- Fix preload warning, metadata 404, duplicate screenshots, and perf violations
+- Fix preload warning, duplicate screenshot captures, and DNS resolution
+- Fix todo timeline rendering from tool payload variants
+- Fix todo list reactivity by switching to atom store and removing memo
+- Fix iframe "refused to connect" for Vercel deployments
+- Fix runtime ReferenceError in discuss-mode assistant messages
+- Fix Vercel autodeploy config to allow iframe embeds
+- Destructure `agentThinkingState` in AssistantMessage to fix runtime ReferenceError
+- Fix undefined ThinkingBadge in AssistantMessage
+- Fix deriveStagesFromContent ReferenceError with defensive guard
+- Fix ThinkingIndicatorInline missing props and consolidate imports
+- Fix undefined agentThinkingState crash; rename MessageRow prop and refine quick-action/thinking UI
+- Fix agentThinkingState runtime reference; refine thinking UI, quick-action handling, and checklist rendering
+- Harden thinking-stage guard; refine quick-actions, messages, and checklist UI
+- Fix checklist visibility and polish quick-action/thinking UI
+- Tune FileGenerationModal backdrop size, cadence, and layering
+- Make background code visible in FileGenerationModal backdrop
+- Fix task visibility regression and harden task/stage event handling
+- Fix duplicate thinking/task progress updates and default to collapsed panels
+- Fix TDZ error: move hideThinkingInDiscuss before isLongResponse
+- Fix discuss mode: buttons, thinking box, and Show more
+- Fix DashboardSection: remove merge conflict markers and unify recent projects/chats logic
+- Fix BaseChat greeting apostrophe syntax error
+- Fix unresolved merge markers in Thinking component
+- Fix thinking stage details rendering in AgentThinkingTimeline
+- Fix auto template fallback to prevent starter template lock-in
+- Fix ReferenceError: isDark is not defined in UpgradeBanner
+- Fix terminal initialization on hidden elements and improve error handling
+- Fix React error #300: remove try/catch around React hook calls
+- Fix design-stage quick action wrapper tag mismatch
+- …and 36 more
+
+### Performance
+
+- Dedupe and connection-gate background warmups
+- Add passive event listeners for production optimization

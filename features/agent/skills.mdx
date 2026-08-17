@@ -1,0 +1,20 @@
+---
+title: "Skills"
+description: "Custom skills the agent can reach for automatically or only on explicit call."
+icon: "graduation-cap"
+---
+
+Skills are structured playbooks the agent can call. Each skill is a self-contained set of instructions the agent follows when it matches.
+
+## Auto vs manual
+
+Every skill has an **Auto / Manual** toggle in settings.
+
+- **Auto (default).** The agent may trigger the skill when its pattern matches.
+- **Manual only.** The skill stays callable by name with `/slug`, but never auto-triggers.
+
+Manual-only mode is useful for narrowly scoped skills that shouldn't fire on their own, playbooks you keep on the shelf until you call for them.
+
+## Debug logs
+
+Drop a wall of server or runtime logs into chat and get back a clean read: a count of each severity, the time span they cover, and your errors grouped by what they actually are. Identifiers, numbers, paths, and quoted values are normalized away before grouping, so the same failure four hundred times collapses into one row with a count and an example message.

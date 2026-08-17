@@ -1,0 +1,45 @@
+---
+title: "Build receipts"
+description: "Every build turn records the files touched, lines changed, time taken, and cost, saved with the message."
+icon: "receipt"
+---
+
+Every build turn records exactly what happened.
+
+## What's captured
+
+- **Files touched** on the turn, with per-file line-add and line-remove counts.
+- **Total lines** added and removed, from real before-and-after file comparisons.
+- **Time taken** end to end.
+- **Cost** for the turn, split by model calls, tool use, and background compute.
+- **Turn outcome**: success, partial, or reverted.
+
+## Persistent
+
+The summary is saved with the message. Refresh the page, come back tomorrow, or open any past turn and you get the same receipt. Receipts are searchable across a project's history.
+
+## Not an estimate
+
+Because line counts come from real diffs and cost comes from the actual usage, receipts are the ground truth. They aren't projections and they don't drift.
+
+## Reading a receipt
+
+- **Green header.** The turn completed. Everything applied.
+- **Amber header.** Partial: some files applied, some deferred (usually behind a plan-mode gate).
+- **Grey header.** Reverted through a [checkpoint](/features/editor/checkpoints) or an undo.
+
+Expand any receipt to see the per-file breakdown. Click a file to open its diff.
+
+## Aggregating receipts
+
+Receipts roll up into:
+
+- **Per-project usage** in the project settings.
+- **Per-member spend**, which powers [spend limits](/features/workspace/spend-limits).
+- **Workspace analytics** for admins.
+
+## Related
+
+- [Spend limits](/features/workspace/spend-limits)
+- [Checkpoints](/features/editor/checkpoints)
+- [Billing](/features/workspace/billing)

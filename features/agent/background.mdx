@@ -1,0 +1,23 @@
+---
+title: "Background agents"
+description: "Long tasks run in warm sandboxes with session persistence, so you can hand off work and get it back later."
+icon: "clock-rotate-left"
+---
+
+Background agents run in remote sandboxed environments, not on your local machine. They keep going while you switch contexts.
+
+## Optimizations
+
+- **Pre-built environment images** refreshed on a regular cadence, so start-up isn't cold.
+- **Warm sandbox pools** for instant session starts.
+- **Filesystem snapshots** for session persistence across pauses.
+- **Predictive sandbox warming** when you start typing.
+- **Self-spawning agents** for parallel task execution.
+
+## Multiplayer
+
+Sessions support collaborative agent work, so multiple people or agents can operate on the same environment at once.
+
+## Reads before sync
+
+File reads are allowed before git sync completes; only writes block on it. That keeps interactive latency low even when a session first attaches.

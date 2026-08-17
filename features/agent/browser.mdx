@@ -1,0 +1,17 @@
+---
+title: "Agent browser"
+description: "Open a real browser, read the page as a structured snapshot, and act on it under a security policy."
+icon: "window"
+---
+
+The agent browser lets Clarua get things done on sites that have no API.
+
+## How it acts
+
+- Opens a real browser session.
+- Reads the page as a **structured snapshot**, not raw pixels.
+- Navigates, fills forms, clicks through a flow against that structured view.
+
+## Bounded by policy
+
+Every browser session runs under a security policy that bounds where the agent can go: which origins are reachable, which credentials can be used, and what surfaces the agent is not allowed to touch. Attempts outside the policy fail closed.

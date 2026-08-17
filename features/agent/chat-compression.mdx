@@ -1,0 +1,24 @@
+---
+title: "Long chats and compaction"
+description: "A live context meter and structured compaction keep long sessions going instead of stalling."
+icon: "compress"
+---
+
+A running **context meter** shows how full the conversation is.
+
+## When it fills up
+
+History is compacted into a **structured summary** that keeps the decisions and drops the noise. Compaction runs:
+
+- **Automatically** at the context limit.
+- **On demand** with `/compact`.
+
+## What survives
+
+Compaction preserves:
+
+- Decisions you and the agent have settled.
+- Files, endpoints, and identifiers the conversation depends on.
+- Open threads that still need action.
+
+A long working session keeps going instead of stalling, without losing the thread of what you've already settled.

@@ -1,0 +1,72 @@
+---
+title: "Feature flags"
+description: "Typed feature flags scaffolded into the app you build, with stable per-user assignment and no external service."
+icon: "flag"
+---
+
+Ask for feature flags and your generated app ships with a typed, self-contained flag layer built in.
+
+## What ships
+
+- A **flag config** with typed keys, one file you edit to change behavior.
+- **Gate helpers** wired in where they belong (component gates, route gates, server checks).
+- **Stable assignment** per user, so the same person always lands in the same rollout window or variant.
+- A tiny **admin surface** to dial rollouts and swap variants from inside the app.
+
+## Kinds of flag
+
+<CardGroup cols={3}>
+  <Card title="Percentage rollout" icon="chart-simple">
+    Dial exposure from 0 to 100 with stable hashing per user.
+  </Card>
+
+  <Card title="Kill switch" icon="power-off">
+    Turn a code path off instantly without a deploy.
+  </Card>
+
+  <Card title="A/B/n experiment" icon="flask">
+    Split traffic across named variants and read the winner from your metrics.
+  </Card>
+</CardGroup>
+
+## Example
+
+Ask: "Add a feature flag for the new onboarding, 10% rollout."
+
+Clarua adds:
+
+```ts
+// flags.ts
+export const flags = defineFlags({
+  newOnboarding: percentage(10),
+});
+
+// onboarding.tsx
+if (flags.newOnboarding.on(user)) {
+  return <NewOnboarding />;
+}
+return <ClassicOnboarding />;
+```
+
+Dial the rollout up by editing `percentage(10)` to `percentage(50)`, or split into variants with `variants("A" | "B" | "C")`.
+
+## Stable assignment
+
+Assignment hashes the user id (or session id for logged-out) with the flag key. A user in the 10% bucket is **always** in the 10% bucket for that flag until you change it, and moving to 50% is additive: everyone in 10% stays, plus 40% more.
+
+## No external service
+
+Everything runs inside the app. There is no third-party flag service to connect, no key to rotate, and no network call between your app and the flag decision. Flags evaluate in-process, so gate checks are cheap enough to use liberally.
+
+## When to reach for a real flag service
+
+- You need cross-app flag consistency across separate deployments.
+- You want a rich analytics story tied to variant exposure at scale.
+- You need approval workflows for flag changes.
+
+Otherwise, the built-in layer is what you want.
+
+## Related
+
+- [Build overview](/features/build/overview)
+- [Auto-fix](/features/build/auto-fix)

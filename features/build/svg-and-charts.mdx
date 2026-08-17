@@ -1,0 +1,51 @@
+---
+title: "Icons, shapes, and charts"
+description: "Deterministic SVG icons, shapes, and bar, line, and pie charts rendered directly from your numbers."
+icon: "chart-simple"
+---
+
+Ask for an icon, a simple shape, or a chart in chat and Clarua returns clean SVG. No image service, no runtime canvas library, no PNG round-trip.
+
+## Chart types
+
+<CardGroup cols={3}>
+  <Card title="Bar" icon="chart-column">
+    Vertical or horizontal, single or grouped, with auto-scaled axes.
+  </Card>
+
+  <Card title="Line" icon="chart-line">
+    One or more series, with optional markers and area fill.
+  </Card>
+
+  <Card title="Pie" icon="chart-pie">
+    Category totals as slices, with labels on or off.
+  </Card>
+</CardGroup>
+
+## Example
+
+Ask: "Give me a bar chart of monthly signups: Jan 120, Feb 145, Mar 210, Apr 180."
+
+Clarua returns inline SVG with auto-scaled y-axis, month labels, and readable colors. Drop the markup straight into your project or into a `<Chart>` component.
+
+## Icons and shapes
+
+- **Icons.** Ask for what you need: "a rounded lock icon" or "a house with a chimney." You get clean SVG paths at 24-pixel or the size you name.
+- **Shapes.** Rectangles, circles, arrows, callouts. Every shape uses the same coordinate system so you can compose them.
+
+## Deterministic
+
+The same request always produces the same markup. That matters for:
+
+- **Version control.** SVG diffs stay meaningful.
+- **Snapshot tests.** Rendered output doesn't churn between runs.
+- **Design system stability.** Regenerating a chart from the same numbers gives you the same chart.
+
+## Safety
+
+Every label is safely escaped. Data with quotes, angle brackets, or scripts stays as text in the rendered SVG and can't inject markup.
+
+## Related
+
+- [Build overview](/features/build/overview)
+- [Design to code](/features/build/design-to-code)

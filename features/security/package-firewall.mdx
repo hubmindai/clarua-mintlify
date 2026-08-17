@@ -1,0 +1,28 @@
+---
+title: "Package firewall"
+description: "Every dependency the agent adds is checked against a supply-chain firewall before it installs."
+icon: "shield-virus"
+---
+
+Every dependency the agent adds is checked against a supply-chain firewall first.
+
+## What it catches
+
+- Known-malicious and hijacked packages.
+- Typosquats of popular names, including transposition look-alikes hiding under a scope.
+- Versions with published advisories.
+- Dangerous install-time scripts.
+- Dependency confusion on your private names.
+- Insecure or unpinned sources.
+- Your project's own risky install hooks.
+
+## Outcomes
+
+Each check returns **allow**, **warn**, or **block** with the evidence behind the call.
+
+- A clear-cut malicious name is a **hard block**.
+- Fuzzy look-alikes **warn loudly** instead of silently blocking a package you actually wanted.
+
+## Runs on the edge
+
+The firewall runs entirely on the edge from a curated threat catalog. No manifest leaves the worker.

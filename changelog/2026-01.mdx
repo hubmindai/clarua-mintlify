@@ -1,0 +1,214 @@
+---
+title: "January 2026"
+description: "Everything that shipped in January 2026, grouped by area: new features, improvements, and fixes."
+sidebarTitle: "January 2026"
+---
+
+January 2026 in numbers: **100 shipped changes** across **13 areas**. The busiest work landed in everything else, chat & workbench, design system & polish.
+
+## Auth & onboarding
+
+### New
+
+- Add advanced patterns for testing, a11y, realtime, auth, and UI
+
+### Fixed
+
+- Fix auth state sync race condition on billing page
+
+## Billing & pricing
+
+### New
+
+- Add comprehensive Metronome billing integration
+
+### Improved
+
+- Upgrade VoiceInput to v7.0 with polished premium experience
+- Upgrade VoiceInput to v6.0 with premium voice experience
+- Upgrade quickprompts model from Haiku to Sonnet 4.5
+- Complete Metronome billing integration with Stripe checkout
+
+## Guest landing & marketing
+
+### New
+
+- Polish homepage with glassmorphism, glow effects, and footer CTA
+- Enhance homepage with scroll animations and improved styling
+- Redesign homepage with Lovable-inspired styling
+
+### Fixed
+
+- Improve homepage scroll by removing nested scroll containers
+
+## Chat & workbench
+
+### New
+
+- Comprehensively enhance SupaCoder prompt with advanced patterns
+- Enhance SupaCoder system prompt with best practices from industry
+- Add model tier selection (SupaMax/Pro/Mini) to chat interface
+- Add streaming state awareness and debouncing to quick prompts
+- Add stream reconnection support for resumable chat responses
+- Add design mode button to ChatBox toolbar
+- Add v0.dev-style Design System panel to chat section
+
+### Improved
+
+- Simplify ChatBox toolbar with cleaner, minimal button styling
+- Remove extra padding between chat and workbench, improve resize handle
+- Enhance ChatBox UX/UI with polished styling and micro-interactions
+- Enhanced voice UI with expanded modal and chat integration
+- Remove separate voice modal from BaseChat, use ChatBox voice
+- Integrate Hume EVI voice directly into ChatBox VoiceInput
+- Update ChatBox with Presence design system styling
+- Include user request context in chat message prefix
+- Support extended thinking and array formats in AI SDK streaming
+- Performance optimization: Enhanced memoization across workbench components
+- Improve streaming reasoning content handling and deduplication
+
+### Fixed
+
+- Remove fallback suggestions and fix quick prompt event payload
+- Fix file attachments and images not being submitted with chat messages
+- Fix chat API URL handling and streaming protocol configuration
+
+## Editor & preview
+
+### Fixed
+
+- Fix preview screenshot not displaying in sidebar and deploy button
+- Fix preview URL priority and improve deployment polling
+- Fix files not showing in editor panel
+- Fix deployment modal, preview, and deploy button issues
+
+## Agent, plans & tools
+
+### New
+
+- Add resilient deployment & event bus infrastructure with skills integration
+
+## Memory & retrieval
+
+### Improved
+
+- Refine ThemeDialog and ThemeSelector UI with compact spacing
+
+### Fixed
+
+- Fix memory leaks and cleanup issues in React effects
+
+## Build & deploy
+
+### New
+
+- Enhance deploy button with premium design and UX improvements
+- Add Tailwind CSS instructions to prevent border-border build errors
+
+### Improved
+
+- Integrate auto-deploy with file generation modal v65.0
+- Remove manual route preloading in favor of Remix manifest
+- Improve file generation and deployment timing for templates
+
+### Fixed
+
+- Fix service role client initialization for Cloudflare Workers
+- Fix UnoCSS build error by replacing theme() function with inline style
+
+## Data & connectors
+
+### New
+
+- Add notification toast system with Sonner integration
+- Add admin screen for bulk Metronome user migration
+
+### Improved
+
+- Improve Metronome integration with better idempotency and alias support
+
+## Security & trust
+
+### Improved
+
+- Security hardening and resource cleanup improvements
+
+## Sidebar & navigation
+
+### New
+
+- Add Component, Content, Size sections and element breadcrumb to Design panel
+- Add slideout sidebar menu on logo hover in ChatHeader
+
+### Improved
+
+- Update Header, Menu, and ProjectCard for instant loading UX
+
+## Design system & polish
+
+### New
+
+- Introduce SupaStyle design system with CSS variable support
+- Add ultra premium celebration experience to file generation modal
+- Add v0-style bottom gradient overlay and image upload button
+- Add CSS containment and skeleton loading for instant UI performance
+- Implement Claude-style warm color palette across UI
+
+### Improved
+
+- Update notification toast to minimal centered design
+- Redesign loader to Base44-style warm elegant aesthetic v66.0
+- Enhance file generation modal with premium completion experience
+- Improve UX/UI for unauthorized users with Superagent-style design
+- Redesign PublicHeader with Superagent-style layout
+- Update image and design mode button styles
+- Update design mode button to v0-style with blue theme
+
+### Fixed
+
+- Revert header to v0-style simple design
+- Fix notification toast transparent background
+- Fix UI issues: thinking stages, spacing, and panel borders
+
+## Everything else
+
+### New
+
+- Add screenshot\_url and cover\_image to SchemaManager.OPTIONAL
+- Add warm organic Presence sound system and enhanced UX v67.0
+- Add SupaCoder branded loader with animated logo
+- Add conversation context management and core utility functions
+- Add contacts page for community member management
+- FileTree v4.0 - improved performance and UX
+- V60.0 friendly stage-based progress
+- V58.0 enhanced animations and premium stereo audio
+- V57.0 Claude-inspired minimal UX
+- V53.0 with confetti, stages, keyboard shortcuts
+- Add fallback to direct Anthropic API when BYOK not configured
+- Add interleaved-thinking beta header for extended reasoning
+
+### Improved
+
+- Show deployed site instantly for previously deployed chats
+- Enhance password step with more active and engaging UX
+- Enhance SignInModal with improved UX and visual polish
+- Improve JSON parsing robustness for quick prompts API
+- Enhance performance with GPU acceleration and batch updates (v2.0)
+- Update DeployButton to match v0.dev popover design
+- Update DeployButton to match v0.dev design (v20.0)
+- Support multiple reasoning part types from AI SDK
+- Enhance ThinkingDisplay with better styling and features
+- Remove duplicate ExtendedThinkingDisplay component
+
+### Fixed
+
+- Fix intro section scrolling and layout overflow issues
+- Improve quickprompts reliability and remove fallbacks
+- Fix NextJS template missing package.json when GitHub returns partial data
+- Fix AudioWorkletNode error with lazy-loaded Hume SDK and enhanced Presence
+- Fix admin Metronome provisioning to bypass user authentication
+- Fix admin Metronome page to fetch all users with pagination
+- Remove non-existent viewed\_at column from DashboardSection query
+- Fix DashboardSection infinite loops and SSR compatibility
+- Fix thinking display disappearing after stream completes
+- Hide .bolt folders from FileTree

@@ -1,0 +1,19 @@
+---
+title: "Managed registry"
+description: "The workspace-hosted npm registry for private packages, on Enterprise plans."
+icon: "boxes-stacked"
+---
+
+Managed registry is the npm registry Clarua hosts for your workspace.
+
+<Note>
+  Managed registry was previously called Private registry. Nothing about how it works changed.
+</Note>
+
+It sits alongside an external registry you'd run yourself (which you can still connect through a build secret), and it's available on **Enterprise plans**.
+
+## Use cases
+
+- Publish internal packages without standing up your own registry.
+- Consume workspace-only packages from projects you build.
+- Keep private dependency names off the public index.
